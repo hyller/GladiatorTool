@@ -1,0 +1,10 @@
+;This is a command to mount d:\Workspace as G
+;SUBST [drive1: [drive2:]path]
+subst G: d:\Workspace
+
+;This is a command to delete G disk
+;SUBST drive1: /D
+subst  G:  /D
+
+
+
