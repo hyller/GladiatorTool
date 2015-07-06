@@ -1,24 +1,38 @@
-CC = g++
+#---------
+#
+# CppUTest Examples Makefile
+#
+#----------
 
-CFLAGS += -D_MSC_VER=1300
-CFLAGS += -I../../Components  \
-          -I../../Components/CppUnit/cppunit-1.10.2/include \
-          -I../../Ascii/Src
-CFLAGS += -L../../Components/CppUnit/cppunit-1.10.2/lib
+#Set this to @ to keep the makefile quiet
+ifndef SILENCE
+	SILENCE = @
+endif
 
-EXEC = ascii_u.exe
+#--- Inputs ----#
+COMPONENT_NAME = Ascii_u
+CPPUTEST_HOME = ../../COTS/CppUTest/v2.4a
 
-SOURCE = ./main.cpp  \
-         ./Scripts/FormatOutputSpy.cpp ./Scripts/FormatOutputSpy.h \
-		     ./Scripts/TestAscii.cpp  ./Scripts/TestAscii.h  \
-		     ../Src/ascii.cpp ../Src/ascii.h
+CPPUTEST_USE_EXTENSIONS = Y
+CPP_PLATFORM = GCC
+
+# This line is overriding the default new macros.  This is helpful
+# when using std library includes like <list> and other containers
+# so that memory leak detection does not conflict with stl.
+# CPPUTEST_MEMLEAK_DETECTOR_NEW_MACRO_FILE = -include ApplicationLib/ExamplesNewOverrides.h
+SRC_DIRS = \
+	Scripts \
+	../Src
+
+TEST_SRC_DIRS = \
+	Tests
+
+INCLUDE_DIRS =\
+  .\
+  Scripts\
+  $(CPPUTEST_HOME)/include\
+  ../Src
+
+include $(CPPUTEST_HOME)/build/MakefileWorker.mk
 
 
-all:$(EXEC)
-
-$(EXEC): $(SOURCE)
-	$(CC) $(CFLAGS) $^ -o $@ -lstdc++ -lCppUnitBuild
-	
-clean:
-	rm -rf $(EXEC)
-	

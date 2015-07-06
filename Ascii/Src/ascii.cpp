@@ -84,7 +84,7 @@ int parser_parameter( int argc, char* argv[], int* index )
 
   if( ( 0 == strcmp( "-d", argv[ 0 ] ) ) && ( argc == 2 ) )
   {
-    if( 0 != sscanf( &argv[ 1 ][ 0 ], "%d", (unsigned int*)index ) )
+    if( 0 != sscanf( &argv[ 1 ][ 0 ], "%d", (int*)index ) )
       return( RET_SUCCESS );
   }
 
