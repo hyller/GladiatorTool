@@ -1,6 +1,6 @@
 @echo off
 rem calculate modbus crc, example:
-rem gcrc_modbus 0207
+rem crc_modbus 0207
 rem 41 12
 rem 41 is low byte, 12 is high byte
 rem CRC Byte Sequence defined in Modbus is:
