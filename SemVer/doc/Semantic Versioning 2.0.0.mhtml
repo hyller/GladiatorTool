@@ -1,0 +1,454 @@
+From: <Saved by Blink>
+Subject: Semantic Versioning 2.0.0
+Date: Mon, 12 Jul 2015 06:37:53 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_3E04_0E758E05.23613E70"
+
+------=_NextPart_000_3E04_0E758E05.23613E70
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://semver.org/
+
+<!DOCTYPE html><html lang=3D"en" dir=3D"ltr"><head><meta charset=3D"UTF-8">
+ =20
+  <title>Semantic Versioning 2.0.0</title>
+  <meta name=3D"author" content=3D"Tom Preston-Werner">
+  <link rel=3D"stylesheet" href=3D"http://semver.org/css/main.css">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0, maximum-scale=3D1.0, minimum-scale=3D1.0">
+</head>
+ <body>
+   <ol class=3D"nav lang">
+     <li><a href=3D"http://semver.org/">english</a> [en]</li>
+     <li><a lang=3D"fr" rel=3D"alternate" hreflang=3D"fr" href=3D"http://se=
+mver.org/lang/fr">fran=C3=A7ais</a> [fr]</li>
+     <li><a lang=3D"ru" rel=3D"alternate" hreflang=3D"ru" href=3D"http://se=
+mver.org/lang/ru">pycc=D0=BA=D0=B8=D0=B9</a> [ru]</li>
+     <li><a lang=3D"es" rel=3D"alternate" hreflang=3D"es" href=3D"http://se=
+mver.org/lang/es">espa=C3=B1ol</a> [es]</li>
+     <li><a lang=3D"it" rel=3D"alternate" hreflang=3D"it" href=3D"http://se=
+mver.org/lang/it">italiano</a> [it]</li>
+     <li><a lang=3D"pt-BR" rel=3D"alternate" hreflang=3D"pt-BR" href=3D"htt=
+p://semver.org/lang/pt-BR">portugu=C3=AAs brasileiro</a> [pt-BR]</li>
+     <li><a lang=3D"zh-TW" rel=3D"alternate" hreflang=3D"zh-TW" href=3D"htt=
+p://semver.org/lang/zh-TW/">=E7=B9=81=E9=AB=94=E4=B8=AD=E6=96=87</a> [zh-TW=
+]</li>
+     <li><a lang=3D"zh-CN" rel=3D"alternate" hreflang=3D"zh-CN" href=3D"htt=
+p://semver.org/lang/zh-CN/">=E7=AE=80=E4=BD=93=E4=B8=AD=E6=96=87</a> [zh-CN=
+]</li>
+     <li><a lang=3D"ko" rel=3D"alternate" hreflang=3D"ko" href=3D"http://se=
+mver.org/lang/ko">=ED=95=9C=EA=B5=AD=EC=96=B4</a> [ko]</li>
+     <li><a lang=3D"sk" rel=3D"alternate" hreflang=3D"sk" href=3D"http://se=
+mver.org/lang/sk">slovensky</a> [sk]</li>
+     <li><a lang=3D"sl" rel=3D"alternate" hreflang=3D"sl" href=3D"http://se=
+mver.org/lang/sl">sloven=C5=A1=C4=8Dina</a>&nbsp;[sl]</li>
+     <li><a lang=3D"ar" rel=3D"alternate" hreflang=3D"ar" href=3D"http://se=
+mver.org/lang/ar">=D8=A7=D9=84=D8=B9=D8=B1=D8=A8=D9=8A=D8=A9</a> [ar]</li>
+     <li><a lang=3D"ja" rel=3D"alternate" hreflang=3D"ja" href=3D"http://se=
+mver.org/lang/ja">=E6=97=A5=E6=9C=AC=E8=AA=9E</a> [ja]</li>
+   </ol>
+   <ol class=3D"nav">
+     <li><a href=3D"http://semver.org/spec/v2.0.0.html">v2.0.0</a></li>
+     <li><a href=3D"http://semver.org/spec/v2.0.0-rc.2.html">v2.0.0-rc.2</a=
+></li>
+     <li><a href=3D"http://semver.org/spec/v2.0.0-rc.1.html">v2.0.0-rc.1</a=
+></li>
+     <li><a href=3D"http://semver.org/spec/v1.0.0.html">v1.0.0</a></li>
+     <li><a href=3D"http://semver.org/spec/v1.0.0-beta.html">v1.0.0-beta</a=
+></li>
+   </ol>
+   <h1>Semantic Versioning 2.0.0</h1>
+
+<h2>Summary</h2>
+
+<p>Given a version number MAJOR.MINOR.PATCH, increment the:</p>
+
+<ol>
+<li>MAJOR version when you make incompatible API changes,</li>
+<li>MINOR version when you add functionality in a backwards-compatible
+manner, and</li>
+<li>PATCH version when you make backwards-compatible bug fixes.</li>
+</ol>
+
+
+<p>Additional labels for pre-release and build metadata are available as ex=
+tensions to the MAJOR.MINOR.PATCH format.</p>
+
+<h2>Introduction</h2>
+
+<p>In the world of software management there exists a dread place called
+"dependency hell." The bigger your system grows and the more packages you
+integrate into your software, the more likely you are to find yourself, one
+day, in this pit of despair.</p>
+
+<p>In systems with many dependencies, releasing new package versions can qu=
+ickly
+become a nightmare. If the dependency specifications are too tight, you are=
+ in
+danger of version lock (the inability to upgrade a package without having t=
+o
+release new versions of every dependent package). If dependencies are
+specified too loosely, you will inevitably be bitten by version promiscuity
+(assuming compatibility with more future versions than is reasonable).
+Dependency hell is where you are when version lock and/or version promiscui=
+ty
+prevent you from easily and safely moving your project forward.</p>
+
+<p>As a solution to this problem, I propose a simple set of rules and
+requirements that dictate how version numbers are assigned and incremented.
+These rules are based on but not necessarily limited to pre-existing
+widespread common practices in use in both closed and open-source software.
+For this system to work, you first need to declare a public API. This may
+consist of documentation or be enforced by the code itself. Regardless, it =
+is
+important that this API be clear and precise. Once you identify your public
+API, you communicate changes to it with specific increments to your version
+number. Consider a version format of X.Y.Z (Major.Minor.Patch). Bug fixes n=
+ot
+affecting the API increment the patch version, backwards compatible API
+additions/changes increment the minor version, and backwards incompatible A=
+PI
+changes increment the major version.</p>
+
+<p>I call this system "Semantic Versioning." Under this scheme, version num=
+bers
+and the way they change convey meaning about the underlying code and what h=
+as
+been modified from one version to the next.</p>
+
+<h2>Semantic Versioning Specification (SemVer)</h2>
+
+<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHO=
+ULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to =
+be
+interpreted as described in <a href=3D"http://tools.ietf.org/html/rfc2119">=
+RFC 2119</a>.</p>
+
+<ol>
+<li><p>Software using Semantic Versioning MUST declare a public API. This A=
+PI
+could be declared in the code itself or exist strictly in documentation.
+However it is done, it should be precise and comprehensive.</p></li>
+<li><p>A normal version number MUST take the form X.Y.Z where X, Y, and Z a=
+re
+non-negative integers, and MUST NOT contain leading zeroes. X is the
+major version, Y is the minor version, and Z is the patch version.
+Each element MUST increase numerically. For instance: 1.9.0 -&gt; 1.10.0 -&=
+gt; 1.11.0.</p></li>
+<li><p>Once a versioned package has been released, the contents of that ver=
+sion
+MUST NOT be modified. Any modifications MUST be released as a new version.<=
+/p></li>
+<li><p>Major version zero (0.y.z) is for initial development. Anything may =
+change
+at any time. The public API should not be considered stable.</p></li>
+<li><p>Version 1.0.0 defines the public API. The way in which the version n=
+umber
+is incremented after this release is dependent on this public API and how i=
+t
+changes.</p></li>
+<li><p>Patch version Z (x.y.Z | x &gt; 0) MUST be incremented if only backw=
+ards
+compatible bug fixes are introduced. A bug fix is defined as an internal
+change that fixes incorrect behavior.</p></li>
+<li><p>Minor version Y (x.Y.z | x &gt; 0) MUST be incremented if new, backw=
+ards
+compatible functionality is introduced to the public API. It MUST be
+incremented if any public API functionality is marked as deprecated. It MAY=
+ be
+incremented if substantial new functionality or improvements are introduced
+within the private code. It MAY include patch level changes. Patch version
+MUST be reset to 0 when minor version is incremented.</p></li>
+<li><p>Major version X (X.y.z | X &gt; 0) MUST be incremented if any backwa=
+rds
+incompatible changes are introduced to the public API. It MAY include minor
+and patch level changes. Patch and minor version MUST be reset to 0 when ma=
+jor
+version is incremented.</p></li>
+<li><p>A pre-release version MAY be denoted by appending a hyphen and a
+series of dot separated identifiers immediately following the patch
+version. Identifiers MUST comprise only ASCII alphanumerics and hyphen
+[0-9A-Za-z-]. Identifiers MUST NOT be empty. Numeric identifiers MUST
+NOT include leading zeroes. Pre-release versions have a lower
+precedence than the associated normal version. A pre-release version
+indicates that the version is unstable and might not satisfy the
+intended compatibility requirements as denoted by its associated
+normal version. Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7,
+1.0.0-x.7.z.92.</p></li>
+<li><p>Build metadata MAY be denoted by appending a plus sign and a series =
+of dot
+separated identifiers immediately following the patch or pre-release versio=
+n.
+Identifiers MUST comprise only ASCII alphanumerics and hyphen [0-9A-Za-z-].
+Identifiers MUST NOT be empty. Build metadata SHOULD be ignored when determ=
+ining
+version precedence. Thus two versions that differ only in the build metadat=
+a,
+have the same precedence. Examples: 1.0.0-alpha+001, 1.0.0+20130313144700,
+1.0.0-beta+exp.sha.5114f85.</p></li>
+<li><p>Precedence refers to how versions are compared to each other when or=
+dered.
+Precedence MUST be calculated by separating the version into major, minor, =
+patch
+and pre-release identifiers in that order (Build metadata does not figure
+into precedence). Precedence is determined by the first difference when
+comparing each of these identifiers from left to right as follows: Major, m=
+inor,
+and patch versions are always compared numerically. Example: 1.0.0 &lt; 2.0=
+.0 &lt;
+2.1.0 &lt; 2.1.1. When major, minor, and patch are equal, a pre-release ver=
+sion has
+lower precedence than a normal version. Example: 1.0.0-alpha &lt; 1.0.0. Pr=
+ecedence
+for two pre-release versions with the same major, minor, and patch version =
+MUST
+be determined by comparing each dot separated identifier from left to right
+until a difference is found as follows: identifiers consisting of only digi=
+ts
+are compared numerically and identifiers with letters or hyphens are compar=
+ed
+lexically in ASCII sort order. Numeric identifiers always have lower preced=
+ence
+than non-numeric identifiers. A larger set of pre-release fields has a high=
+er
+precedence than a smaller set, if all of the preceding identifiers are equa=
+l.
+Example: 1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.0.0-be=
+ta &lt;
+1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0-rc.1 &lt; 1.0.0.</p></li>
+</ol>
+
+
+<h2>Why Use Semantic Versioning?</h2>
+
+<p>This is not a new or revolutionary idea. In fact, you probably do someth=
+ing
+close to this already. The problem is that "close" isn't good enough. Witho=
+ut
+compliance to some sort of formal specification, version numbers are
+essentially useless for dependency management. By giving a name and clear
+definition to the above ideas, it becomes easy to communicate your intentio=
+ns
+to the users of your software. Once these intentions are clear, flexible (b=
+ut
+not too flexible) dependency specifications can finally be made.</p>
+
+<p>A simple example will demonstrate how Semantic Versioning can make depen=
+dency
+hell a thing of the past. Consider a library called "Firetruck." It require=
+s a
+Semantically Versioned package named "Ladder." At the time that Firetruck i=
+s
+created, Ladder is at version 3.1.0. Since Firetruck uses some functionalit=
+y
+that was first introduced in 3.1.0, you can safely specify the Ladder
+dependency as greater than or equal to 3.1.0 but less than 4.0.0. Now, when
+Ladder version 3.1.1 and 3.2.0 become available, you can release them to yo=
+ur
+package management system and know that they will be compatible with existi=
+ng
+dependent software.</p>
+
+<p>As a responsible developer you will, of course, want to verify that any
+package upgrades function as advertised. The real world is a messy place;
+there's nothing we can do about that but be vigilant. What you can do is le=
+t
+Semantic Versioning provide you with a sane way to release and upgrade
+packages without having to roll new versions of dependent packages, saving =
+you
+time and hassle.</p>
+
+<p>If all of this sounds desirable, all you need to do to start using Seman=
+tic
+Versioning is to declare that you are doing so and then follow the rules. L=
+ink
+to this website from your README so others know the rules and can benefit f=
+rom
+them.</p>
+
+<h2>FAQ</h2>
+
+<h3>How should I deal with revisions in the 0.y.z initial development phase=
+?</h3>
+
+<p>The simplest thing to do is start your initial development release at 0.=
+1.0
+and then increment the minor version for each subsequent release.</p>
+
+<h3>How do I know when to release 1.0.0?</h3>
+
+<p>If your software is being used in production, it should probably already=
+ be
+1.0.0. If you have a stable API on which users have come to depend, you sho=
+uld
+be 1.0.0. If you're worrying a lot about backwards compatibility, you shoul=
+d
+probably already be 1.0.0.</p>
+
+<h3>Doesn't this discourage rapid development and fast iteration?</h3>
+
+<p>Major version zero is all about rapid development. If you're changing th=
+e API
+every day you should either still be in version 0.y.z or on a separate
+development branch working on the next major version.</p>
+
+<h3>If even the tiniest backwards incompatible changes to the public API re=
+quire a major version bump, won't I end up at version 42.0.0 very rapidly?<=
+/h3>
+
+<p>This is a question of responsible development and foresight. Incompatibl=
+e
+changes should not be introduced lightly to software that has a lot of
+dependent code. The cost that must be incurred to upgrade can be significan=
+t.
+Having to bump major versions to release incompatible changes means you'll
+think through the impact of your changes, and evaluate the cost/benefit rat=
+io
+involved.</p>
+
+<h3>Documenting the entire public API is too much work!</h3>
+
+<p>It is your responsibility as a professional developer to properly docume=
+nt
+software that is intended for use by others. Managing software complexity i=
+s a
+hugely important part of keeping a project efficient, and that's hard to do=
+ if
+nobody knows how to use your software, or what methods are safe to call. In
+the long run, Semantic Versioning, and the insistence on a well defined pub=
+lic
+API can keep everyone and everything running smoothly.</p>
+
+<h3>What do I do if I accidentally release a backwards incompatible change =
+as a minor version?</h3>
+
+<p>As soon as you realize that you've broken the Semantic Versioning spec, =
+fix
+the problem and release a new minor version that corrects the problem and
+restores backwards compatibility. Even under this circumstance, it is
+unacceptable to modify versioned releases. If it's appropriate,
+document the offending version and inform your users of the problem so that
+they are aware of the offending version.</p>
+
+<h3>What should I do if I update my own dependencies without changing the p=
+ublic API?</h3>
+
+<p>That would be considered compatible since it does not affect the public =
+API.
+Software that explicitly depends on the same dependencies as your package
+should have their own dependency specifications and the author will notice =
+any
+conflicts. Determining whether the change is a patch level or minor level
+modification depends on whether you updated your dependencies in order to f=
+ix
+a bug or introduce new functionality. I would usually expect additional cod=
+e
+for the latter instance, in which case it's obviously a minor level increme=
+nt.</p>
+
+<h3>What if I inadvertently alter the public API in a way that is not compl=
+iant with the version number change (i.e. the code incorrectly introduces a=
+ major breaking change in a patch release)</h3>
+
+<p>Use your best judgment. If you have a huge audience that will be drastic=
+ally
+impacted by changing the behavior back to what the public API intended, the=
+n
+it may be best to perform a major version release, even though the fix coul=
+d
+strictly be considered a patch release. Remember, Semantic Versioning is al=
+l
+about conveying meaning by how the version number changes. If these changes
+are important to your users, use the version number to inform them.</p>
+
+<h3>How should I handle deprecating functionality?</h3>
+
+<p>Deprecating existing functionality is a normal part of software developm=
+ent and
+is often required to make forward progress. When you deprecate part of your
+public API, you should do two things: (1) update your documentation to let
+users know about the change, (2) issue a new minor release with the depreca=
+tion
+in place. Before you completely remove the functionality in a new major rel=
+ease
+there should be at least one minor release that contains the deprecation so
+that users can smoothly transition to the new API.</p>
+
+<h3>Does semver have a size limit on the version string?</h3>
+
+<p>No, but use good judgment. A 255 character version string is probably ov=
+erkill,
+for example. Also, specific systems may impose their own limits on the size=
+ of
+the string.</p>
+
+<h2>About</h2>
+
+<p>The Semantic Versioning specification is authored by <a href=3D"http://t=
+om.preston-werner.com/">Tom
+Preston-Werner</a>, inventor of Gravatars and
+cofounder of GitHub.</p>
+
+<p>If you'd like to leave feedback, please <a href=3D"https://github.com/mo=
+jombo/semver/issues">open an issue on
+GitHub</a>.</p>
+
+<h2>License</h2>
+
+<p><a href=3D"http://creativecommons.org/licenses/by/3.0/">Creative Commons=
+ - CC BY 3.0</a></p>
+
+=20
+
+</body></html>
+------=_NextPart_000_3E04_0E758E05.23613E70
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://semver.org/css/main.css
+
+h1, h2, ol { margin: 0px; padding: 0px; }
+
+html { font-style: normal; font-variant: normal; font-weight: normal; font-=
+stretch: normal; font-size: 14.4px; line-height: 1.5; font-family: Helvetic=
+a, Arial, sans-serif; }
+
+body { margin: 0px auto; padding: 0px 10%; max-width: 710px; }
+
+html { }
+
+h1, h2, h3 { text-align: center; font-weight: normal; }
+
+h1 { font-size: 43px; margin: 1.1em 0px 0.7em; }
+
+h2 { margin: 2.1em 0px 0.7em; font-size: 24px; }
+
+h3 { text-align: left; font-size: 15.8px; margin-bottom: 0.6em; }
+
+a { color: rgb(0, 0, 153); }
+
+a:hover, a:focus { color: rgb(0, 0, 0); }
+
+ol { padding-left: 1.5em; }
+
+p { margin: 0px 0px 1em; }
+
+@media print {=20
+  body { width: 100%; }
+  h1, h2, h3 { font-weight: bold; }
+  a::after { content: ' <' attr(href) '>'; font-size: 90%; }
+}
+
+ol.nav { list-style-type: none; margin: 0px; padding: 10px; overflow: hidde=
+n; background-color: rgb(51, 51, 51); }
+
+ol.nav li { display: inline; font-weight: bold; margin-right: 20px; }
+
+ol.nav li a { color: white; }
+
+ol.lang { background-color: white; }
+
+ol.lang li a { color: black; }
+------=_NextPart_000_3E04_0E758E05.23613E70--
