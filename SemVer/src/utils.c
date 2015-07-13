@@ -1,5 +1,5 @@
 #ifndef TRUE
-  #define TRUE 1
+  #define TRUE  1
 #endif
 #ifndef FALSE
   #define FALSE 1
@@ -14,61 +14,58 @@
 
 #include "windows.h"
 
-int file_read(char* filename, char * buf, int size)
+int Utils_ReadFile( char* filename, char* buf, int size )
 {
-	HANDLE handle;
-	unsigned long iRead = 0;
-	
-	handle = CreateFile(filename,
-	                    GENERIC_READ|GENERIC_WRITE,
-						FILE_SHARE_READ,
-						NULL,
-						OPEN_ALWAYS,
-						FILE_ATTRIBUTE_NORMAL,
-						0);
-	if(handle == INVALID_HANDLE_VALUE)
-	{
-		printf("error open file\n");
-	}
-	
-	ReadFile(handle, buf, size, &iRead, NULL);
-	if(iRead == 0)
-	{
-		printf("error read file\n");
-	}
-	
-	CloseHandle(handle);
-		
-	return TRUE;
+  HANDLE        handle;
+  unsigned long iRead = 0;
+
+  handle = CreateFile( filename,
+                       GENERIC_READ | GENERIC_WRITE,
+                       FILE_SHARE_READ,
+                       NULL,
+                       OPEN_ALWAYS,
+                       FILE_ATTRIBUTE_NORMAL,
+                       0 );
+  if ( handle == INVALID_HANDLE_VALUE )
+  {
+    printf( "error open file\n" );
+  }
+
+  ReadFile( handle, buf, size, &iRead, NULL );
+  if ( iRead == 0 )
+  {
+    printf( "error read file\n" );
+  }
+
+  CloseHandle( handle );
+
+  return( TRUE );
 }
 
-
-int file_write(char* filename, char* data) 
+int Utils_WriteFile( char* filename, char* buf, int size )
 {
-	HANDLE handle;
-	unsigned long iWritten = 0;
+  HANDLE        handle;
+  unsigned long iWritten = 0;
 
-	
-	handle = CreateFile(filename,
-	                    GENERIC_READ|GENERIC_WRITE,
-						FILE_SHARE_READ,
-						NULL,
-						OPEN_ALWAYS,
-						FILE_ATTRIBUTE_NORMAL,
-						0);
-	if(handle == INVALID_HANDLE_VALUE)
-	{
-		printf("error open file\n");
-	}
-	WriteFile(handle, data, strlen(data), &iWritten, NULL);
-	if(iWritten == 0)
-	{
-		printf("error write file\n");
-	}
-	
-	CloseHandle(handle);
-	
-	return TRUE;
+  handle = CreateFile( filename,
+                       GENERIC_READ | GENERIC_WRITE,
+                       FILE_SHARE_READ,
+                       NULL,
+                       OPEN_ALWAYS,
+                       FILE_ATTRIBUTE_NORMAL,
+                       0 );
+  if ( handle == INVALID_HANDLE_VALUE )
+  {
+    printf( "error open file\n" );
+  }
+  
+  WriteFile( handle, buf, size, &iWritten, NULL );
+  if ( iWritten == 0 )
+  {
+    printf( "error write file\n" );
+  }
+
+  CloseHandle( handle );
+
+  return( TRUE );
 }
-
-
