@@ -1,8 +1,6 @@
 # $Id$
-MAJORVERSION=2
 A=.a
-O=.obj
-SO=.so
+O=.o
 E=.exe
 CC=gcc
 I=include
@@ -27,6 +25,7 @@ OBJS=	$Bap$O \
 	$Bassert$O \
 	$Batom$O \
 	$Bbit$O \
+	$Bchan$O \
 	$Bexcept$O \
 	$Bfmt$O \
 	$Blist$O \
@@ -63,10 +62,6 @@ all::		$Blibcii$A $(EXAMPLES) $Bmemchk$O
 
 $Blibcii$A::	$(OBJS) $(EXTRAS)
 		$(AR) $@ $(OBJS) $(EXTRAS); $(RANLIB) $@ || true
-
-# Linux-specific rule for building a shared library
-$Blibcii$(SO).$(MAJORVERSION): $(OBJS) $(EXTRAS)
-		$(CC) -shared -Wl,-soname,libcii$(SO).$(MAJORVERSION) -o $@ $(OBJS) $(EXTRAS)
 
 $Bap$O:		src/ap.c;	$(CC) $(CFLAGS) -c -o $@ src/ap.c
 $Barena$O:	src/arena.c;	$(CC) $(CFLAGS) -c -o $@ src/arena.c
