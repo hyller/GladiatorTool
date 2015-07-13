@@ -13,8 +13,8 @@ TARGET:=prog.exe
 # The target executable file.
 
 COMMONFLAGS:=-Wall -Wextra -O2
-CFLAGS=$(COMMONFLAGS) -std=c11
-CXXFLAGS=$(COMMONFLAGS) -std=c++11
+CFLAGS=$(COMMONFLAGS)
+CXXFLAGS=$(COMMONFLAGS)
 # Flags added to the compilation.
 COMMONLIBS:=
 WIN32LIBS:=$(COMMONLIBS)
@@ -57,9 +57,9 @@ ifeq ($(OS),Windows_NT)
 	LIBS:=$(WIN32LIBS)
 	AND:=&
 	CLEAR:=cls
-	MOVE:=cmd /c move
-	CLEAN:=cmd /c del /q
-	OBJ_DEP:=$(DIR_OBJ:%/=%)
+	MOVE:=mv
+	CLEAN:=rm
+	OBJ_DEP:=$(DIR_OBJ)*
 else
 	LIBS:=$(LINUXLIBS)
 	AND:=;
