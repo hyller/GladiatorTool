@@ -58,7 +58,7 @@ int Utils_WriteFile( char* filename, char* buf, int size )
   {
     printf( "error open file\n" );
   }
-  
+
   WriteFile( handle, buf, size, &iWritten, NULL );
   if ( iWritten == 0 )
   {

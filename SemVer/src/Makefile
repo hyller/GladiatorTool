@@ -78,7 +78,7 @@ endif
 
 #===== Rules =====#
 
-.PHONY:all init clear %-depend clean
+.PHONY:all init clear %-depend clean cleantarget
 
 $(TARGET):$(OBJ)
 	-@$(MOVE) *.o $(DIR_OBJ)
@@ -98,9 +98,15 @@ init:
 # This rule is made to be manually called if a source file was moved from one directory to another.
 
 clean:
-	-@$(CLEAN) $(OBJ_DEP) $(TARGET)
-	@echo Object directory purged and $(TARGET) deleted !
+	-@$(CLEAN) $(OBJ_DEP)
+	@echo Object directory purged deleted !
 # Purges the object files directory from object and dependency files, and deletes TARGET.
+
+cleantarget:
+	-@$(CLEAN) $(TARGET)
+	@echo $(TARGET) deleted !
+# Purges the object files directory from object and dependency files, and deletes TARGET.
+
 
 -include $(DIR_OBJ)*.d
 # Inclusion of all dependency files, which contains all the dependency information for creating object files.
