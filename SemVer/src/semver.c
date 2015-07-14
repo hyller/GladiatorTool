@@ -9,15 +9,24 @@
 
 int SemVer_ConvertFromStr( tSemverVersion* ver, char* str )
 {
-  int nums[ 3 ];
+  const char s[ 2 ] = ".";
+  char*      token;
+  int        nums[ 3 ] = { 0, 0, 0 };
+  int        index = 0;
 
-  sscanf( str, FMT_STR_SIMPLE, &nums[ 0 ], &nums[ 1 ], &nums[ 2 ] );
+  token = strtok( str, s );
+  while ( token != NULL )
+  {
+    nums[ index ] = atoi( token );
+    token = strtok( NULL, s );
+    index++;
+  }
 
   ver->major = nums[ 0 ];
   ver->minor = nums[ 1 ];
   ver->patch = nums[ 2 ];
-
-  return( 0 );
+  
+  return 0;
 }
 
 int SemVer_ConvertToStr( tSemverVersion* ver, char* str )
