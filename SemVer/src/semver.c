@@ -4,8 +4,10 @@
 
 #include "semver.h"
 
+#define FMT_STR_DEFINE   "#define  VERSION  \"%s\""
 #define FMT_STR_SIMPLE      "%d.%d.%d"
 #define INITIAL_VERSION_STR "0.1.0"
+#define  BUF_SIZE        128
 
 int SemVer_ConvertFromStr( tSemverVersion* ver, char* str )
 {
@@ -32,6 +34,29 @@ int SemVer_ConvertFromStr( tSemverVersion* ver, char* str )
 int SemVer_ConvertToStr( tSemverVersion* ver, char* str )
 {
   sprintf( str, (char*)FMT_STR_SIMPLE, ver->major, ver->minor, (int)ver->patch );
+  return( 0 );
+}
+
+
+int SemVer_ConvertFromDefineStr( tSemverVersion* ver, char* defstr )
+{
+  char verstr[128];
+  
+  sscanf( defstr, FMT_STR_DEFINE, verstr);
+
+  SemVer_ConvertFromStr( ver, verstr );
+  
+  return 0;
+}
+
+int SemVer_ConvertToDefineStr( tSemverVersion* ver, char* defstr )
+{
+  char verstr[ BUF_SIZE ];
+
+  SemVer_ConvertToStr(ver, verstr);
+  
+  sprintf( defstr, FMT_STR_DEFINE, verstr );  
+  
   return( 0 );
 }
 

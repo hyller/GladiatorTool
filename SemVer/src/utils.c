@@ -31,7 +31,7 @@ int Utils_ReadFile( char* filename, char* buf, int size )
     printf( "error open file\n" );
   }
 
-  ReadFile( handle, buf, size, &iRead, NULL );
+  ReadFile( handle, buf, (unsigned int)size, &iRead, NULL );
   if ( iRead == 0 )
   {
     printf( "error read file\n" );
@@ -59,7 +59,7 @@ int Utils_WriteFile( char* filename, char* buf, int size )
     printf( "error open file\n" );
   }
 
-  WriteFile( handle, buf, size, &iWritten, NULL );
+  WriteFile( handle, buf, (unsigned int)size, &iWritten, NULL );
   if ( iWritten == 0 )
   {
     printf( "error write file\n" );

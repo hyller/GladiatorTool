@@ -1,11 +1,3 @@
-//---------------------------------------------------------------------------//
-//
-// 
-//
-//---------------------------------------------------------------------------//
-/// \file   semver.h
-/// \brief
-//---------------------------------------------------------------------------//
 #ifndef _SEMVER_H_
 #define _SEMVER_H_
 
@@ -22,6 +14,8 @@ typedef struct {
 
 int SemVer_ConvertFromStr( tSemverVersion* ver, char* str );
 int SemVer_ConvertToStr( tSemverVersion* ver, char* str );
+int SemVer_ConvertFromDefineStr( tSemverVersion* ver, char* str );
+int SemVer_ConvertToDefineStr( tSemverVersion* ver, char* str );
 int SemVer_IncreaseMajor( tSemverVersion* ver, int amount );
 int SemVer_IncreaseMinor( tSemverVersion* ver, int amount );
 int SemVer_IncreasePatch( tSemverVersion* ver, int amount );

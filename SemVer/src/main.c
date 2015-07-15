@@ -9,25 +9,52 @@
 #include "utils.h"
 #include "version.h"
 #include "semver.h"
+#include "setting.h"
 
-#define FMT_STR_DEFINE   "#define  VERSION  \"%s\""
+
 #define  BUF_SIZE        128
 
-typedef struct
-{
-  int  verbose;
-  int  quiet;
-  int  length;
-  int  output_cdef;
-  int  indexToIncrement;
-  int  incrementBy;
-  char filename[ BUF_SIZE ];
-} tSemverSettings;
 
-int SemVer_IncreaseVersion( tSemverSettings* as, tSemverVersion* versionData )
+void PrintVersion( void )
 {
-  int index  = as->indexToIncrement;
-  int amount = as->incrementBy;
+  printf( "%s\n", VERSION );
+}
+
+void PrintUsage( void )
+{
+  printf( "\n");
+  printf( "semver increase version number in a file.\n");
+  printf( "\n");
+  printf( "Usage: semver [option] [FILE]\n");
+  printf( "\n");
+  printf( "Options:\n");
+  printf( "-x,  Change major version number.\n");
+  printf( "-y,  Change minor version number.\n");
+  printf( "-z,  Change patch version number.\n");
+  printf( "-v,  Print program version.\n");
+  printf( "-h,  Print this help screen.\n");
+  printf( "-s,  Process simple version string.\n");
+  printf( "-a,  Append version string to a file name.\n");  
+  printf( "\n");
+}
+
+
+
+void GetVersion( tSetting* as, tSemverVersion* vd )
+{
+  char filebuf[ BUF_SIZE ];
+
+  Utils_ReadFile( as->filename, (char*)filebuf, BUF_SIZE );
+
+  printf( "%s\n", (char*)filebuf );
+
+  SemVer_ConvertFromDefineStr( vd, filebuf );
+}
+
+int IncreaseVersion( tSetting* as, tSemverVersion* versionData )
+{
+  int index  = as->index;
+  int amount = as->amount;
 
   switch ( index )
   {
@@ -48,124 +75,40 @@ int SemVer_IncreaseVersion( tSemverSettings* as, tSemverVersion* versionData )
   }
 }
 
-void SemVer_Usage( int argc, char** argv )
-{
-  printf( "SemVer_Usage: %s v%s [version(x.y.z)] [index-to-increment] [increment-by]\n",
-          argv[ 0 ], VERSION );
-  printf(
-    "If '-' is passed as the version number, the version will be read from stdin.\n" );
-
-  exit( EXIT_FAILURE );
-}
-
-int SemVer_ParseStdin( int argc, char** argv, tSemverSettings* as )
-{
-  int c;
-
-  memset( as, 0, sizeof( tSemverSettings ) );
-  as->indexToIncrement = 2;
-  as->incrementBy      = 1;
-  as->output_cdef = 1;
-
-  opterr = 0;
-  while ( ( c = getopt( argc, argv, "mipdvqh" ) ) != -1 )
-    switch ( c )
-    {
-      case 'm':
-        as->indexToIncrement = 0;
-        as->incrementBy      = 1;
-        break;
-
-      case 'i':
-        as->indexToIncrement = 1;
-        as->incrementBy      = 1;
-        break;
-
-      case 'p':
-        as->indexToIncrement = 2;
-        as->incrementBy      = 1;
-        break;
-
-      case 'd':
-        as->output_cdef = 1;
-        break;
-
-      case 'v':
-        as->verbose = 1;
-        break;
-
-      case 'q':
-        as->quiet = 1;
-        break;
-
-      case 'h':
-        SemVer_Usage( argc, argv );
-        break;
-
-      case '?':
-        SemVer_Usage( argc, argv );
-
-      default:
-        break;
-    }
-
-  strcpy( (char*)as->filename, argv[ optind ] );
-
-  return( 0 );
-}
-
-void SemVer_GetVersion( tSemverSettings* as, tSemverVersion* vd )
-{
-  char filebuf[ BUF_SIZE ];
-  char verstr[ BUF_SIZE ];
-
-  Utils_ReadFile( as->filename, (char*)filebuf, BUF_SIZE );
-
-  if ( as->output_cdef == 1 )
-  {
-    sscanf( filebuf, FMT_STR_DEFINE, verstr );
-  }
-  else
-  {
-    memcpy( verstr, filebuf, BUF_SIZE );
-  }
-
-  SemVer_ConvertFromStr( vd, verstr );
-}
-
-void SemVer_OutputVersion( tSemverSettings* as, tSemverVersion* vd )
+void OutputVersion( tSetting* as, tSemverVersion* vd )
 {
   char  filebuf[ BUF_SIZE ];
-  char verstr[ BUF_SIZE ];
 
-  SemVer_ConvertToStr(vd, verstr);
+  SemVer_ConvertToDefineStr(vd, filebuf);
   
-  if ( as->output_cdef == 1 )
-  {
-    sprintf( filebuf, FMT_STR_DEFINE, verstr );
-  }
-  else
-  {
-    memcpy( filebuf, verstr, BUF_SIZE );
-  }
-  
-  printf( "%s", (char*)filebuf );
+  printf( "%s\n", (char*)filebuf );
 
-  Utils_WriteFile( (char*)as->filename, (char*)filebuf, strlen( filebuf ) );
+  Utils_WriteFile( (char*)as->filename, (char*)filebuf, (int)strlen( filebuf ) );
 }
 
 int main( int argc, char** argv )
 {
-  tSemverSettings as;
+  tSetting as;
   tSemverVersion  vd;
 
-  SemVer_ParseStdin( argc, argv, &as );
+  Setting_Init(&as);  
+  Setting_Parse( &as, argc, argv);
 
-  SemVer_GetVersion( &as, &vd );
+  if(as.help == 1)
+  {
+    PrintUsage();
+  }
+  else
+  if(as.version == 1)
+  {
+    PrintVersion();
+  }
+  else
+  {
+    GetVersion( &as, &vd );
+    IncreaseVersion( &as, &vd );
+    OutputVersion( &as, &vd );
+  }
 
-  SemVer_IncreaseVersion( &as, &vd );
-
-  SemVer_OutputVersion( &as, &vd );
-
-  return( 0 );
+  return( 1 );
 }
