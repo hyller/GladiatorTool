@@ -42,13 +42,13 @@ void PrintUsage( void )
 
 void GetVersion( tSetting* as, tSemverVersion* vd )
 {
-  char filebuf[ BUF_SIZE ];
+  char filebuf[ BUF_SIZE ] = {0};
 
   Utils_ReadFile( as->filename, (char*)filebuf, BUF_SIZE );
 
-  printf( "%s\n", (char*)filebuf );
-
   SemVer_ConvertFromDefineStr( vd, filebuf );
+  
+  printf( "Read version: %s\n", (char*)filebuf );
 }
 
 int IncreaseVersion( tSetting* as, tSemverVersion* versionData )
@@ -77,13 +77,27 @@ int IncreaseVersion( tSetting* as, tSemverVersion* versionData )
 
 void OutputVersion( tSetting* as, tSemverVersion* vd )
 {
-  char  filebuf[ BUF_SIZE ];
+  char  filebuf[ BUF_SIZE ] = {0};
 
   SemVer_ConvertToDefineStr(vd, filebuf);
   
-  printf( "%s\n", (char*)filebuf );
-
   Utils_WriteFile( (char*)as->filename, (char*)filebuf, (int)strlen( filebuf ) );
+
+  printf( "New  version: %s\n", (char*)filebuf );
+}
+
+void AppendToFile( tSetting* as, tSemverVersion* vd )
+{
+  char  verstr[ BUF_SIZE ] = {0};
+  char  filename[ BUF_SIZE ] = {0};
+
+  SemVer_ConvertToStr(vd, verstr);
+  
+  ChangFileName(as->appendarg,(char*)verstr,filename );  
+
+  Utils_CopyFile( as->appendarg, (char*)filename );
+  
+  printf( "New  file   : %s\n", (char*)filename );
 }
 
 int main( int argc, char** argv )
@@ -98,10 +112,14 @@ int main( int argc, char** argv )
   {
     PrintUsage();
   }
-  else
-  if(as.version == 1)
+  else  if(as.version == 1)
   {
     PrintVersion();
+  }
+  else  if(as.append == 1)
+  {
+    GetVersion( &as, &vd );
+	AppendToFile( &as, &vd );
   }
   else
   {
