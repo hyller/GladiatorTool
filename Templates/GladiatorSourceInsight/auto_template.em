@@ -1,7 +1,8 @@
 macro GetFileName()
 {
 	hbuf = GetCurrentBuf()
-	fname = GetBufname(hbuf)   //name style:  D:\project\GP_2011_04_11_GSCAN\GP\INFRA\GSCAN\Generic\gscan_online.c
+	//name style:  D:\project\GP_2011_04_11_GSCAN\GP\INFRA\GSCAN\Generic\gscan_online.c
+	fname = GetBufname(hbuf)   
 
 	len = strlen(fname)	
 	i = strlen(fname)
@@ -50,10 +51,12 @@ macro InsertFileTemplate()
 	
 	hbuf = GetCurrentBuf()
 	fname = GetFileName()
+	tempname = "sourcefileheadinformation"
+	
 
 	len = strlen(fname)	
 	i = 0
-	
+		
 	sz = Cat(sz, "_")
 	while (i < len)
 	{		
@@ -66,25 +69,38 @@ macro InsertFileTemplate()
 		i = i + 1
 	}
 	sz = Cat(sz, "_H_")
-	InsBufLine(hbuf, 0, "//---------------------------------------------------------------------------//")
-	InsBufLine(hbuf, 1, "//")
-	InsBufLine(hbuf, 2, "// SCHNEIDER ELECTRIC : GAIA PROJECT")
-	InsBufLine(hbuf, 3, "//")
-	InsBufLine(hbuf, 4, "//---------------------------------------------------------------------------//")
-	InsBufLine(hbuf, 5, "/// \\file   @fname@")
-	InsBufLine(hbuf, 6, "/// \\brief")
-	InsBufLine(hbuf, 7, "//---------------------------------------------------------------------------//")
+
+	line = 0;
+	hbuftemp = OpenBuf (tempname)
+	if(hbuftemp != hNil)	
+	{
+		count = GetBufLineCount(hbuftemp); 
+		line = 0;
+		while(line < count)
+		{
+			linestr = GetBufLine(hbuftemp,line);
+			InsBufLine(hbuf,line++,linestr); 
+		}	
+	}
+	else
+	{
+		InsBufLine(hbuf, line++, "//---------------------------------------------------------------------------//")
+	}
+	
+	InsBufLine(hbuf, line++, "/// \\file   @fname@")
+	InsBufLine(hbuf, line++, "/// \\brief")
+	InsBufLine(hbuf, line++, "//---------------------------------------------------------------------------//")
 
 	if(IsHeaderFile()){	
-		InsBufLine(hbuf, 8, "#ifndef @sz@")
-		InsBufLine(hbuf, 9, "#define @sz@")
-		InsBufLine(hbuf, 10, "")
-		InsBufLine(hbuf, 11, "#ifdef __cplusplus")
-		InsBufLine(hbuf, 12, "extern \"C\"")
-		InsBufLine(hbuf, 13, "{")
-		InsBufLine(hbuf, 14, "#endif")
-		InsBufLine(hbuf, 15, "")
-		InsBufLine(hbuf, 16, "")
+		InsBufLine(hbuf, line++, "#ifndef @sz@")
+		InsBufLine(hbuf, line++, "#define @sz@")
+		InsBufLine(hbuf, line++, "")
+		InsBufLine(hbuf, line++, "#ifdef __cplusplus")
+		InsBufLine(hbuf, line++, "extern \"C\"")
+		InsBufLine(hbuf, line++, "{")
+		InsBufLine(hbuf, line++, "#endif")
+		InsBufLine(hbuf, line++, "")
+		InsBufLine(hbuf, line++, "")
 
 
 		AppendBufLine (hbuf, "#ifdef __cplusplus")
