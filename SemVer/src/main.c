@@ -17,13 +17,13 @@
 
 void PrintVersion( void )
 {
-  printf( "%s\n", VERSION );
+  printf( "\n");
+  printf( "semver increases version number in a file V%s\n", VERSION );
+  printf( "\n");
 }
 
 void PrintUsage( void )
 {
-  printf( "\n");
-  printf( "semver increase version number in a file.\n");
   printf( "\n");
   printf( "Usage: semver [option] [FILE]\n");
   printf( "\n");
@@ -108,7 +108,7 @@ int main( int argc, char** argv )
   Setting_Init(&as);  
   Setting_Parse( &as, argc, argv);
 
-  if(as.help == 1)
+  if(as.help == 1 || as.error == 1)
   {
     PrintUsage();
   }
@@ -119,7 +119,7 @@ int main( int argc, char** argv )
   else  if(as.append == 1)
   {
     GetVersion( &as, &vd );
-	AppendToFile( &as, &vd );
+	  AppendToFile( &as, &vd );
   }
   else
   {

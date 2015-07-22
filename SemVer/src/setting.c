@@ -18,8 +18,14 @@ void Setting_Init( tSetting* as )
 int Setting_Parse( tSetting* as, int argc, char** argv )
 {
   int c;
-
-  opterr = 0;
+  
+  if( argc == 1)
+  {
+    as->error= 1;
+    return 1;
+  }
+  
+  opterr = 0;  
   while ( ( c = getopt( argc, argv, "xyzvhsa:" ) ) != -1 )
   {
     switch ( c )
@@ -64,7 +70,8 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
         as->help = 1;
         return 1;
       default:
-        abort ();
+        as->error= 1;
+        return 1;
         break;
     }
   }

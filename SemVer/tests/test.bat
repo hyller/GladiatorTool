@@ -6,6 +6,7 @@ make
 cd %CUR_DIR%
 @echo on
 
+call %CUR_DIR%..\src\semver.exe
 call %CUR_DIR%..\src\semver.exe -v
 call %CUR_DIR%..\src\semver.exe -h
 call %CUR_DIR%..\src\semver.exe -x version.test
