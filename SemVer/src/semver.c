@@ -5,45 +5,61 @@
 #include "cii\cii-20\include\str.h"
 #include "semver.h"
 
-#define FMT_STR_DEFINE   "#define  VERSION  \"%s\""
+#define FMT_STR_DEFINE      "#define  VERSION  \"%s\""
 #define FMT_STR_SIMPLE      "%d.%d.%d"
 #define INITIAL_VERSION_STR "0.1.0"
-#define  BUF_SIZE        128
+#define BUF_SIZE            128
+
+static BOOL SemVer_IsValid( int len, int lpos, int rpos )
+{
+  if ( ( lpos == 0 ) || ( rpos == 0 ) )
+  {
+    return( FALSE );
+  }
+
+  if ( ( lpos == 1 ) || ( rpos == len ) )
+  {
+    return( FALSE );
+  }
+
+  if ( ( lpos == rpos ) || ( ( lpos + 1 ) == rpos ) )
+  {
+    return( FALSE );
+  }
+
+  return( TRUE );
+}
 
 int SemVer_ConvertFromStr( tSemverVersion* ver, char* str )
 {
-  const char s[ 2 ] = ".";
-  char*      token;
-  int        nums[ 3 ] = { 0, 1, 0 };
-  int        index = 0;
-  int pos, rpos;
-  int len = (int)strlen(str);
-  
-  pos = Str_chr(str, 1, len, '.');
-  rpos = Str_rchr(str, 1, len, '.');
-  if(pos == rpos || pos == 0 || rpos == len )
-  {
-    ver->major = nums[ 0 ];
-    ver->minor = nums[ 1 ];
-    ver->patch = nums[ 2 ];
-    return 1;
-  }
+  int  lpos;
+  int  rpos;
+  int  len;
+  char strtemp[ BUF_SIZE ] = { 0 };
 
-  token = strtok( str, s );
-  while ( token != NULL )
-  {
-    nums[ index ] = atoi( token );
-    token = strtok( NULL, s );
-    index++;
-  }
+  strcpy( strtemp, str );
+  len = (int)strlen( strtemp );
 
-  ver->major = nums[ 0 ];
-  ver->minor = nums[ 1 ];
-  ver->patch = nums[ 2 ];
-  
-  return 0;
+  lpos = Str_chr( strtemp, 1, len, '.' );
+  rpos = Str_rchr( strtemp, 1, len, '.' );
+  if ( SemVer_IsValid( len, lpos, rpos ) )
+  {
+    strtemp[ lpos - 1 ] = 0;
+    strtemp[ rpos - 1 ] = 0;
+    ver->major          = atoi( &strtemp[ 0 ] );
+    ver->minor          = atoi( &strtemp[ lpos ] );
+    ver->patch          = atoi( &strtemp[ rpos ] );
+
+    return( 0 );
+  }
+  else
+  {
+    ver->major = 0;
+    ver->minor = 1;
+    ver->patch = 0;
+    return( 1 );
+  }
 }
-
 
 int SemVer_ConvertToStr( tSemverVersion* ver, char* str )
 {
@@ -51,26 +67,25 @@ int SemVer_ConvertToStr( tSemverVersion* ver, char* str )
   return( 0 );
 }
 
-
 int SemVer_ConvertFromDefineStr( tSemverVersion* ver, char* defstr )
 {
-  char verstr[128];
-  
-  sscanf( defstr, FMT_STR_DEFINE, verstr);
+  char verstr[ 128 ];
+
+  sscanf( defstr, FMT_STR_DEFINE, verstr );
 
   SemVer_ConvertFromStr( ver, verstr );
-  
-  return 0;
+
+  return( 0 );
 }
 
 int SemVer_ConvertToDefineStr( tSemverVersion* ver, char* defstr )
 {
   char verstr[ BUF_SIZE ];
 
-  SemVer_ConvertToStr(ver, verstr);
-  
-  sprintf( defstr, FMT_STR_DEFINE, verstr );  
-  
+  SemVer_ConvertToStr( ver, verstr );
+
+  sprintf( defstr, FMT_STR_DEFINE, verstr );
+
   return( 0 );
 }
 
