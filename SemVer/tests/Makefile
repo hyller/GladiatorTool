@@ -22,7 +22,11 @@ CPP_PLATFORM = GCC
 # CPPUTEST_MEMLEAK_DETECTOR_NEW_MACRO_FILE = -include ApplicationLib/ExamplesNewOverrides.h
 SRC_DIRS = ../src 
 TEST_SRC_DIRS = ./
-INCLUDE_DIRS = ../src  $(CPPUTEST_HOME)/include  
+INCLUDE_DIRS = ../src  $(CPPUTEST_HOME)/include  ../../COTS
+
+# EXTRA LIBRARY
+CPPUTEST_LDFLAGS += -L../../COTS/cii/cii-20/lib
+LD_LIBRARIES += -lcii
 
 #include 
 include $(CPPUTEST_HOME)/build/MakefileWorker.mk

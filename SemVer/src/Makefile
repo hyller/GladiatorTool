@@ -1,7 +1,7 @@
 #===== User defined variables =====#
 
 DIR_SRC:=./
-DIR_INC:=./
+DIR_INC:=./ 
 DIR_OBJ:=obj/
 # Source, header and object files directories.
 # The object files directory also serves for dependency files.
@@ -12,11 +12,12 @@ EXT:=c
 TARGET:=semver.exe
 # The target executable file.
 
-COMMONFLAGS:=-Wall -Wextra -O2
+COMMONFLAGS:=-Wall -Wextra -O2 
+COMMONFLAGS += -I../../COTS/
 CFLAGS=$(COMMONFLAGS)
 CXXFLAGS=$(COMMONFLAGS)
 # Flags added to the compilation.
-COMMONLIBS:=
+COMMONLIBS:= ../../COTS/cii/cii-20/lib/libcii.a
 WIN32LIBS:=$(COMMONLIBS)
 LINUXLIBS:=$(COMMONLIBS)
 # Libraries needed to link the TARGET executable, for windows and for linux.

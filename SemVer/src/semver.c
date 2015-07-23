@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "cii\cii-20\include\str.h"
 #include "semver.h"
 
 #define FMT_STR_DEFINE   "#define  VERSION  \"%s\""
@@ -13,8 +14,20 @@ int SemVer_ConvertFromStr( tSemverVersion* ver, char* str )
 {
   const char s[ 2 ] = ".";
   char*      token;
-  int        nums[ 3 ] = { 0, 0, 0 };
+  int        nums[ 3 ] = { 0, 1, 0 };
   int        index = 0;
+  int pos, rpos;
+  int len = (int)strlen(str);
+  
+  pos = Str_chr(str, 1, len, '.');
+  rpos = Str_rchr(str, 1, len, '.');
+  if(pos == rpos || pos == 0 || rpos == len )
+  {
+    ver->major = nums[ 0 ];
+    ver->minor = nums[ 1 ];
+    ver->patch = nums[ 2 ];
+    return 1;
+  }
 
   token = strtok( str, s );
   while ( token != NULL )
@@ -30,6 +43,7 @@ int SemVer_ConvertFromStr( tSemverVersion* ver, char* str )
   
   return 0;
 }
+
 
 int SemVer_ConvertToStr( tSemverVersion* ver, char* str )
 {
