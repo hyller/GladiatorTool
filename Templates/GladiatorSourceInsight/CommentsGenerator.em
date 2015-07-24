@@ -45,7 +45,7 @@ macro IsHeaderFile()
 		return 0
 }
 
-macro InsertFileTemplate()
+macro CmtGenFile()
 {
 	var sz 
 	
@@ -111,7 +111,7 @@ macro InsertFileTemplate()
 	}
 }
 
-macro InsertFunctionComment()
+macro CmtGenFunction()
 {	
 	hbuf = GetCurrentBuf()
 	i = GetBufLnCur (hbuf);	
@@ -127,7 +127,7 @@ macro InsertFunctionComment()
 	InsBufLine(hbuf, i++, "//-----------------------------------------------------------------------//")
 }
 
-macro InsertVariableComment()
+macro CmtGenVariable()
 {	
 	hbuf = GetCurrentBuf()
 	i = GetBufLnCur (hbuf);	
@@ -137,7 +137,7 @@ macro InsertVariableComment()
 
 }
 
-macro InsertDefineComment()
+macro CmtGenDefinition()
 {	
 	hbuf = GetCurrentBuf()
 	i = GetBufLnCur (hbuf);	
