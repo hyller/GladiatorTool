@@ -10,8 +10,9 @@ ifndef SILENCE
 endif
 
 #--- Inputs ----#
+PROJECT_HOME = ../../../
 COMPONENT_NAME = semver
-CPPUTEST_HOME = ../../COTS/CppUTest/v2.4a
+CPPUTEST_HOME = $(PROJECT_HOME)COTS/CppUTest/v2.4a
 
 CPPUTEST_USE_EXTENSIONS = N
 CPP_PLATFORM = GCC
@@ -22,10 +23,10 @@ CPP_PLATFORM = GCC
 # CPPUTEST_MEMLEAK_DETECTOR_NEW_MACRO_FILE = -include ApplicationLib/ExamplesNewOverrides.h
 SRC_DIRS = ../src 
 TEST_SRC_DIRS = ./
-INCLUDE_DIRS = ../src  $(CPPUTEST_HOME)/include  ../../COTS
+INCLUDE_DIRS = ../src  $(CPPUTEST_HOME)/include  $(PROJECT_HOME)COTS
 
 # EXTRA LIBRARY
-CPPUTEST_LDFLAGS += -L../../COTS/cii/cii-20/lib
+CPPUTEST_LDFLAGS += -L$(PROJECT_HOME)COTS/cii/cii-20/lib
 LD_LIBRARIES += -lcii
 
 #include 
