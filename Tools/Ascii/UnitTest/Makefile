@@ -11,7 +11,7 @@ endif
 
 #--- Inputs ----#
 COMPONENT_NAME = Ascii_u
-CPPUTEST_HOME = ../../COTS/CppUTest/v2.4a
+CPPUTEST_HOME = ../../../COTS/CppUTest/v2.4a
 
 CPPUTEST_USE_EXTENSIONS = Y
 CPP_PLATFORM = GCC
