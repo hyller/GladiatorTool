@@ -16,16 +16,16 @@
 #include "cii/cii-20/include/str.h"
 #include "fileproxy.h"
 
-#define FMT_STR_DEFINE      "#define  VERSION  \"%s\""
+#define FMT_STR_DEFINE "#define  VERSION  \"%s\""
 
 int FileProxy_ReadVersion( char* filename, char* verstr, int size )
 {
   HANDLE        handle;
-  unsigned long iRead = 0;
-  char buf[128] = {0};
-  int  lpos;
-  int  rpos;
-  int  len;
+  unsigned long iRead      = 0;
+  char          buf[ 128 ] = { 0 };
+  int           lpos;
+  int           rpos;
+  int           len;
 
   handle = CreateFile( filename,
                        GENERIC_READ | GENERIC_WRITE,
@@ -47,12 +47,11 @@ int FileProxy_ReadVersion( char* filename, char* verstr, int size )
 
   CloseHandle( handle );
 
-
-  len = (int)strlen( buf )+1;
+  len  = (int)strlen( buf ) + 1;
   lpos = Str_chr( buf, 1, len, '"' );
   rpos = Str_rchr( buf, 1, len, '"' );
 
-  memcpy(verstr, &buf[lpos],  (size_t)(rpos-lpos-1));
+  memcpy( verstr, &buf[ lpos ], (size_t)( rpos - lpos - 1 ) );
 
   return( TRUE );
 }
@@ -62,7 +61,7 @@ int FileProxy_WriteVersion( char* filename, char* verstr, int size )
   HANDLE        handle;
   unsigned long iWritten = 0;
 
-  char buf[128] = {0};
+  char buf[ 128 ] = { 0 };
   sprintf( buf, FMT_STR_DEFINE, verstr );
   size = size;
 
@@ -78,7 +77,7 @@ int FileProxy_WriteVersion( char* filename, char* verstr, int size )
     printf( "error open file\n" );
   }
 
-  WriteFile( handle, buf, (unsigned int)strlen(buf), &iWritten, NULL );
+  WriteFile( handle, buf, (unsigned int)strlen( buf ), &iWritten, NULL );
   if ( iWritten == 0 )
   {
     printf( "error write file\n" );
@@ -91,7 +90,7 @@ int FileProxy_WriteVersion( char* filename, char* verstr, int size )
 
 int FileProxy_CopyFile( char* filename, char* newname )
 {
-  CopyFile(filename, newname, FALSE);
+  CopyFile( filename, newname, FALSE );
 
   return( TRUE );
 }

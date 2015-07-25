@@ -6,9 +6,14 @@
     {
 #endif
 
-  int FileProxy_ReadVersion( char* filename,  char* buf,int   size );
-  int FileProxy_WriteVersion( char* filename, char* buf,int   size );
-  int FileProxy_CopyFile( char* filename, char* newname );
+  int FileProxy_ReadVersion( char* filename,
+                             char* buf,
+                             int   size );
+  int FileProxy_WriteVersion( char* filename,
+                              char* buf,
+                              int   size );
+  int FileProxy_CopyFile( char* filename,
+                          char* newname );
 
 #ifdef __cplusplus
     }

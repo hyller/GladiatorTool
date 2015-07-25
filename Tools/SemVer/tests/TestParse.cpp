@@ -21,25 +21,24 @@ TEST_GROUP( TestParse )
 TEST( TestParse, ParseAll )
 {
   char* testargv[] = {
-    (char* )"semver",    
-    (char* )"-x",
-    (char* )"-v",
-    (char* )"-h",
-    (char* )"-s",
-    (char* )"-ahello",
-    (char* )"version.h"
+    (char*)"semver",
+    (char*)"-x",
+    (char*)"-v",
+    (char*)"-h",
+    (char*)"-s",
+    (char*)"-ahello",
+    (char*)"version.h"
   };
-  int testargc = sizeof( testargv ) / sizeof( testargv[ 0 ] );
+  int   testargc = sizeof( testargv ) / sizeof( testargv[ 0 ] );
 
   Setting_Init( &as );
   Setting_Parse( &as, testargc, (char**)testargv );
 
   CHECK_EQUAL( 1, as.version );
-  CHECK_EQUAL( 1, as.help);
-  CHECK_EQUAL( 0, as.index);
-  CHECK_EQUAL( 1, as.simple);
+  CHECK_EQUAL( 1, as.help );
+  CHECK_EQUAL( 0, as.index );
+  CHECK_EQUAL( 1, as.simple );
   CHECK_EQUAL( 1, as.append );
-  STRCMP_EQUAL("hello", as.appendarg);
-  STRCMP_EQUAL("version.h", as.filename);
+  STRCMP_EQUAL( "hello", as.appendarg );
+  STRCMP_EQUAL( "version.h", as.filename );
 }
-

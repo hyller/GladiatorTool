@@ -9,7 +9,6 @@
 #define INITIAL_VERSION_STR "0.1.0"
 #define BUF_SIZE            128
 
-
 static BOOL SemVer_IsValidPos( int len, int lpos, int rpos )
 {
   if ( ( lpos == 0 ) || ( rpos == 0 ) )
@@ -46,9 +45,9 @@ int SemVer_ConvertFromStr( tSemverVersion* me, char* str )
   {
     strtemp[ lpos - 1 ] = 0;
     strtemp[ rpos - 1 ] = 0;
-    me->major          = atoi( &strtemp[ 0 ] );
-    me->minor          = atoi( &strtemp[ lpos ] );
-    me->patch          = atoi( &strtemp[ rpos ] );
+    me->major           = atoi( &strtemp[ 0 ] );
+    me->minor           = atoi( &strtemp[ lpos ] );
+    me->patch           = atoi( &strtemp[ rpos ] );
 
     return( 0 );
   }

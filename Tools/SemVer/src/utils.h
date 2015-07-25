@@ -6,7 +6,9 @@
     {
 #endif
 
-  void ChangFileName(char* oldname, char* append, char* newname);
+  void ChangFileName( char* oldname,
+                      char* append,
+                      char* newname );
 
 #ifdef __cplusplus
     }

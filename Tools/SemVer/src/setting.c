@@ -18,14 +18,14 @@ void Setting_Init( tSetting* as )
 int Setting_Parse( tSetting* as, int argc, char** argv )
 {
   int c;
-  
-  if( argc == 1)
+
+  if ( argc == 1 )
   {
-    as->error= 1;
-    return 1;
+    as->error = 1;
+    return( 1 );
   }
-  
-  opterr = 0;  
+
+  opterr = 0;
   while ( ( c = getopt( argc, argv, "xyzvhsa:" ) ) != -1 )
   {
     switch ( c )
@@ -50,7 +50,7 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
         break;
 
       case 'a':
-        as->append = 1;
+        as->append    = 1;
         as->appendarg = optarg;
         break;
 
@@ -68,15 +68,17 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
 
       case '?':
         as->help = 1;
-        return 1;
+        return( 1 );
+
       default:
-        as->error= 1;
-        return 1;
+        as->error = 1;
+        return( 1 );
+
         break;
     }
   }
 
-  if(optind < argc)
+  if ( optind < argc )
   {
     strcpy( (char*)as->filename, argv[ optind ] );
   }
