@@ -15,10 +15,10 @@ Script calls the relate tools.
 
 This tools are developed by author under GUN linceses.
 
--*semver*    increases version number in a file.  
--*ascii*     queries ASCII table.  
--*db2pr*     converts decibel to power ration and vice versa.  
--*digitsum*  sumerize all inputs.  
+**semver**    increases version number in a file.  
+**ascii**     queries ASCII table.  
+**db2pr**     converts decibel to power ratio and vice versa.  
+**digitsum**  sum all inputs.  
 
 ## ThirdParty
 
