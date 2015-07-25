@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-"%GLADIATOR_HOME%\DigitSum\Src\digitsum.exe" %*
+"%GLADIATOR_HOME%\Tools\DigitSum\Src\digitsum.exe" %*
 
 endlocal
 @echo on
