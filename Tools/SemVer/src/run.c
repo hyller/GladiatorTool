@@ -100,7 +100,7 @@ void AppendToFile( tSetting* as, tSemverVersion* vd )
   printf( "New  file   : %s\n", (char*)filename );
 }
 
-int run( int argc, char** argv )
+int semverrun( int argc, char** argv )
 {
   tSetting as;
   tSemverVersion  vd;

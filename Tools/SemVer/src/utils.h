@@ -6,9 +6,6 @@
     {
 #endif
 
-  int Utils_ReadFile( char* filename,  char* buf,int   size );
-  int Utils_WriteFile( char* filename, char* buf,int   size );
-  int Utils_CopyFile( char* filename, char* newname );
   void ChangFileName(char* oldname, char* append, char* newname);
 
 #ifdef __cplusplus

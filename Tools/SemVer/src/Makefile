@@ -12,8 +12,7 @@ EXT:=c
 TARGET:=semver.exe
 # The target executable file.
 
-COMMONFLAGS:=-Wall -Wextra -O2 
-COMMONFLAGS += -I../../../COTS/
+COMMONFLAGS:=-Wall -Wextra -O2 -I../../../COTS/
 CFLAGS=$(COMMONFLAGS)
 CXXFLAGS=$(COMMONFLAGS)
 # Flags added to the compilation.
