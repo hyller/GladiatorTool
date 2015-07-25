@@ -6,6 +6,8 @@
     {
 #endif
 
+  int FileProxy_IsFileExist( char* filename );
+
   int FileProxy_ReadVersion( char* filename,
                              char* buf,
                              int   size );

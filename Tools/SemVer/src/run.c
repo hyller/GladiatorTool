@@ -104,6 +104,7 @@ int semverrun( int argc, char** argv )
   tSetting       as;
   tSemverVersion vd;
 
+  SemVer_Init( &vd );
   Setting_Init( &as );
   Setting_Parse( &as, argc, argv );
 
@@ -122,10 +123,14 @@ int semverrun( int argc, char** argv )
     GetVersion( &as, &vd );
     AppendToFile( &as, &vd );
   }
-  else
+  else if(0 == FileProxy_IsFileExist(as.filename))
   {
     GetVersion( &as, &vd );
     IncreaseVersion( &as, &vd );
+    OutputVersion( &as, &vd );
+  }
+  else
+  {
     OutputVersion( &as, &vd );
   }
 

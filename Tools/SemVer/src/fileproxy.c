@@ -18,6 +18,11 @@
 
 #define FMT_STR_DEFINE "#define  VERSION  \"%s\""
 
+int FileProxy_IsFileExist( char* filename )
+{
+  return access(filename, 0);
+}
+
 int FileProxy_ReadVersion( char* filename, char* verstr, int size )
 {
   HANDLE        handle;

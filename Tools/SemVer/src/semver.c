@@ -29,6 +29,15 @@ static BOOL SemVer_IsValidPos( int len, int lpos, int rpos )
   return( TRUE );
 }
 
+int SemVer_Init( tSemverVersion* me )
+{
+  me->major = 0;
+  me->minor = 1;
+  me->patch = 0;
+
+  return 0;
+}
+
 int SemVer_ConvertFromStr( tSemverVersion* me, char* str )
 {
   int  lpos;
