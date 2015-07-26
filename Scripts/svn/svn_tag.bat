@@ -4,7 +4,7 @@ REM Make a tag or show tags folder
 REM Usage: svn_tag
 REM Usage: svn_tag tag_name
 
-call _svn_repos_root.bat
+call %GLADIATOR_HOME%/Scripts/svn/_svn_repos_root.bat
 
 if "%1" == "" goto SHOW
 

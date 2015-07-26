@@ -2,7 +2,7 @@
 setlocal
 rem Sync merged
 
-call _svn_repos_root.bat
+call w:\GladiatorFirmware/Scripts/svn/_svn_repos_root.bat
 
 @echo on
 svn up

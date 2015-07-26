@@ -2,20 +2,67 @@
 setlocal
 
 if "%1" == "auto" goto AUTO
+if "%1" == "backup" goto BACKUP
+if "%1" == "branch" goto BRANCH
+if "%1" == "clean" goto CLEAN
+if "%1" == "green" goto GREEN
+if "%1" == "merge_branch" goto MERGE_BRANCH
+if "%1" == "merge_trunk" goto MERGE_TRUNK
+if "%1" == "repos_root" goto REPOS_ROOT
+if "%1" == "tag" goto TAG
+if "%1" == "admin_dump" goto ADMIN_DUMP
 
 echo "error input"
 goto END
 
 :AUTO
-echo auto
+call %GLADIATOR_HOME%/Scripts/svn/svn_auto.bat
+@echo off
 goto END
 
-:BAK_MODIFIED
-echo bak_modified
+:BACKUP
+call %GLADIATOR_HOME%/Scripts/svn/svn_back_modified.bat
+@echo off
 goto END
 
 :BRANCH
-echo branch
+call %GLADIATOR_HOME%/Scripts/svn/svn_branch.bat %2
+@echo off
+goto END
+
+:CLEAN
+call %GLADIATOR_HOME%/Scripts/svn/svn_clean_unversion.bat
+@echo off
+goto END
+
+:GREEN
+call %GLADIATOR_HOME%/Scripts/svn/svn_green.bat
+@echo off
+goto END
+
+:MERGE_BRANCH
+call %GLADIATOR_HOME%/Scripts/svn/svn_merge_branch.bat %2
+@echo off
+goto END
+
+:MERGE_TRUNK
+call %GLADIATOR_HOME%/Scripts/svn/svn_merge_trunk.bat
+@echo off
+goto END
+
+:REPOS_ROOT
+call %GLADIATOR_HOME%/Scripts/svn/svn_repos_root.bat
+@echo off
+goto END
+
+:TAG
+call %GLADIATOR_HOME%/Scripts/svn/svn_tag.bat %2
+@echo off
+goto END
+
+:ADMIN_DUMP
+call %GLADIATOR_HOME%/Scripts/svn/svn_admin_dump.bat %2
+@echo off
 goto END
 
 :END

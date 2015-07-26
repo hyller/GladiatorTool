@@ -1,6 +1,6 @@
 # GaladiatorFirmware
 
-Firmware engineer likes a gladiator.  
+Tools, components, or documents collection, from internet or developed.
 
 ## How to Use
 
@@ -13,7 +13,7 @@ Script calls the relate tools.
 
 ## Tools
 
-This tools are developed by author under GUN linceses.
+This tools are developed by author.
 
 **semver**    increases version number in a file.  
 **ascii**     queries ASCII table.  

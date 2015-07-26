@@ -5,7 +5,7 @@ rem usage: svn_merge_branch xxx
 
 if "%1" == "" goto ERROR
 
-call _svn_repos_root.bat
+call w:\GladiatorFirmware/Scripts/svn/_svn_repos_root.bat
 
 svn up
 svn merge %REPOS_ROOT%/branches/%1

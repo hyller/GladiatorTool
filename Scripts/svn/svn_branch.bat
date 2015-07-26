@@ -3,7 +3,7 @@ setlocal
 REM Create a branch and switch to the branch
 REM Usage: svn_cbsw description
 
-call _svn_repos_root.bat
+call w:\GladiatorFirmware/Scripts/svn/_svn_repos_root.bat
 
 if "%1" == "" goto SHOW
 
