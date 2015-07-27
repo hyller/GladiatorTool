@@ -8,9 +8,11 @@
 
 #include "cii/cii-20/include/str.h"
 #include "fileproxy.h"
+#include "version.h"
 
-#define FMT_STR_DEFINE "#define  VERSION  \"%s\""
-#define FILE_BUF_SIZE  1024
+#define FMT_DEFINE_PREFIX "#define  VERSION"
+#define FMT_STR_DEFINE    FMT_DEFINE_PREFIX" \"%s\""
+#define FILE_BUF_SIZE     1024
 
 static int FileProxy_ReadFile( char* filename, char* buf, int size )
 {
@@ -61,9 +63,11 @@ int FileProxy_ReadVersion( char* filename, char* verstr )
 
   FileProxy_ReadFile( filename, buf, FILE_BUF_SIZE );
 
-  len  = (int)strlen( buf ) + 1;
-  lpos = Str_chr( buf, 1, len, '"' );
-  rpos = Str_rchr( buf, 1, len, '"' );
+  len = (int)strlen( buf ) + 1;
+
+  lpos = Str_find( buf, 1, len, FMT_DEFINE_PREFIX );
+  lpos = Str_chr( buf, lpos + 1, len, '"' );
+  rpos = Str_chr( buf, lpos + 1, len, '"' );
 
   memcpy( verstr, &buf[ lpos ], (size_t)( rpos - lpos - 1 ) );
 
@@ -73,8 +77,22 @@ int FileProxy_ReadVersion( char* filename, char* verstr )
 int FileProxy_WriteVersion( char* filename, char* verstr )
 {
   char buf[ FILE_BUF_SIZE ] = { 0 };
+  int  len                  = 0;
 
-  sprintf( buf, FMT_STR_DEFINE, verstr );
+  len += sprintf( &buf[ len ], "/* This file is created by semver v%s */\n",VERSION );
+  len += sprintf( &buf[ len ], "#ifndef _VERSION_H_\n" );
+  len += sprintf( &buf[ len ], "  #define _VERSION_H_\n" );
+  len += sprintf( &buf[ len ], "#ifdef __cplusplus\n" );
+  len += sprintf( &buf[ len ], "    extern \"C\"\n" );
+  len += sprintf( &buf[ len ], "    {\n" );
+  len += sprintf( &buf[ len ], "#endif\n" );
+  len += sprintf( &buf[ len ], "\n" );
+  len += sprintf( &buf[ len ], FMT_STR_DEFINE"\n", verstr );
+  len += sprintf( &buf[ len ], "\n" );
+  len += sprintf( &buf[ len ], "#ifdef __cplusplus\n" );
+  len += sprintf( &buf[ len ], "    }\n" );
+  len += sprintf( &buf[ len ], "#endif\n" );
+  len += sprintf( &buf[ len ], "#endif\n" );
 
   FileProxy_WriteFile( filename, buf, (int)strlen( buf ) );
 
@@ -88,7 +106,7 @@ int FileProxy_ReadVersionSimple( char* filename, char* verstr )
 
   FileProxy_ReadFile( filename, buf, FILE_BUF_SIZE );
 
-  len  = (int)strlen( buf ) + 1;
+  len = (int)strlen( buf ) + 1;
   memcpy( verstr, buf, (size_t)len );
 
   return( 0 );
