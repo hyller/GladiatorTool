@@ -41,7 +41,14 @@ void GetVersion( tSetting* as, tSemverVersion* vd )
 {
   char verstr[ BUF_SIZE ] = { 0 };
 
-  FileProxy_ReadVersion( as->filename, (char*)verstr, BUF_SIZE );
+  if(as->simple == 1)
+  {
+    FileProxy_ReadVersionSimple( as->filename, (char*)verstr );
+  }
+  else
+  {
+    FileProxy_ReadVersion( as->filename, (char*)verstr );
+  }
 
   SemVer_ConvertFromStr( vd, verstr );
 
@@ -80,8 +87,14 @@ void OutputVersion( tSetting* as, tSemverVersion* vd )
 
   SemVer_ConvertToStr( vd, verstr );
 
-  FileProxy_WriteVersion( (char*)as->filename, (char*)verstr, (int)strlen( verstr ) );
-
+  if(as->simple == 1)
+  {
+    FileProxy_WriteVersionSimple( (char*)as->filename, (char*)verstr );
+  }
+  else
+  {
+    FileProxy_WriteVersion( (char*)as->filename, (char*)verstr );
+  }
   printf( "New  version: %s\n", (char*)verstr );
 }
 

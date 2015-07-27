@@ -1,10 +1,3 @@
-#ifndef TRUE
-  #define TRUE  1
-#endif
-#ifndef FALSE
-  #define FALSE 1
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,12 +10,11 @@
 #include "fileproxy.h"
 
 #define FMT_STR_DEFINE "#define  VERSION  \"%s\""
+#define FILE_BUF_SIZE  1024
 
 static int FileProxy_ReadFile( char* filename, char* buf, int size )
 {
   FILE* ifp;
-
-  size = size;
 
   ifp = fopen( filename, "r+" );
 
@@ -60,16 +52,14 @@ int FileProxy_IsFileExist( char* filename )
   return( access( filename, 0 ) );
 }
 
-int FileProxy_ReadVersion( char* filename, char* verstr, int size )
+int FileProxy_ReadVersion( char* filename, char* verstr )
 {
-  char  buf[ 128 ] = { 0 };
-  int   lpos;
-  int   rpos;
-  int   len;
+  char buf[ FILE_BUF_SIZE ] = { 0 };
+  int  lpos;
+  int  rpos;
+  int  len;
 
-  size = size;
-
-  FileProxy_ReadFile(filename,buf,128);
+  FileProxy_ReadFile( filename, buf, FILE_BUF_SIZE );
 
   len  = (int)strlen( buf ) + 1;
   lpos = Str_chr( buf, 1, len, '"' );
@@ -80,23 +70,44 @@ int FileProxy_ReadVersion( char* filename, char* verstr, int size )
   return( 0 );
 }
 
-
-
-int FileProxy_WriteVersion( char* filename, char* verstr, int size )
+int FileProxy_WriteVersion( char* filename, char* verstr )
 {
-  char  buf[ 128 ] = { 0 };
-  size = size;
+  char buf[ FILE_BUF_SIZE ] = { 0 };
 
-  sprintf( buf, FMT_STR_DEFINE, verstr );  
+  sprintf( buf, FMT_STR_DEFINE, verstr );
 
-  FileProxy_WriteFile(filename, buf, (int)strlen(buf));
+  FileProxy_WriteFile( filename, buf, (int)strlen( buf ) );
+
+  return( 0 );
+}
+
+int FileProxy_ReadVersionSimple( char* filename, char* verstr )
+{
+  char buf[ FILE_BUF_SIZE ] = { 0 };
+  int  len;
+
+  FileProxy_ReadFile( filename, buf, FILE_BUF_SIZE );
+
+  len  = (int)strlen( buf ) + 1;
+  memcpy( verstr, buf, (size_t)len );
+
+  return( 0 );
+}
+
+int FileProxy_WriteVersionSimple( char* filename, char* verstr )
+{
+  char buf[ FILE_BUF_SIZE ] = { 0 };
+
+  sprintf( buf, "%s", verstr );
+
+  FileProxy_WriteFile( filename, buf, (int)strlen( buf ) );
 
   return( 0 );
 }
 
 int FileProxy_CopyFile( char* filename, char* newname )
 {
-  CopyFile( filename, newname, FALSE );
+  CopyFile( filename, newname, 0 );
 
   return( 0 );
 }

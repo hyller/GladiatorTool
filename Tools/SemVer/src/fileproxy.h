@@ -9,11 +9,13 @@
   int FileProxy_IsFileExist( char* filename );
 
   int FileProxy_ReadVersion( char* filename,
-                             char* buf,
-                             int   size );
+                             char* str );
   int FileProxy_WriteVersion( char* filename,
-                              char* buf,
-                              int   size );
+                              char* str);
+  int FileProxy_ReadVersionSimple( char* filename,
+                             char* str );
+  int FileProxy_WriteVersionSimple ( char* filename,
+                              char* str);                              
   int FileProxy_CopyFile( char* filename,
                           char* newname );
 
