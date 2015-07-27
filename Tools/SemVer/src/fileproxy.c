@@ -11,46 +11,65 @@
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <windows.h>
+#include <unistd.h>
 
 #include "cii/cii-20/include/str.h"
 #include "fileproxy.h"
 
 #define FMT_STR_DEFINE "#define  VERSION  \"%s\""
 
+static int FileProxy_ReadFile( char* filename, char* buf, int size )
+{
+  FILE* ifp;
+
+  size = size;
+
+  ifp = fopen( filename, "r+" );
+
+  if ( ifp == NULL )
+  {
+    printf( "Can't open file\n" );
+    return( 1 );
+  }
+
+  fread( buf, (size_t)size, 1, ifp );
+
+  fclose( ifp );
+
+  return( 0 );
+}
+
+static int FileProxy_WriteFile( char* filename, char* buf, int size )
+{
+  FILE* ifp;
+
+  if ( ( ifp = fopen( filename, "w+" ) ) == NULL )
+  {
+    printf( "Cannot open file.\n" );
+    return( 1 );
+  }
+
+  fwrite( buf, (size_t)size, 1, ifp );
+  fclose( ifp );
+
+  return( 0 );
+}
+
 int FileProxy_IsFileExist( char* filename )
 {
-  return access(filename, 0);
+  return( access( filename, 0 ) );
 }
 
 int FileProxy_ReadVersion( char* filename, char* verstr, int size )
 {
-  HANDLE        handle;
-  unsigned long iRead      = 0;
-  char          buf[ 128 ] = { 0 };
-  int           lpos;
-  int           rpos;
-  int           len;
+  char  buf[ 128 ] = { 0 };
+  int   lpos;
+  int   rpos;
+  int   len;
 
-  handle = CreateFile( filename,
-                       GENERIC_READ | GENERIC_WRITE,
-                       FILE_SHARE_READ,
-                       NULL,
-                       OPEN_ALWAYS,
-                       FILE_ATTRIBUTE_NORMAL,
-                       0 );
-  if ( handle == INVALID_HANDLE_VALUE )
-  {
-    printf( "error open file\n" );
-  }
+  size = size;
 
-  ReadFile( handle, buf, (unsigned int)size, &iRead, NULL );
-  if ( iRead == 0 )
-  {
-    printf( "error read file\n" );
-  }
-
-  CloseHandle( handle );
+  FileProxy_ReadFile(filename,buf,128);
 
   len  = (int)strlen( buf ) + 1;
   lpos = Str_chr( buf, 1, len, '"' );
@@ -58,44 +77,26 @@ int FileProxy_ReadVersion( char* filename, char* verstr, int size )
 
   memcpy( verstr, &buf[ lpos ], (size_t)( rpos - lpos - 1 ) );
 
-  return( TRUE );
+  return( 0 );
 }
+
+
 
 int FileProxy_WriteVersion( char* filename, char* verstr, int size )
 {
-  HANDLE        handle;
-  unsigned long iWritten = 0;
-
-  char buf[ 128 ] = { 0 };
-  sprintf( buf, FMT_STR_DEFINE, verstr );
+  char  buf[ 128 ] = { 0 };
   size = size;
 
-  handle = CreateFile( filename,
-                       GENERIC_READ | GENERIC_WRITE,
-                       FILE_SHARE_READ,
-                       NULL,
-                       OPEN_ALWAYS,
-                       FILE_ATTRIBUTE_NORMAL,
-                       0 );
-  if ( handle == INVALID_HANDLE_VALUE )
-  {
-    printf( "error open file\n" );
-  }
+  sprintf( buf, FMT_STR_DEFINE, verstr );  
 
-  WriteFile( handle, buf, (unsigned int)strlen( buf ), &iWritten, NULL );
-  if ( iWritten == 0 )
-  {
-    printf( "error write file\n" );
-  }
+  FileProxy_WriteFile(filename, buf, (int)strlen(buf));
 
-  CloseHandle( handle );
-
-  return( TRUE );
+  return( 0 );
 }
 
 int FileProxy_CopyFile( char* filename, char* newname )
 {
   CopyFile( filename, newname, FALSE );
 
-  return( TRUE );
+  return( 0 );
 }
