@@ -2,23 +2,28 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "cii/cii-20/include/str.h"
 #include "utils.h"
 
 void ChangFileName( char* oldname, char* append, char* newname )
 {
   char prefix[ 128 ] = { 0 };
   char sufix[ 128 ]  = { 0 };
-  int  i;
+  int  pos;
+  int  len;
+  
+  len = (int)strlen( oldname );
+  pos = Str_chr( oldname, 1, len  + 1, '.' );
 
-  for ( i = (int)strlen( oldname ) - 1; i >= 0; i-- )
+  if(pos != 0)
   {
-    if ( oldname[ i ] == '.' )
-    {
-      memcpy( prefix, oldname, (unsigned int)i );
-      memcpy( sufix, &oldname[ i + 1 ], (unsigned int)( (int)strlen( oldname ) - i - 1 ) );
-      break;
-    }
-  }
+    memcpy( prefix, oldname, (unsigned int)pos - 1 );
+    memcpy( sufix, &oldname[ pos ], (unsigned int)( (int)len - pos) );
 
-  sprintf( newname, "%s_v%s.%s", prefix, (char*)append, sufix );
+    sprintf( newname, "%s_%s.%s", prefix, (char*)append, sufix );
+  }
+  else
+  {
+    sprintf( newname, "%s_%s", oldname, (char*)append );
+  }
 }

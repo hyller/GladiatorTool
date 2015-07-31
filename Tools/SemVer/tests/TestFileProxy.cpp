@@ -12,22 +12,13 @@ TEST_GROUP( TestFileProxy )
   }
 };
 
-TEST( TestFileProxy, ReadVersion )
-{
-  char verstr[ 128 ] = { 0 };
-
-  FileProxy_ReadVersion( (char*)"TestFileProxy.TestFile", (char*)verstr );
-
-  STRCMP_EQUAL( "3.2.1", verstr );
-}
-
-TEST( TestFileProxy, WriteVersion )
+TEST( TestFileProxy, FullVersion )
 {
   char  verstr[ 128 ] = { 0 };
   char* verstrwrite   = (char*)"4.5.6";
 
-  FileProxy_WriteVersion( (char*)"TestFileProxy.TestFile.Write", (char*)verstrwrite );
-  FileProxy_ReadVersion( (char*)"TestFileProxy.TestFile.Write", (char*)verstr );
+  FileProxy_WriteVersion( (char*)"Full.Write", (char*)verstrwrite );
+  FileProxy_ReadVersion( (char*)"Full.Write", (char*)verstr );
 
   STRCMP_EQUAL( verstrwrite, verstr );
 }
