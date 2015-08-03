@@ -21,7 +21,7 @@ call %GLADIATOR_HOME%/Scripts/svn/svn_auto.bat
 goto END
 
 :BACKUP
-call %GLADIATOR_HOME%/Scripts/svn/svn_back_modified.bat
+call %GLADIATOR_HOME%/Scripts/svn/svn_bak_modified.bat
 @echo off
 goto END
 
