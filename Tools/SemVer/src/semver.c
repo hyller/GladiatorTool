@@ -75,26 +75,26 @@ int SemVer_ConvertToStr( tSemverVersion* me, char* str )
   return( 0 );
 }
 
-int SemVer_IncreaseMajor( tSemverVersion* me, int amount )
+int SemVer_IncreaseMajor( tSemverVersion* me )
 {
-  me->major = me->major + amount;
+  me->major = me->major + 1;
   me->minor = 0;
   me->patch = 0;
 
   return( 0 );
 }
 
-int SemVer_IncreaseMinor( tSemverVersion* me, int amount )
+int SemVer_IncreaseMinor( tSemverVersion* me )
 {
-  me->minor = me->minor + amount;
+  me->minor = me->minor + 1;
   me->patch = 0;
 
   return( 0 );
 }
 
-int SemVer_IncreasePatch( tSemverVersion* me, int amount )
+int SemVer_IncreasePatch( tSemverVersion* me )
 {
-  me->patch = me->patch + amount;
+  me->patch = me->patch + 1;
 
   return( 0 );
 }

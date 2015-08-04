@@ -36,7 +36,7 @@ TEST( TestParse, ParseAll )
 
   CHECK_EQUAL( 1, as.version );
   CHECK_EQUAL( 1, as.help );
-  CHECK_EQUAL( 0, as.index );
+  CHECK_EQUAL( 2, as.index );
   CHECK_EQUAL( 1, as.simple );
   CHECK_EQUAL( 1, as.append );
   STRCMP_EQUAL( "hello", as.appendarg );

@@ -15,17 +15,13 @@
 
 
   int SemVer_Init( tSemverVersion* me );
-
   int SemVer_ConvertFromStr( tSemverVersion* me,
                              char*           str );
   int SemVer_ConvertToStr( tSemverVersion* me,
                            char*           str );
-  int SemVer_IncreaseMajor( tSemverVersion* me,
-                            int             amount );
-  int SemVer_IncreaseMinor( tSemverVersion* me,
-                            int             amount );
-  int SemVer_IncreasePatch( tSemverVersion* me,
-                            int             amount );
+  int SemVer_IncreaseMajor( tSemverVersion* me );
+  int SemVer_IncreaseMinor( tSemverVersion* me );
+  int SemVer_IncreasePatch( tSemverVersion* me );
 
 #ifdef __cplusplus
     }

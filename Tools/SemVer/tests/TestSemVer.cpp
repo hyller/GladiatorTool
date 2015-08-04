@@ -12,7 +12,7 @@ TEST_GROUP( TestSemVer )
   }
 };
 
-TEST( TestSemVer, TestGAsciiPrintAsciiByindexNormal )
+TEST( TestSemVer, ConvertFromStr )
 {
   tSemverVersion ver;
   char           str[ 10 ] = "1.2.3";

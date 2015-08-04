@@ -58,20 +58,19 @@ void GetVersion( tSetting* as, tSemverVersion* vd )
 int IncreaseVersion( tSetting* as, tSemverVersion* versionData )
 {
   int index  = as->index;
-  int amount = as->amount;
 
   switch ( index )
   {
     case 0:
-      SemVer_IncreaseMajor( versionData, amount );
+      SemVer_IncreasePatch( versionData );
       return( 0 );
 
     case 1:
-      SemVer_IncreaseMinor( versionData, amount );
+      SemVer_IncreaseMinor( versionData );
       return( 0 );
 
-    case 2:
-      SemVer_IncreasePatch( versionData, amount );
+    case 2:      
+      SemVer_IncreaseMajor( versionData );
       return( 0 );
 
     default:

@@ -16,7 +16,6 @@
     int   length;
     int   simple;
     int   index;
-    int   amount;
     int   append;
     char* appendarg;
     char  filename[ 128 ];

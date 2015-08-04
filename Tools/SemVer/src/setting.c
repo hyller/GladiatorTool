@@ -11,8 +11,6 @@
 void Setting_Init( tSetting* as )
 {
   memset( as, 0, sizeof( tSetting ) );
-  as->index  = 2;
-  as->amount = 1;
 }
 
 int Setting_Parse( tSetting* as, int argc, char** argv )
@@ -31,18 +29,15 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
     switch ( c )
     {
       case 'x':
-        as->index  = 0;
-        as->amount = 1;
+        as->index  = 2;
         break;
 
       case 'y':
         as->index  = 1;
-        as->amount = 1;
         break;
 
       case 'z':
-        as->index  = 2;
-        as->amount = 1;
+        as->index  = 0;
         break;
 
       case 's':
