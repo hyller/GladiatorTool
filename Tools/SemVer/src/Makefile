@@ -83,7 +83,7 @@ endif
 $(TARGET):$(OBJ)
 	-@$(MOVE) *.o $(DIR_OBJ)
 	-@$(MOVE) *.d $(DIR_OBJ)
-	$(CC) $(addprefix $(DIR_OBJ),$(OBJ)) $(LIBS) -o $(TARGET) 
+	$(CC) $(addprefix $(DIR_OBJ),$(OBJ)) $(LIBS) -o $(TARGET) -lstdc++
 # The main rule of the makefile : the compilation of TARGET.
 # The new object and dependency files are moved in the object directory.
 
