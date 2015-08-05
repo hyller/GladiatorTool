@@ -24,20 +24,20 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
   }
 
   opterr = 0;
-  while ( ( c = getopt( argc, argv, "xyzvhsa:" ) ) != -1 )
+  while ( ( c = getopt( argc, argv, "xyzvhsa:i:" ) ) != -1 )
   {
     switch ( c )
     {
       case 'x':
-        as->index  = 2;
+        as->index = 2;
         break;
 
       case 'y':
-        as->index  = 1;
+        as->index = 1;
         break;
 
       case 'z':
-        as->index  = 0;
+        as->index = 0;
         break;
 
       case 's':
@@ -47,6 +47,11 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
       case 'a':
         as->append    = 1;
         as->appendarg = optarg;
+        break;
+
+      case 'i':
+        as->init    = 1;
+        as->initarg = optarg;
         break;
 
       case 'v':

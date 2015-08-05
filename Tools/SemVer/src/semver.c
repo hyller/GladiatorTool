@@ -35,7 +35,7 @@ int SemVer_Init( tSemverVersion* me )
   me->minor = 1;
   me->patch = 0;
 
-  return 0;
+  return( 0 );
 }
 
 int SemVer_ConvertFromStr( tSemverVersion* me, char* str )

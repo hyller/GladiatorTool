@@ -13,7 +13,6 @@
     int patch;
   }tSemverVersion;
 
-
   int SemVer_Init( tSemverVersion* me );
   int SemVer_ConvertFromStr( tSemverVersion* me,
                              char*           str );

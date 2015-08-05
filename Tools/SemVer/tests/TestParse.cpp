@@ -27,6 +27,7 @@ TEST( TestParse, ParseAll )
     (char*)"-h",
     (char*)"-s",
     (char*)"-ahello",
+    (char*)"-i2.3.4",
     (char*)"version.h"
   };
   int   testargc = sizeof( testargv ) / sizeof( testargv[ 0 ] );
@@ -39,6 +40,8 @@ TEST( TestParse, ParseAll )
   CHECK_EQUAL( 2, as.index );
   CHECK_EQUAL( 1, as.simple );
   CHECK_EQUAL( 1, as.append );
+  CHECK_EQUAL( 1, as.init );
   STRCMP_EQUAL( "hello", as.appendarg );
   STRCMP_EQUAL( "version.h", as.filename );
+  STRCMP_EQUAL( "2.3.4", as.initarg );
 }

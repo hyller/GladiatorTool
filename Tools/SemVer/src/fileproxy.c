@@ -11,7 +11,7 @@
 #include "version.h"
 
 #define FMT_DEFINE_PREFIX "#define  VERSION"
-#define FMT_STR_DEFINE    FMT_DEFINE_PREFIX"  \"%s\""
+#define FMT_STR_DEFINE    FMT_DEFINE_PREFIX "  \"%s\""
 #define FILE_BUF_SIZE     1024
 
 static int FileProxy_ReadFile( char* filename, char* buf, int size )
@@ -82,7 +82,7 @@ int FileProxy_WriteVersion( char* filename, char* verstr )
   len += sprintf( &buf[ len ], "#ifndef _VERSION_H_\n" );
   len += sprintf( &buf[ len ], "#define _VERSION_H_\n" );
   len += sprintf( &buf[ len ], "\n" );
-  len += sprintf( &buf[ len ], FMT_STR_DEFINE"\n", verstr );
+  len += sprintf( &buf[ len ], FMT_STR_DEFINE "\n", verstr );
   len += sprintf( &buf[ len ], "\n" );
   len += sprintf( &buf[ len ], "#endif\n" );
 

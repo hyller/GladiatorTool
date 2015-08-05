@@ -18,6 +18,8 @@
     int   index;
     int   append;
     char* appendarg;
+    int   init;
+    char* initarg;
     char  filename[ 128 ];
   } tSetting;
 
