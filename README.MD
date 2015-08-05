@@ -1,6 +1,6 @@
 # GaladiatorFirmware
 
-Tools, components, or documents collection, from internet or developed.
+Firmware Engineer's Toolbox.
 
 ## How to Use
 

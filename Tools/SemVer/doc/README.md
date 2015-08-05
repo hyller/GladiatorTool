@@ -1,8 +1,8 @@
 # SemVer
 
 `SemVer` creates version head file, increases version and appends the version to a file name.  
-The version format defined in [semver.org](http://semver.org)
-Source code locates in [GladatiorFirmware](https://github.com/hyller/GladiatorFirmware)
+The version format defined in [semver.org](http://semver.org).  
+Source code locates in [GladatiorFirmware](https://github.com/hyller/GladiatorFirmware).  
 
 
 ## Usage
