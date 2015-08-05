@@ -20,29 +20,19 @@ Options:
 ## Example
 
 Create a head file version.h with initial version value 0.1.0  
-'''
 semver -i0.1.0 version.h
-'''
 
 Increase the version value to 0.1.1  
-'''
 semver -z version.h
-'''
 
 Increase the version value to 0.2.0  
-'''
 semver -y version.h
-'''
 
 Increase the version value to 1.0.0  
-'''
 semver -x version.h
-'''
 
 Append version to file target.hex to target_1.0.0.hex  
-'''
 semver -atarget.hex version.h
-'''
 
 
 
