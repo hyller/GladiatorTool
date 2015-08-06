@@ -17,7 +17,7 @@
 void PrintVersion( void )
 {
   printf( "\n" );
-  printf( "semver increases version number in a file V%s\n", VERSION );
+  printf( "semver increases version number in a file v%s\n", VERSION );
   printf( "\n" );
 }
 
@@ -60,7 +60,7 @@ void GetVersion( tSetting* as, tSemverVersion* vd )
 
   SemVer_ConvertFromStr( vd, verstr );
 
-  printf( "Read version: %s\n", (char*)verstr );
+  printf( "Input  version: %s\n", (char*)verstr );
 }
 
 int IncreaseVersion( tSetting* as, tSemverVersion* versionData )
@@ -102,7 +102,7 @@ void OutputVersion( tSetting* as, tSemverVersion* vd )
   {
     FileProxy_WriteVersion( (char*)as->filename, (char*)verstr );
   }
-  printf( "New  version: %s\n", (char*)verstr );
+  printf( "Output version: %s\n", (char*)verstr );
 }
 
 void AppendToFile( tSetting* as, tSemverVersion* vd )
@@ -116,7 +116,7 @@ void AppendToFile( tSetting* as, tSemverVersion* vd )
 
   FileProxy_CopyFile( as->appendarg, (char*)filename );
 
-  printf( "New  file   : %s\n", (char*)filename );
+  printf( "New   filename: %s\n", (char*)filename );
 }
 
 int semverrun( int argc, char** argv )
