@@ -1,8 +1,12 @@
 @echo off
 setlocal
 
+rem A wrapper on git, msysgit need installed 
+
+
 if "%1" == "store_user" goto STORE_USER
 if "%1" == "clean" goto CLEAN
+if "%1" == "alias" goto ALIAS
 
 echo "error input"
 goto END
@@ -14,6 +18,16 @@ goto END
 
 :CLEAN
 for /f "usebackq tokens=2*" %%i in (`git status -s ^| findstr /r "^\??"`) do rm -rf "%%i"
+goto END
+
+REM create alias for git command
+:ALIAS
+@echo on
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+@echo off
 goto END
 
 :END
