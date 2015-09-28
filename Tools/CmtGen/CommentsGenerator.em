@@ -1,33 +1,29 @@
 macro GetCurLineString( )
-{  
+{
+	//	  
+	//  Get current line text
+	//		
 	hbuf = GetCurrentBuf( )
 	line = GetBufLnCur( hbuf )
-	
-	// Get current line text
 	text = GetBufLine( hbuf, line )
 
-  // Truncate the last spaces
+	//	
+	//	Truncate the last spaces and semicolon
+	//	
   len = strlen(text)
   len = len - 1
   while(len > 0)
   {
-  	if( text[len] == " " )
+  	if( text[len] == " " || text[len] == ";" )
   	{
   		len = len - 1
-  	}  	
+  	} 
   	else
   	{
 	    text = strtrunc( text, len + 1 ) 
   		break;
   	}
   }
-
-  // Truncate last ;
-  len = strlen(text)
-	if( text[len - 1] == ";" )
-	{
-		text = strtrunc( text, len - 1 ) 
-	}
 
 	return text
 }
