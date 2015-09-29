@@ -11,15 +11,7 @@ macro _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
                fMatchCase, fRegExp, fWholeWordsOnly, fConfirm); 
 }
 
-macro _CreateGetDataFunction(hbuf, name)
-{
-	AppendBufLine( hbuf, "void Get@name@( void )" )
-	AppendBufLine( hbuf, "{" )
-	AppendBufLine( hbuf, "  return @name@;" )
-	AppendBufLine( hbuf, "}" )
-}
-
-macro SelfEncapDataGet()
+macro RefactorGetData()
 {
 	hbuf = GetCurrentBuf()
 	sel  = GetBufSelText(hbuf)
@@ -34,18 +26,13 @@ macro SelfEncapDataGet()
 
   _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
 
-  _CreateGetDataFunction(hbuf, sel)
-}
-
-macro _CreateSetDataFunction(hbuf, name)
-{
-	AppendBufLine( hbuf, "void Set@name@( var )" )
+  AppendBufLine( hbuf, "void Get@sel@( void )" )
 	AppendBufLine( hbuf, "{" )
-	AppendBufLine( hbuf, "  @name@ = var;" )
+	AppendBufLine( hbuf, "  return @sel@;" )
 	AppendBufLine( hbuf, "}" )
 }
 
-macro SelfEncapDataSet()
+macro RefactorSetData()
 {
 	hbuf = GetCurrentBuf( )
 	sel  = GetBufSelText(hbuf)
@@ -60,10 +47,13 @@ macro SelfEncapDataSet()
 	
 	_ReplaceInBufRegex(hbuf, oldPattern, newPattern)
 	
-  _CreateSetDataFunction(hbuf, sel)
+  AppendBufLine( hbuf, "void Set@sel@( var )" )
+	AppendBufLine( hbuf, "{" )
+	AppendBufLine( hbuf, "  @sel@ = var;" )
+	AppendBufLine( hbuf, "}" )
 }
 
-macro ExtractFunction()
+macro RefactorExtractMethod()
 {
 	hbuf = GetCurrentBuf();
 	hwnd = GetCurrentWnd();
@@ -88,6 +78,3 @@ macro ExtractFunction()
   // Call extracted function
 	InsBufLine( hbuf, iLine, "extractedfunction( );" )
 }
-
-
-
