@@ -151,7 +151,7 @@ macro CmtGenFunction( )
 	text = GetCurLineString( );
 	name = Cat( "/// \\fn : ", text )
 
-	InsBufLine( hbuf, i++, "//-----------------------------------------------------------------------//" )
+	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
 	InsBufLine( hbuf, i++, name )
 	InsBufLine( hbuf, i++, "///    " )
 	InsBufLine( hbuf, i++, "/// \\brief      : None" )
@@ -159,7 +159,7 @@ macro CmtGenFunction( )
 	InsBufLine( hbuf, i++, "/// \\param [out]: None" )
 	InsBufLine( hbuf, i++, "/// \\raise error: None" )
 	InsBufLine( hbuf, i++, "/// \\return     : None" )
-	InsBufLine( hbuf, i++, "//-----------------------------------------------------------------------//" )
+	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
 }
 
 macro CmtGenVariable( )
