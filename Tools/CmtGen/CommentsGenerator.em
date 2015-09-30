@@ -1,34 +1,13 @@
-macro GetCurLineString( )
+macro _GetCurLineText( )
 {
-	//	  
-	//  Get current line text
-	//		
 	hbuf = GetCurrentBuf( )
 	line = GetBufLnCur( hbuf )
 	text = GetBufLine( hbuf, line )
 
-	//	
-	//	Truncate the last spaces and semicolon
-	//	
-  len = strlen(text)
-  len = len - 1
-  while(len > 0)
-  {
-  	if( text[len] == " " || text[len] == ";" )
-  	{
-  		len = len - 1
-  	} 
-  	else
-  	{
-	    text = strtrunc( text, len + 1 ) 
-  		break;
-  	}
-  }
-
 	return text
 }
 
-macro GetFileName( )
+macro _GetFileName( )
 {
 	hbuf = GetCurrentBuf( )
 		
@@ -58,9 +37,9 @@ macro GetFileName( )
 	return sname
 }
 
-macro IsHeaderFile( )
+macro _IsHeaderFile( )
 {
-	fname = GetFileName( )
+	fname = _GetFileName( )
 	len   = strlen( fname )
 	i     = 0
 	
@@ -79,29 +58,52 @@ macro IsHeaderFile( )
 		return 0
 }
 
-macro CmtGenFile( )
+macro _CmtGenIfDefCpp( line )
 {
-	var sz
-
 	hbuf = GetCurrentBuf( )
-	fname = GetFileName( )
-	tempname = "sourcefileheadinformation"
+	fname = _GetFileName( )
 
-	len = strlen( fname )
+	if ( !_IsHeaderFile( ) )
+  {
+    return
+  }
+
+	headname = "_"
+  len = strlen( fname )
 	i = 0
-
-	sz = Cat( sz, "_" )
 	while (i < len )
 	{
 		ch = fname[ i ]
 		if ( ch == "." )
-		break;
-		sz = Cat( sz, toupper( ch ) )
+		  break;
+		headname = Cat( headname, toupper( ch ) )
 		if ( islower( ch ) && isupper( fname[ i + 1 ] )
-		sz = Cat( sz, "_" )
+		headname = Cat( headname, "_" )
 		i = i + 1
 	}
-	sz = Cat( sz, "_H_" )
+	headname = Cat( headname, "_H_" )
+	
+	InsBufLine( hbuf, line++, "#ifndef @headname@" )
+	InsBufLine( hbuf, line++, "#define @headname@" )
+	InsBufLine( hbuf, line++, "" )
+	InsBufLine( hbuf, line++, "#ifdef __cplusplus" )
+	InsBufLine( hbuf, line++, "extern \"C\"" )
+	InsBufLine( hbuf, line++, "{" )
+	InsBufLine( hbuf, line++, "#endif" )
+	InsBufLine( hbuf, line++, "" )
+	InsBufLine( hbuf, line++, "" )
+
+	AppendBufLine( hbuf, "#ifdef __cplusplus" )
+	AppendBufLine( hbuf, "}" )
+	AppendBufLine( hbuf, "#endif" )
+	AppendBufLine( hbuf, "" )
+	AppendBufLine( hbuf, "#endif" )
+}
+
+macro _CmtGenHeadinfo( )
+{
+	hbuf = GetCurrentBuf( )
+	tempname = "sourcefileheadinformation"
 
 	line = 0;
 	hbuftemp = OpenBuf( tempname )
@@ -120,35 +122,35 @@ macro CmtGenFile( )
 		InsBufLine( hbuf, line++, "//---------------------------------------------------------------------------//" )
 	}
 
-	InsBufLine( hbuf, line++, "/// \\file   @fname@" )
-	InsBufLine( hbuf, line++, "/// \\brief" )
+	return line
+}
+
+macro _CmtGenFileBrief( line )
+{
+  hbuf = GetCurrentBuf( )
+	fname = _GetFileName( )
+
+	InsBufLine( hbuf, line++, "/// \\file   : @fname@" )
+	InsBufLine( hbuf, line++, "/// \\brief  : " )
 	InsBufLine( hbuf, line++, "//---------------------------------------------------------------------------//" )
 
-	if ( IsHeaderFile( ) )
-	{
-		InsBufLine( hbuf, line++, "#ifndef @sz@" )
-		InsBufLine( hbuf, line++, "#define @sz@" )
-		InsBufLine( hbuf, line++, "" )
-		InsBufLine( hbuf, line++, "#ifdef __cplusplus" )
-		InsBufLine( hbuf, line++, "extern \"C\"" )
-		InsBufLine( hbuf, line++, "{" )
-		InsBufLine( hbuf, line++, "#endif" )
-		InsBufLine( hbuf, line++, "" )
-		InsBufLine( hbuf, line++, "" )
+	return line
+}
 
-		AppendBufLine( hbuf, "#ifdef __cplusplus" )
-		AppendBufLine( hbuf, "}" )
-		AppendBufLine( hbuf, "#endif" )
-		AppendBufLine( hbuf, "" )
-		AppendBufLine( hbuf, "#endif" )
-	}
+macro CmtGenFile( )
+{
+  line = _CmtGenHeadinfo( )
+
+  line = _CmtGenFileBrief( line )
+
+  _CmtGenIfDefCpp( line )
 }
 
 macro CmtGenFunction( )
 {
 	hbuf = GetCurrentBuf( )
 	i = GetBufLnCur( hbuf );
-	text = GetCurLineString( );
+	text = GetBufSelText( hbuf );
 	name = Cat( "/// \\fn : ", text )
 
 	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
@@ -157,29 +159,52 @@ macro CmtGenFunction( )
 	InsBufLine( hbuf, i++, "/// \\brief      : None" )
 	InsBufLine( hbuf, i++, "/// \\param [in] : None" )
 	InsBufLine( hbuf, i++, "/// \\param [out]: None" )
-	InsBufLine( hbuf, i++, "/// \\raise error: None" )
+	InsBufLine( hbuf, i++, "/// \\error      : None" )
 	InsBufLine( hbuf, i++, "/// \\return     : None" )
 	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
 }
 
-macro CmtGenVariable( )
+macro _CmtGenPreamble( type )
 {
 	hbuf = GetCurrentBuf( )
 	i = GetBufLnCur( hbuf );
-	text = GetCurLineString( );
-	name = Cat( "/// \\var  : ", text )
+	text = GetBufSelText( hbuf );
+	name = Cat( "/// \\@type@: ", text )
 
 	InsBufLine( hbuf, i++, name )
-	InsBufLine( hbuf, i++, "/// \\brief: " )
+	InsBufLine( hbuf, i++, "/// \\brief  : " )
 }
 
-macro CmtGenDefinition( )
+macro CmtGenPreamble( )
 {
-	hbuf = GetCurrentBuf( )
-	i = GetBufLnCur( hbuf );
-	text = GetCurLineString( );
-	name = Cat( "/// \\def  : ", text )
+  line = _GetCurLineText( )
 
-	InsBufLine( hbuf, i++, name )
-	InsBufLine( hbuf, i++, "/// \\brief: " )
+  if( FindString( line, "#define" ) != "X" )
+  {
+    _CmtGenPreamble( "def    " )
+  }
+  else
+  if( FindString( line, "enum" ) != "X"  )
+  {
+    _CmtGenPreamble( "enum   " )
+  }
+  else
+  if( FindString( line, "struct" ) != "X"  )
+  {
+    _CmtGenPreamble( "struct " )
+  }
+  else
+  if( FindString( line, "typedef" ) != "X"  )
+  {
+    _CmtGenPreamble( "typedef" )
+  }
+  else
+  if( FindString( line, ";" ) != "X"  )
+  {
+    _CmtGenPreamble( "var    " )
+  }
+  else
+  {
+    _CmtGenPreamble( "       " )
+  }
 }
