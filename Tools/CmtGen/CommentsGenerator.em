@@ -7,6 +7,19 @@ macro _GetCurLineText( )
 	return text
 }
 
+macro _GetCurLineTextWithoutSemicolon( )
+{
+	text = _GetCurLineText( )
+	ich  = RFindString(text, ";")
+
+	if( ich != "X")
+	{
+	  text = strmid(text, 0, ich)
+	}
+
+	return text
+}
+
 macro _GetFileName( )
 {
 	hbuf = GetCurrentBuf( )
@@ -130,8 +143,8 @@ macro _CmtGenFileBrief( line )
   hbuf = GetCurrentBuf( )
 	fname = _GetFileName( )
 
-	InsBufLine( hbuf, line++, "/// \\file   : @fname@" )
-	InsBufLine( hbuf, line++, "/// \\brief  : " )
+	InsBufLine( hbuf, line++, "/// \\file   @fname@" )
+	InsBufLine( hbuf, line++, "/// \\brief  " )
 	InsBufLine( hbuf, line++, "//---------------------------------------------------------------------------//" )
 
 	return line
@@ -150,17 +163,16 @@ macro CmtGenFunction( )
 {
 	hbuf = GetCurrentBuf( )
 	i = GetBufLnCur( hbuf );
-	text = GetBufSelText( hbuf );
-	name = Cat( "/// \\fn : ", text )
+	text = _GetCurLineTextWithoutSemicolon( );
 
 	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
-	InsBufLine( hbuf, i++, name )
+	InsBufLine( hbuf, i++, "/// \\fn     @text@")
 	InsBufLine( hbuf, i++, "///    " )
-	InsBufLine( hbuf, i++, "/// \\brief      : None" )
-	InsBufLine( hbuf, i++, "/// \\param [in] : None" )
-	InsBufLine( hbuf, i++, "/// \\param [out]: None" )
-	InsBufLine( hbuf, i++, "/// \\error      : None" )
-	InsBufLine( hbuf, i++, "/// \\return     : None" )
+	InsBufLine( hbuf, i++, "/// \\brief  None" )
+	InsBufLine( hbuf, i++, "/// \\param  [in]  " )
+	InsBufLine( hbuf, i++, "/// \\param  [out] " )
+	InsBufLine( hbuf, i++, "/// \\error  None" )
+	InsBufLine( hbuf, i++, "/// \\return None" )
 	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
 }
 
@@ -169,10 +181,9 @@ macro _CmtGenPreamble( type )
 	hbuf = GetCurrentBuf( )
 	i = GetBufLnCur( hbuf );
 	text = GetBufSelText( hbuf );
-	name = Cat( "/// \\@type@: ", text )
 
-	InsBufLine( hbuf, i++, name )
-	InsBufLine( hbuf, i++, "/// \\brief  : " )
+	InsBufLine( hbuf, i++, "/// \\@type@ @text@" )
+	InsBufLine( hbuf, i++, "/// \\brief  " )
 }
 
 macro CmtGenPreamble( )
@@ -181,17 +192,17 @@ macro CmtGenPreamble( )
 
   if( FindString( line, "#define" ) != "X" )
   {
-    _CmtGenPreamble( "def    " )
+    _CmtGenPreamble( "def   " )
   }
   else
   if( FindString( line, "enum" ) != "X"  )
   {
-    _CmtGenPreamble( "enum   " )
+    _CmtGenPreamble( "enum  " )
   }
   else
   if( FindString( line, "struct" ) != "X"  )
   {
-    _CmtGenPreamble( "struct " )
+    _CmtGenPreamble( "struct" )
   }
   else
   if( FindString( line, "typedef" ) != "X"  )
@@ -201,10 +212,20 @@ macro CmtGenPreamble( )
   else
   if( FindString( line, ";" ) != "X"  )
   {
-    _CmtGenPreamble( "var    " )
+    _CmtGenPreamble( "var   " )
+  }
+  else
+  if( FindString( line, "class" ) != "X"  )
+  {
+    _CmtGenPreamble( "class " )
+  }
+  else
+  if( FindString( line, "union" ) != "X"  )
+  {
+    _CmtGenPreamble( "union " )
   }
   else
   {
-    _CmtGenPreamble( "       " )
+    _CmtGenPreamble( "      " )
   }
 }
