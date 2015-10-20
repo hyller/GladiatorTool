@@ -27,3 +27,18 @@ TEST( TestSemVer, ConvertFromStr )
   CHECK_EQUAL( 2, ver.minor );
   CHECK_EQUAL( 3, ver.patch );
 }
+
+TEST( TestSemVer, Increase255 )
+{
+  tSemverVersion ver;
+
+  ver.major = 0;
+  ver.minor = 255;
+  ver.patch = 255;
+
+  SemVer_IncreasePatch( &ver );
+
+  CHECK_EQUAL( 1, ver.major );
+  CHECK_EQUAL( 0, ver.minor );
+  CHECK_EQUAL( 0, ver.patch );
+}
