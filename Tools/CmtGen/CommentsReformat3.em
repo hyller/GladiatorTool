@@ -33,7 +33,7 @@ macro CmtReformat3()
 
 	tabSize = ___tsGetTabSize();
 	leftTextCol = 0 - 1;
-	colWrap = 98;
+	colWrap = 79;
 
 	// Find the starting column, and create a Margin string
 	ichFirst = sel.ichFirst;
