@@ -38,7 +38,7 @@ TEST( TestSemVer, Increase255 )
 
   SemVer_IncreasePatch( &ver );
 
-  CHECK_EQUAL( 1, ver.major );
-  CHECK_EQUAL( 0, ver.minor );
-  CHECK_EQUAL( 0, ver.patch );
+  CHECK_EQUAL( 0, ver.major );
+  CHECK_EQUAL( 255, ver.minor );
+  CHECK_EQUAL( 256, ver.patch );
 }

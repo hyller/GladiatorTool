@@ -30,9 +30,10 @@ void PrintUsage( void )
   printf( "-x,  Change major version number.\n" );
   printf( "-y,  Change minor version number.\n" );
   printf( "-z,  Change patch version number.\n" );
-  printf( "-v,  Print program version.\n" );
+  printf( "-v,  Print program version.\n" );  
   printf( "-h,  Print this help screen.\n" );
   printf( "-s,  Process simple version string.\n" );
+  printf( "-g,  Get version string.\n" );
   printf( "-a,  Append version string to a file name.\n" );
   printf( "-i,  Initialize version.\n" );
   printf( "\n" );
@@ -148,6 +149,11 @@ int semverrun( int argc, char** argv )
   {
     GetVersion( &as, &vd );
     OutputVersion( &as, &vd );
+  }
+  else
+  if ( as.get == 1 )
+  {
+    GetVersion( &as, &vd );
   }
   else
   if ( 0 == FileProxy_IsFileExist( as.filename ) )

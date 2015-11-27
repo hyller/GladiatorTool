@@ -10,6 +10,7 @@
   {
     int   verbose;
     int   quiet;
+    int   get;
     int   help;
     int   version;
     int   error;
