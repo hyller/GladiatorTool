@@ -132,7 +132,7 @@ macro _CmtGenHeadinfo( )
 	}
 	else
 	{
-		InsBufLine( hbuf, line++, "//---------------------------------------------------------------------------//" )
+		InsBufLine( hbuf, line++, "//----------------------------------------------------------------------------//" )
 	}
 
 	return line
@@ -145,7 +145,7 @@ macro _CmtGenFileBrief( line )
 
 	InsBufLine( hbuf, line++, "/// \\file   @fname@" )
 	InsBufLine( hbuf, line++, "/// \\brief  " )
-	InsBufLine( hbuf, line++, "//---------------------------------------------------------------------------//" )
+	InsBufLine( hbuf, line++, "//----------------------------------------------------------------------------//" )
 
 	return line
 }
@@ -165,7 +165,7 @@ macro CmtGenFunction( )
 	i = GetBufLnCur( hbuf );
 	text = _GetCurLineTextWithoutSemicolon( );
 
-	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
+	InsBufLine( hbuf, i++, "//----------------------------------------------------------------------------//" )
 	InsBufLine( hbuf, i++, "/// \\fn     @text@")
 	InsBufLine( hbuf, i++, "///    " )
 	InsBufLine( hbuf, i++, "/// \\brief  None" )
@@ -173,7 +173,7 @@ macro CmtGenFunction( )
 	InsBufLine( hbuf, i++, "/// \\param  [out] " )
 	InsBufLine( hbuf, i++, "/// \\error  None" )
 	InsBufLine( hbuf, i++, "/// \\return None" )
-	InsBufLine( hbuf, i++, "//---------------------------------------------------------------------------//" )
+	InsBufLine( hbuf, i++, "//----------------------------------------------------------------------------//" )
 }
 
 macro _CmtGenPreamble( type )
@@ -186,6 +186,19 @@ macro _CmtGenPreamble( type )
 	InsBufLine( hbuf, i++, "/// \\brief  " )
 }
 
+// \class     to document a class
+// \struct    to document a C-struct.
+// \union     to document a union.
+// \enum      to document an enumeration type.
+// \fn        to document a function.
+// \var       to document a variable or typedef or enum value.
+// \def       to document a #deﬁne.
+// \typedef   to document a type deﬁnition.
+// \file      to document a ﬁle.
+// \namespace to document a namespace.
+// \package   to document a Java package.
+// \interface to document an IDL interface.
+// \brief 
 macro CmtGenPreamble( )
 {
   line = _GetCurLineText( )
