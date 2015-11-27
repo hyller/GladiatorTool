@@ -7,6 +7,7 @@ for /f "usebackq tokens=2*" %%i in (`semver -g version ^| findstr /r "^\Input"`)
 if %VERSION_STR% == "" goto EXIT
 
 git tag GladiatorFirmware_%VERSION_STR%
+git push origin --tags
 
 :EXIT
 endlocal
