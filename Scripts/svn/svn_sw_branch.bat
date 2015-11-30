@@ -1,19 +1,18 @@
 @echo off
 setlocal
-rem merge branch
-rem usage: svn_merge_branch xxx
+rem sw branch
+rem usage: svn_sw_branch xxx
 
 if "%1" == "" goto ERROR
 
 call %GLADIATOR_HOME%/Scripts/svn/_svn_repos_root.bat
 
-svn up
-svn merge %REPOS_ROOT%/branches/%1
+svn sw %REPOS_ROOT%/branches/%1
 goto END
 
 :ERROR
 echo !!!error happen!!!
-echo usage: svn_merge_branch xxx
+echo usage: svn_sw_branch xxx
 
 :END
 endlocal

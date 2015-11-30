@@ -8,6 +8,8 @@ if "%1" == "clean" goto CLEAN
 if "%1" == "green" goto GREEN
 if "%1" == "merge_branch" goto MERGE_BRANCH
 if "%1" == "merge_trunk" goto MERGE_TRUNK
+if "%1" == "sw_branch" goto SW_BRANCH
+if "%1" == "sw_trunk" goto SW_TRUNK
 if "%1" == "repos_root" goto REPOS_ROOT
 if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
@@ -47,6 +49,16 @@ goto END
 
 :MERGE_TRUNK
 call %GLADIATOR_HOME%/Scripts/svn/svn_merge_trunk.bat
+@echo off
+goto END
+
+:SW_BRANCH
+call %GLADIATOR_HOME%/Scripts/svn/svn_sw_branch.bat %2
+@echo off
+goto END
+
+:SW_TRUNK
+call %GLADIATOR_HOME%/Scripts/svn/svn_sw_trunk.bat
 @echo off
 goto END
 
