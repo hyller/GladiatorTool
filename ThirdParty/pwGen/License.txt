@@ -1,0 +1,39 @@
+Important - Read carefully:
+
+This is a legal agreement between YOU as an individual and SEGGER Microcontroller GmbH & Co. KG ( hereafter called SEGGER).
+All IP rights, title and interest in the Tools are and shall at all times remain with SEGGER.
+By downloading and/or using the Tools, YOU agree to be bound by the terms of this agreement.
+
+
+1. License Grant
+The Tools are provided in executable code form.
+YOU may use the Tools for personal, non-commercial use only. You may not use the Tools in a product or for any commercial purposes without SEGGER prior consent in writing.
+Non-commercial purposes means that you may not use the Tools
+
+    direct or indirect in or for a profit organization or business purposes or other undertaking intended for profit
+    to develop, debug, program or manufacturer a commercial product (or parts thereof)
+    to use it to either earn money or reasonably anticipate the receipt of monetary gain from it.
+
+2. RESTRICTIONS
+YOU may not:
+(a) decompile, disassemble, reverse engineer, or otherwise attempt to derive the source code of the Tools, 
+(b) redistribute, encumber, sell, rent, lease, sublicense, or otherwise transfer rights to the Tools,
+(c) remove or alter any trademark, logo, copyright or other proprietary notices, legends, symbols or label in the Tools
+(e) use the Tools for any commercial purposes 
+Without prejudice to any other rights, SEGGER may terminate this agreement if YOU fail to comply with foregoing restrictions.
+
+3. FEES
+All Tools can be used free of charge for personal, non-commercial use.
+
+4. DISCLAIMER OF WARRANTY
+The Tools are provided on an "as is" basis, without warranty of any kind, including without limitation the warranties that it is free of defects, merchantable, fit for a particular purpose or non-infringing. This disclaimer of warranty constitutes an essential part of this agreement. No use of the utility is authorized hereunder except under this disclaimer.
+
+5. LIMITATION OF LIABILITY
+To the maximum extent permitted by applicable law, in no event will SEGGER be liable for any indirect, special, incidental or consequential damages arising out of the use of or inability to use the Tools, including, without limitation, damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other damages or losses, even if advised of the possibility thereof, and regardless of the legal or equitable theory (contract, tort or otherwise) upon which the claim is based.  Some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so this exclusion and limitation may not be applicable. In any case, SEGGER's entire liability shall not exceed in aggregate the sum of the fees YOU paid for the Tools (if any).
+
+6. MISCELLANEOUS
+(a) This agreement shall be governed by the laws of the Federal Republic of Germany. and This agreement constitutes the entire agreement between the parties concerning the subject matter hereof. 
+(b) If any provision in this agreement should be held illegal or unenforceable by a court having jurisdiction, such provision shall be modified to the extent necessary to render it enforceable without losing its intent, or severed from this agreement if no such modification is possible, and other provisions of this agreement shall remain in full force and effect.This agreement may be changed only by an amendment in writing, signed by both parties.
+(c) If any SEGGER  professional services are being provided, then such professional services are provided pursuant to the terms of a separate agreement.
+
+© 2004-2015 SEGGER Microcontroller GmbH & Co. KG
