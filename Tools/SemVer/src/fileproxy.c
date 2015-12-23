@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "cii/cii-20/include/str.h"
 #include "fileproxy.h"
@@ -49,6 +50,20 @@ static int FileProxy_WriteFile( char* filename, char* buf, int size )
   return( 0 );
 }
 
+static char* FileProxy_GetDay( void )
+{
+  static char DayBuffer[80];
+  size_t len;
+  struct tm* tmt;
+  time_t timet;
+  
+  timet = time(0);
+  tmt = gmtime(&timet);
+  len = strftime(DayBuffer, 80, "%Y-%m-%d", tmt);
+
+  return DayBuffer;
+}
+
 int FileProxy_IsFileExist( char* filename )
 {
   return( access( filename, 0 ) );
@@ -78,11 +93,15 @@ int FileProxy_WriteVersion( char* filename, char* verstr )
 {
   char buf[ FILE_BUF_SIZE ] = { 0 };
   int  len                  = 0;
+  char *timestr = 0;
+  
+  timestr = FileProxy_GetDay();
 
   len += sprintf( &buf[ len ], "#ifndef _VERSION_H_\n" );
   len += sprintf( &buf[ len ], "#define _VERSION_H_\n" );
   len += sprintf( &buf[ len ], "\n" );
   len += sprintf( &buf[ len ], FMT_STR_DEFINE "\n", verstr );
+  len += sprintf( &buf[ len ], "#define  BUILD_DAY \"%s\"\n", timestr );
   len += sprintf( &buf[ len ], "\n" );
   len += sprintf( &buf[ len ], "#endif\n" );
 

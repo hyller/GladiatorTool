@@ -10,7 +10,7 @@ ifndef SILENCE
 endif
 
 #--- Inputs ----#
-PROJECT_HOME = ../../../
+PROJECT_HOME = ../../
 COMPONENT_NAME = semver
 CPPUTEST_HOME = $(PROJECT_HOME)COTS/CppUTest/v2.4a
 
@@ -21,9 +21,9 @@ CPP_PLATFORM = GCC
 # when using std library includes like <list> and other containers
 # so that memory leak detection does not conflict with stl.
 # CPPUTEST_MEMLEAK_DETECTOR_NEW_MACRO_FILE = -include ApplicationLib/ExamplesNewOverrides.h
-SRC_DIRS = ../src 
-TEST_SRC_DIRS = ./
-INCLUDE_DIRS = ../src  $(CPPUTEST_HOME)/include  $(PROJECT_HOME)COTS
+SRC_DIRS = src 
+TEST_SRC_DIRS = tests
+INCLUDE_DIRS = src  $(CPPUTEST_HOME)/include  $(PROJECT_HOME)COTS
 
 # EXTRA LIBRARY
 CPPUTEST_LDFLAGS += -L$(PROJECT_HOME)COTS/cii/cii-20/lib
