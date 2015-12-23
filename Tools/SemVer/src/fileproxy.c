@@ -101,7 +101,7 @@ int FileProxy_WriteVersion( char* filename, char* verstr )
   len += sprintf( &buf[ len ], "#define _VERSION_H_\n" );
   len += sprintf( &buf[ len ], "\n" );
   len += sprintf( &buf[ len ], FMT_STR_DEFINE "\n", verstr );
-  len += sprintf( &buf[ len ], "#define  BUILD_DAY \"%s\"\n", timestr );
+  len += sprintf( &buf[ len ], "#define  MODIFY_DATE \"%s\"\n", timestr );
   len += sprintf( &buf[ len ], "\n" );
   len += sprintf( &buf[ len ], "#endif\n" );
 
@@ -117,17 +117,28 @@ int FileProxy_ReadVersionSimple( char* filename, char* verstr )
 
   FileProxy_ReadFile( filename, buf, FILE_BUF_SIZE );
 
-  len = (int)strlen( buf ) + 1;
-  memcpy( verstr, buf, (size_t)len );
+  for(len = 0; len < FILE_BUF_SIZE; len++)
+  {
+	if( buf[len] == ' ' || buf[len] == 0 )
+	{
+	  buf[len] = 0;  
+	  break;
+    }
+  }
+
+  strcpy( verstr, buf);
 
   return( 0 );
 }
 
 int FileProxy_WriteVersionSimple( char* filename, char* verstr )
 {
-  char buf[ FILE_BUF_SIZE ] = { 0 };
+  char buf[ FILE_BUF_SIZE ] = { 0 };  
+  char *timestr = 0;
+  
+  timestr = FileProxy_GetDay();
 
-  sprintf( buf, "%s", verstr );
+  sprintf( buf, "%s    %s", verstr, timestr );
 
   FileProxy_WriteFile( filename, buf, (int)strlen( buf ) );
 
