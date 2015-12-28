@@ -23,6 +23,7 @@ goto END
 
 :COMMIT
 call %GLADIATOR_HOME%\Tools\Batch\_get_cd_name.bat
+echo git commit -m"[%CURRENT_DIR_NAME%] %2 %3 %4 %5 %6 %7 %8 %9"
 git commit -m"[%CURRENT_DIR_NAME%] %2 %3 %4 %5 %6 %7 %8 %9"
 git push
 goto END
