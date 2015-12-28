@@ -13,6 +13,7 @@ if "%1" == "sw_trunk" goto SW_TRUNK
 if "%1" == "repos_root" goto REPOS_ROOT
 if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
+if "%1" == "ci" goto COMMIT
 
 echo "error input"
 goto END
@@ -76,6 +77,12 @@ goto END
 call %GLADIATOR_HOME%/Scripts/svn/svn_admin_dump.bat %2
 @echo off
 goto END
+
+:COMMIT
+call %GLADIATOR_HOME%/Scripts/svn/svn_ci.bat %2 %3 %4 %5 %6 %7 %8 %9
+@echo off
+goto END
+
 
 :END
 endlocal
