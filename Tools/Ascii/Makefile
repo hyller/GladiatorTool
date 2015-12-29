@@ -11,7 +11,7 @@ endif
 
 #--- Inputs ----#
 COMPONENT_NAME = Ascii_u
-CPPUTEST_HOME = ../../../COTS/CppUTest/v2.4a
+CPPUTEST_HOME = ../../COTS/CppUTest/v2.4a
 
 CPPUTEST_USE_EXTENSIONS = Y
 CPP_PLATFORM = GCC
@@ -21,17 +21,16 @@ CPP_PLATFORM = GCC
 # so that memory leak detection does not conflict with stl.
 # CPPUTEST_MEMLEAK_DETECTOR_NEW_MACRO_FILE = -include ApplicationLib/ExamplesNewOverrides.h
 SRC_DIRS = \
-	Scripts \
-	../Src
+	Src/
 
 TEST_SRC_DIRS = \
-	Tests
+	Test/
 
 INCLUDE_DIRS =\
-  .\
-  Scripts\
+  Test\
+  Src\
   $(CPPUTEST_HOME)/include\
-  ../Src
+  
 
 include $(CPPUTEST_HOME)/build/MakefileWorker.mk
 

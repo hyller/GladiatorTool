@@ -1,5 +1,5 @@
 #include "CppUTest/CommandLineTestRunner.h"
-#include "Scripts/TestAscii.h"
+#include "TestAscii.h"
 
 int main(int ac, char** av)
 {

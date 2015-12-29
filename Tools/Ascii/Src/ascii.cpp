@@ -1,8 +1,7 @@
 #include "stdio.h"
 #include "string.h"
 #include "ascii.h"
-
-#define VERSION "0.0.5"
+#include "version.h"
 
 int (* FormatOutput)( const char* format, ... ) = printf;
 
@@ -151,8 +150,9 @@ void print_help( void )
 
 void print_version( void )
 {
-  FormatOutput( "\nGASCII is a utility to query ASCII table, v%s, "
-                "by Haile-Hyller Jiang\n\n", VERSION );
+  FormatOutput( "\nGASCII is a utility to query ASCII table, %s, %s\n\n",
+                VERSION, 
+                MODIFY_DATE );
 }
 
 int gascii( int argc, char* argv[] )

@@ -1,6 +1,6 @@
 CC=gcc
 EXEC=ascii.exe
-SOURCE=main.cpp ascii.cpp ascii.h
+SOURCE=main.cpp ascii.cpp ascii.h version.h
 
 all:$(EXEC)
 
