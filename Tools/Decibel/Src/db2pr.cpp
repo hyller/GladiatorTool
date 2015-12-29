@@ -1,8 +1,7 @@
 #include "stdio.h"
 #include "string.h"
 #include "math.h"
-
-#define VERSION "0.02"
+#include "version.h"
 
 int main( int argc, char* argv[] )
 {
@@ -15,7 +14,7 @@ int main( int argc, char* argv[] )
   {
     printf( "Usage: db2pr [db|pr]\n"
             "Include r as the prefix of the number to specify a power ratio value.\n"
-            "e.g. To translate 5 decibel to power ratio: db2pr 20\n"
+            "e.g. To translate 5 decibel to power ratio: db2pr 5\n"
             "e.g. To translate 100 power ratio to decibel: db2pr r100\n" );
   }
   else

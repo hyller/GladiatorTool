@@ -1,7 +1,6 @@
 #include "stdio.h"
 #include "string.h"
-
-#define VERSION "0.03"
+#include "version.h"
 
 int main( int argc, char* argv[] )
 {

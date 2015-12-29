@@ -1,6 +1,6 @@
 CC=gcc
 EXEC=digitsum.exe
-SOURCE=digitsum.cpp
+SOURCE=digitsum.cpp version.h
 
 all:$(EXEC)
 
