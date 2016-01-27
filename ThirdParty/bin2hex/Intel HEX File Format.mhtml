@@ -1,0 +1,764 @@
+From: <Saved by Blink>
+Subject: Intel HEX File Format - 8052.com
+Date: Thu, 27 Jan 2016 07:06:10 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_3B2B_8DC5F454.FA890DC8"
+
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.8052.com/tutintel.phtml
+
+<!--Force IE6 into quirks mode with this comment tag--><!DOCTYPE html PUBLI=
+C "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD=
+/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3.org/1999/xhtml" lang=
+=3D"en" xml:lang=3D"en"><!-- General Header with stylesheet and JavaScript =
+--><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3D=
+UTF-8">
+
+
+
+
+
+
+<link rel=3D"stylesheet" type=3D"text/css" href=3D"http://www.8052.com/scri=
+pts/8052com.css">
+
+<title>Intel HEX File Format - 8052.com</title>
+<meta name=3D"description" content=3D"8051/8052 Microcontrollers">
+<meta name=3D"keywords" content=3D"8051,8052,microcontroller,microprocessor=
+,MCS-51">
+</head>
+<body bgcolor=3D"#FFFFFF">
+
+
+
+
+
+<!-- The top non-scrolling banner area -->
+
+<div id=3D"framecontentTop">
+	<div class=3D"innertube">
+
+		<div class=3D"bannerimage">
+					<a href=3D"http://www.8052.com/book"><img src=3D"http://www.8052.com/i=
+mages/advertising/8052book.gif" border=3D"0"></a>	=09
+					</div>
+
+
+		<span class=3D"welcomestring">
+							<form action=3D"http://www.8052.com/login" method=3D"POST">=09
+					Email: <input name=3D"COM8052USERNAME" type=3D"TEXT" size=3D"10" maxle=
+ngth=3D"40" class=3D"welcomeinputbox">=20
+					Password: <input name=3D"COM8052PASSWORD" type=3D"PASSWORD" size=3D"10=
+" maxlength=3D"40" class=3D"welcomeinputbox">
+					<input type=3D"HIDDEN" name=3D"SOURCEPAGE" value=3D"/tutintel.phtml">
+					<input type=3D"SUBMIT" value=3D"Login" class=3D"welcomesubmit">
+					<input type=3D"CHECKBOX" name=3D"REMEMBERME">Remember Me
+					| <a class=3D"ControlBar" href=3D"http://www.8052.com/newacct">Create =
+Account</a> <i>(Free)</i>
+
+				</form>
+						</span>
+
+
+
+		<span class=3D"searcharea">
+			<form action=3D"http://www.8052.com/search" method=3D"POST">=09
+								<input type=3D"TEXT" name=3D"TERMS" maxlength=3D"60" size=3D"20" cl=
+ass=3D"welcomeinputbox">=20
+				<input type=3D"SUBMIT" value=3D"Search 8052.com" class=3D"welcomesubmit=
+">
+			</form>
+		</span>=09
+	</div> <!-- End of div inntertube -->
+</div>  <!-- End of div framecontentTop -->
+
+<!-- The left non-scrolling sidebar with the pop-open menu -->
+
+<div id=3D"framecontentLeft">
+	<div class=3D"innertube">
+	 	<div class=3D"logo">
+			<a href=3D"http://www.8052.com/"><img align=3D"CENTER" src=3D"http://www=
+.8052.com/images/8052logo2.gif" border=3D"0" style=3D"margin-top: 0px;"></a=
+><br>
+			<img align=3D"CENTER" src=3D"http://www.8052.com/images/background4-1.gi=
+f" style=3D"margin-top: 33px;"><br>
+		</div>
+		=09
+		<div class=3D"sidebar">
+			<ul id=3D"verticalmenu" class=3D"glossymenu">
+						<li><a href=3D"http://www.8052.com/consulting"><font color=3D"yellow"=
+>Consulting Services</font></a></li>
+			<li><a href=3D"http://www.8052.com/book/"><font color=3D"yellow">The 805=
+2.com Book</font></a></li>
+			<li><a href=3D"http://www.8052.com/forumchat/" onclick=3D"return OpenClo=
+se('Forum1,Forum2,Rules');">Message Forum <img class=3D"imageright" src=3D"=
+http://www.8052.com/images/downarrow.gif"></a></li>
+				<li id=3D"Forum1" class=3D"glossysubmenu"><a href=3D"http://www.8052.co=
+m/forum/">8052 Forum</a></li>=20
+				<li id=3D"Forum2" class=3D"glossysubmenu"><a href=3D"http://www.8052.co=
+m/forumchat/">Chat Board</a></li>		=09
+				<li id=3D"Rules" class=3D"glossysubmenu"><a href=3D"http://www.8052.com=
+/rules"><i>Forum Rules (Read!)</i></a></li>		=09
+			<li><a href=3D"http://www.8052.com/tutorial" onclick=3D"return OpenClose=
+('Tutorial,Tutorial8051,Math16,LCD1,Iset');">Tutorials <img class=3D"imager=
+ight" src=3D"http://www.8052.com/images/downarrow.gif"></a></li>
+				<li id=3D"Tutorial" class=3D"glossysubmenu"><a href=3D"http://www.8052.=
+com/tutorial">Tutorials Index</a></li>
+				<li id=3D"Tutorial8051" class=3D"glossysubmenu"><a href=3D"http://www.8=
+052.com/tut8051">8051/8052 Tutorial</a></li>
+				<li id=3D"Math16" class=3D"glossysubmenu"><a href=3D"http://www.8052.co=
+m/math">16-Bit Math</a></li>
+				<li id=3D"LCD1" class=3D"glossysubmenu"><a href=3D"http://www.8052.com/=
+tutlcd">LCD Programming</a></li>
+				<li id=3D"Iset" class=3D"glossysubmenu"><a href=3D"http://www.8052.com/=
+set8051">8051 Instruction Set</a></li>
+			<li><a href=3D"http://www.8052.com/faqs">8052 FAQs</a></li>
+			<li><a href=3D"http://www.8052.com/news">News</a></li>
+			<!-- <li><a href=3D"/codelib">Code Library</a></li> -->
+			<li><a href=3D"http://www.8052.com/links">Links</a></li>
+			<!-- <li><a href=3D"/homepages">User Pages</a></li> -->
+			<!--
+			<li><a href=3D"/" onClick=3D"return OpenClose('SBC,Video,TCPIP,CDROM,Dis=
+assembler');">8052 Projects <IMG CLASS=3D"imageright" SRC=3D"/images/downar=
+row.gif"></a></li>
+				<li id=3D"SBC" class=3D"glossysubmenu"><a href=3D"/sbc/">8052.com SBC</=
+a></li>
+				<li id=3D"Video" class=3D"glossysubmenu"><a href=3D"/users/phillipmgall=
+o/">8052 Video</a></li> =20
+				<li id=3D"TCPIP" class=3D"glossysubmenu"><a href=3D"/tcpip/">8052 TCP/I=
+P</a></li>
+				<li id=3D"CDROM" class=3D"glossysubmenu"><a href=3D"/users/jsno/">8052 =
+CD-ROM</a></li>
+				<li id=3D"Disassembler" class=3D"glossysubmenu"><a href=3D"/users/disas=
+m/">Disassembler</a></li>
+			-->
+			<li><a href=3D"http://www.8052.com/" onclick=3D"return OpenClose('Contac=
+t,AboutUs,Legal,Privacy,Advertising');">About 8052.com <img class=3D"imager=
+ight" src=3D"http://www.8052.com/images/downarrow.gif"></a></li>
+				<li id=3D"Contact" class=3D"glossysubmenu"><a href=3D"http://www.8052.c=
+om/contact">Contact Us</a></li>
+				<li id=3D"AboutUs" class=3D"glossysubmenu"><a href=3D"http://www.8052.c=
+om/aboutus">About 8052.com</a></li>
+				<li id=3D"Legal" class=3D"glossysubmenu"><a href=3D"http://www.8052.com=
+/legalinfo">Legal Info</a></li>
+				<li id=3D"Privacy" class=3D"glossysubmenu"><a href=3D"http://www.8052.c=
+om/privacy">Privacy Policy</a></li>
+				<li id=3D"Advertising" class=3D"glossysubmenu"><a href=3D"http://www.80=
+52.com/advertising">Advertising</a></li>
+			</ul>
+			<br>
+			<center>
+				<!---
+				<A HREF=3D"/redirlnk.phtml?ID=3D313"><IMG ALIGN=3DCENTER SRC=3D"/banner=
+s/SLAB_icon.gif" BORDER=3D0></A><BR>&nbsp;<BR>
+				<A HREF=3D"/redirlnk.phtml?ID=3D157"><IMG ALIGN=3DCENTER SRC=3D"/banner=
+s/Rais_icon.gif" BORDER=3D0></A>
+				--->
+							</center>
+
+
+		</div> <!-- end of div sidebar -->
+	</div> <!-- end of div innertube -->
+</div> <!-- end of div framecontentleft -->
+
+
+<div id=3D"maincontent">
+	<div class=3D"innertube" style=3D"background-color: 16777215">
+
+<center><center><span class=3D"StartPage">Intel HEX File Format</span></cen=
+ter>
+</center>
+
+<!--SUSPENDHOT-->
+<!--BOOKSUGGEST-->
+
+<hr>
+<br>
+
+
+The "Intel-Standard" HEX file is one of the most popular and commonly used =
+formats in the
+8052 world.  The standard is used to burn the 8052 program into an EPROM, P=
+ROM, etc.  For
+example, an 8052 assembler will usually generate an Intel Standard HEX file=
+ which can
+then be loaded into an EPROM programmer and burned into the chip.<p>
+
+An Intel Standard HEX file is an ASCII file with one "record" per line.  Ea=
+ch line has
+the following format:</p><p>
+
+</p><center>
+<table border=3D"1">
+<tbody><tr><td><font size=3D"2"><b>Position</b></font></td><td><font size=
+=3D"2"><b>Description</b></font></td></tr>
+<tr><td align=3D"CENTER"><font size=3D"2">1</font></td><td><font size=3D"2"=
+><b>Record Marker</b>: The first character of the line is always
+ a colon (ASCII 0x3A) to identify the line as an Intel HEX file</font></td>=
+</tr>
+
+<tr><td align=3D"CENTER"><font size=3D"2">2 - 3</font></td><td><font size=
+=3D"2"><b>Record Length</b>: This field contains the number of data
+ bytes in the register represented as a 2-digit hexidecimal number.  This i=
+s the=20
+ total number of <i>data</i> bytes, not including the checksum byte nor the=
+ first 9
+ characters of the line.</font></td></tr>
+
+<tr><td align=3D"CENTER"><font size=3D"2">4 - 7</font></td><td><font size=
+=3D"2"><b>Address</b>: This field contains the address where the=20
+ data should be loaded into the chip.  This is a value from 0 to 65,535 rep=
+resented
+ as a 4-digit hexidecimal value.</font></td></tr>
+
+<tr><td align=3D"CENTER"><font size=3D"2">8 - 9</font></td><td><font size=
+=3D"2"><b>Record Type</b>: This field indicates the type of record
+ for this line.  The possible values are: <b>00</b>=3DRegister contains nor=
+mal data.
+ <b>01</b>=3DEnd of File. <b>02</b>=3DExtended address.</font></td></tr>
+
+<tr><td align=3D"CENTER"><font size=3D"2">10 - ?</font></td><td><font size=
+=3D"2"><b>Data Bytes</b>: The following bytes are the actual data
+ that will be burned into the EPROM.  The data is represented as 2-digit he=
+xidecimal
+ values.</font></td></tr>
+
+<tr><td align=3D"CENTER"><font size=3D"2">Last 2 characters</font></td><td>=
+<font size=3D"2"><b>Checksum</b>: The last two characters of the
+ line are a checksum for the line.  The checksum value is calculated by tak=
+ing the
+ two's complement of the sum of all the preceeding data bytes, excluding th=
+e checksum
+ byte itself and the colon at the beginning of the line.</font></td></tr>
+</tbody></table>
+</center><p>
+
+<!--? echo $STARTSECTION; ?-->Calculating the Checksum<!--? echo $ENDSECTIO=
+N; ?--></p><p>
+
+As mentioned in the format table above, the last two characters represent a=
+ checksum of
+the data in the line.  Since the checksum is a two-digit hexidecimal value,=
+ it may=20
+represent a value of 0 to 255, inclusive.</p><p>
+
+The checksum is calculated by summing the value of the data on the line, ex=
+cluding the
+leading colon and checksum byte itself, and taking its two's complement.  F=
+or example, the
+line:</p><p>
+</p><ul> :0300300002337A1E
+</ul>
+Breaking this line into it's components we have:<p>
+</p><ul>
+<b>Record Length</b>: 03 (3 bytes of data)<br>
+<b>Address</b>: 0030 (the 3 bytes will be stored at 0030, 0031, and 0032)<b=
+r>
+<b>Record Type</b>: 00 (normal data)<br>
+<b>Data:</b> 02, 33, 7A<br>
+<b>Checksum:</b> 1E<br>
+</ul>
+
+Taking all the data bytes above, we have to calculate the checksum based on=
+ the following
+hexidecimal values:<p>
+</p><ul>03 + 00 + 30 + 00 + 02 + 33 + 7A =3D E2
+</ul>
+The two's complement of E2 is 1E which is, as you can, the checksum value.<=
+p>
+For those unfamiliar with calculating a two's complement, it's quite simple=
+: The two's
+complement of a number if the value which must be added to the number to re=
+ach the value
+256 (decimal).  That is to say, E2 + 1E =3D 100.</p><p>
+
+You may also calculate the two's complement by subtracting the value from 1=
+00h.  In other
+words, 100h - E2h =3D 1Eh -- which is the checksum.</p><p>
+
+If the value in question is greater than FFh, simply take the part which is=
+ less than 100h.
+For example, if you want the two's complement of the value 494h, simply dro=
+p the leading
+"4" which leaves you with 94h.  The two's complement of 94h is 6Ch.</p><p>
+
+
+	</p></div> <!-- end of div innertube -->
+</div> <!-- end of div maincontent-->
+<div><object id=3D"ClCache" click=3D"sendMsg" host=3D"" width=3D"0" height=
+=3D"0"></object></div></body></html>
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/background4.png
+
+iVBORw0KGgoAAAANSUhEUgAAAAUAAABYCAIAAACyHaqbAAAAcUlEQVR42u1TQQ6AMAwC4lf8h6/w
+PR59tlftErCZR3sjA0bbjet+4lbCsxYyYRYs64eoh9WP/BZ+0R+nzoGUp/gh5FOrn0EvqegT3+dB
+e/7+vv4+u3nsfan/wS/v9+v+C1+J7/9fes9lnsR2OL8fz+ELuYcDaa7T46sAAAAASUVORK5CYII=
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/glossyback21.png
+
+iVBORw0KGgoAAAANSUhEUgAAAAMAAAA2CAIAAACN/bT2AAAAIUlEQVR42mM8cOAAAxiw/P//nyjW
+v3//RpSOweQWuvoXAFZhoVZ4xZbZAAAAAElFTkSuQmCC
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/background4-2.png
+
+iVBORw0KGgoAAAANSUhEUgAAAAUAAABYCAIAAACyHaqbAAAAa0lEQVR42u1TQQ6AMAyixK/4Jd/k
+s71qm4BkHu2NDFpYt9qPE7cinrVVOVwNU/aD1UPqJz/CL/LV0jng/LR+MP4Y5Rl6kk3v+NoP4vvX
+8/J9pn7kPJd/9PP7/Tp/49Px9f9z7xnZ+/rxGr4AtNgCqo5DMncAAAAASUVORK5CYII=
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.8052.com/scripts/8052com.css
+
+.tabberlive .tabbertabhide { display: none; }
+
+.tabber { }
+
+.tabberlive { margin-top: 1em; margin-right: 1em; }
+
+ul.tabbernav { margin: 0px; padding: 3px 0px; border-bottom-width: 1px; bor=
+der-bottom-style: solid; border-bottom-color: rgb(119, 119, 136); font-weig=
+ht: bold; font-style: normal; font-variant: normal; font-stretch: normal; f=
+ont-size: 12px; line-height: normal; font-family: Verdana, sans-serif; }
+
+ul.tabbernav li { list-style: none; margin: 0px; display: inline; }
+
+ul.tabbernav li a { padding: 3px 0.5em; margin-left: 3px; border-top-width:=
+ 1px; border-right-width: 1px; border-left-width: 1px; border-style: solid =
+solid none; border-top-color: rgb(119, 119, 136); border-right-color: rgb(1=
+19, 119, 136); border-left-color: rgb(119, 119, 136); text-decoration: none=
+; background: rgb(221, 221, 238); }
+
+ul.tabbernav li a:link { color: rgb(68, 68, 136); }
+
+ul.tabbernav li a:visited { color: rgb(102, 102, 119); }
+
+ul.tabbernav li a:hover { color: rgb(0, 0, 0); border-color: rgb(34, 34, 11=
+9); background: rgb(170, 170, 238); }
+
+ul.tabbernav li.tabberactive a { border-bottom-width: 1px; border-bottom-st=
+yle: solid; border-bottom-color: rgb(255, 255, 255); background-color: rgb(=
+255, 255, 255); }
+
+ul.tabbernav li.tabberactive a:hover { color: rgb(0, 0, 0); border-bottom-w=
+idth: 1px; border-bottom-style: solid; border-bottom-color: white; backgrou=
+nd: white; }
+
+.tabberlive .tabbertab { padding: 5px; border-width: 0px 1px 1px; border-ri=
+ght-style: solid; border-bottom-style: solid; border-left-style: solid; bor=
+der-right-color: rgb(170, 170, 170); border-bottom-color: rgb(170, 170, 170=
+); border-left-color: rgb(170, 170, 170); height: 400px; overflow: auto; }
+
+.tabberlive .tabbertab h2 { display: none; }
+
+.tabberlive .tabbertab h3 { display: none; }
+
+.tabberlive#tab1 { }
+
+.tabberlive#tab2 { }
+
+.tabberlive#tab2 .tabbertab { height: 200px; overflow: auto; }
+
+body { margin: 0px; padding: 0px; border: 0px; overflow: hidden; height: 10=
+0%; max-height: 100%; z-index: 1; }
+
+#framecontentLeft, #framecontentTop { position: absolute; top: 0px; left: 0=
+px; width: 120px; height: 100%; overflow: hidden; color: white; }
+
+#framecontentTop { left: 120px; right: 0px; width: auto; height: 88px; over=
+flow: hidden; color: white; background-image: url("/images/background4.png"=
+); }
+
+#maincontent { position: fixed; left: 120px; top: 88px; right: 0px; bottom:=
+ 0px; margin-left: 8px; overflow: auto; }
+
+.innertube { margin: 2px; }
+
+* html body { padding: 88px 0px 0px 120px; }
+
+* html #maincontent { height: 100%; width: 100%; }
+
+* html #framecontentTop { width: 100%; }
+
+.glossymenu, .glossymenu li ul { list-style-type: none; margin: 0px; paddin=
+g: 0px; width: 119px; border-width: 1px 1px 0px; border-top-style: solid; b=
+order-right-style: solid; border-left-style: solid; border-top-color: black=
+; border-right-color: black; border-left-color: black; }
+
+.glossymenu li { position: relative; }
+
+.glossymenu li a { font-weight: bold; font-style: normal; font-variant: nor=
+mal; font-stretch: normal; font-size: 9px; line-height: normal; font-family=
+: Helvetica, sans-serif; color: white; display: block; width: auto; padding=
+: 2px 0px 2px 5px; text-decoration: none; background: url("/images/glossyba=
+ck21.png") 0% 100% repeat-x white; }
+
+.glossysubmenu { padding-left: 12px; display: none; }
+
+.imageright { position: absolute; top: 4px; right: 2px; border: 0px; }
+
+.glossymenu li a:visited, .glossymenu li a:active { color: white; }
+
+.glossymenu li a:hover { background-image: url("/images/glossyback2.gif"); =
+}
+
+* html .glossymenu li { float: left; height: 1%; margin-right: -3px; }
+
+* html .glossymenu li a { height: 1%; }
+
+.popup { position: absolute; margin-left: 120px; left: 20px; right: 20px; b=
+ottom: 15px; border-style: solid; border-color: blue; padding: 5px; color: =
+red; font-family: Arial; font-size: 8pt; z-index: 50; text-align: left; vis=
+ibility: hidden; background-color: yellow; }
+
+.popuplink { color: black; font-weight: lighter; text-decoration: none; whi=
+te-space: nowrap; background: url("/images/specunderline.gif") 100% 100% re=
+peat-x; }
+
+.popuplinkstealth { text-decoration: none; color: blue; }
+
+.UsersOnlineList { position: absolute; margin-left: 120px; left: 20px; righ=
+t: 20px; top: 88px; border-style: solid; border-color: blue; padding: 5px; =
+color: black; font-family: Arial; font-size: 8pt; z-index: 99; visibility: =
+hidden; text-align: left; background-color: rgb(192, 192, 192); }
+
+form { margin-bottom: 0px; }
+
+center { margin-bottom: 0px; }
+
+.logo { position: absolute; left: 0px; top: 0px; width: 120px; height: 88px=
+; text-align: center; vertical-align: bottom; background-image: url("/image=
+s/background4-2.png"); }
+
+.bannerimage { text-align: center; margin-top: 0px; margin-bottom: 0px; pad=
+ding: 0px; }
+
+.searcharea { font-size: 8pt; position: absolute; text-align: center; right=
+: 0px; bottom: 0px; }
+
+.usersonline { font-size: 14pt; position: absolute; top: 68px; left: 6px; }
+
+.welcomestring { font-size: 8pt; position: absolute; text-align: center; le=
+ft: 0px; bottom: 0px; }
+
+.welcomeinputbox { border: 0px; font-size: 8pt; }
+
+.welcomesubmit { font-size: 8pt; height: 20px; }
+
+.sidebar { position: absolute; left: 0px; top: 88px; width: 120px; max-heig=
+ht: 100%; height: 100%; background-color: rgb(0, 64, 128); }
+
+.sidebarbanner { position: fixed; left: 0px; bottom: 0px; }
+
+.SectionHeader { color: teal; font-size: 14pt; font-weight: bold; margin-bo=
+ttom: 0pt; margin-top: 0pt; padding-bottom: 0pt; padding-top: 0pt; }
+
+a { text-decoration: none; }
+
+a.ControlBar:link, a.ControlBar:visited { color: white; font-weight: bold; =
+text-decoration: underline; }
+
+a.BlueLink:link, a.BlueLink:visited { color: blue; }
+
+a.WhiteLink:link, a.WhiteLink:visited { color: white; }
+
+p.ProgTip { margin-left: 40px; margin-right: 40px; color: blue; }
+
+table.forumlist { border-collapse: collapse; border: 1px solid blue; margin=
+: 0px; text-align: left; }
+
+table.forumlist td { border: 1px solid blue; margin-right: 0px; margin-left=
+: 0px; margin-top: 0px; font-size: 10pt; }
+
+tr.forumlistheader td { color: white; border-right-style: solid; border-rig=
+ht-color: white; border-right-width: 1px; margin-right: 0px; margin-left: 0=
+px; margin-top: 0px; font-weight: bold; font-size: 10pt; background-color: =
+blue; }
+
+tr.forumlistheader td a:visited { color: white; }
+
+tr.forumlistheader td a:link { color: white; }
+
+.ForumDescription { color: red; font-weight: bold; }
+
+table.MessageThreadTable { border-collapse: collapse; border: 1px solid blu=
+e; width: 90%; margin-left: 5%; margin-right: 5%; max-width: 90%; margin-to=
+p: 0px; table-layout: fixed; }
+
+table.MessageThreadTable td { vertical-align: top; border-right-style: soli=
+d; border-right-color: blue; border-right-width: 1px; border-top-style: sol=
+id; border-top-color: blue; border-top-width: 1px; padding: 0px 5px; font-s=
+ize: 12pt; }
+
+table.MessageThreadTable td li { margin-left: 15px; }
+
+table.MessageThreadTable td.HeaderArea { color: white; font-size: 10pt; tex=
+t-align: left; background: blue; }
+
+table.MessageThreadTable td.MessageInformationArea { font-size: 10pt; width=
+: 200px; max-width: 200px; white-space: nowrap; text-align: left; }
+
+.MessageContentArea { text-align: left; overflow: auto; width: 100%; }
+
+.QuotedPerson { width: 90%; margin-left: 5%; margin-right: 5%; }
+
+.QuotedText { border: 1px solid red; width: 90%; overflow: auto; background=
+: rgb(192, 192, 192); }
+
+.MessageContentArea { }
+
+.MessageContentArea pre { overflow: auto; max-height: 200px; margin-left: 5=
+%; margin-right: 5%; width: 90%; border: 1px solid gray; margin-top: 0px; f=
+ont-size: 9pt; }
+
+.ProgramListingHeader { margin-left: 5%; width: 90%; text-align: right; }
+
+.PostPreviewHeader { text-align: center; background: yellow; }
+
+.PostTable { border-collapse: collapse; border: 1px solid blue; width: 90%;=
+ margin-left: 5%; }
+
+.PostTableHeaderRow { color: white; font-weight: bold; background: blue; }
+
+.TextAlignRight { text-align: right; }
+
+table.MyAccountTable { border-collapse: collapse; border: 1px solid blue; m=
+argin-top: 10px; margin-left: 10px; background: white; }
+
+table.MyAccountTable td { border-collapse: collapse; border: 1px solid blue=
+; font-size: 10pt; vertical-align: top; background: white; }
+
+table.MyAccountTable td.Header { border-collapse: collapse; border: 1px sol=
+id blue; color: white; font-weight: bold; text-align: center; font-size: 12=
+pt; background: blue; }
+
+table.ThreadedThreadList { border-collapse: collapse; border: 1px solid blu=
+e; margin: 0px; font-weight: normal; }
+
+table.ThreadedThreadList td { margin-right: 0px; margin-left: 0px; margin-t=
+op: 0px; font-size: 12pt; text-align: left; }
+
+tr.ThreadedListHeader td { color: white; border-right-style: solid; border-=
+right-color: white; border-right-width: 1px; margin-right: 0px; margin-left=
+: 0px; margin-top: 0px; font-weight: bold; font-size: 10pt; background-colo=
+r: blue; }
+
+table.AddLinkTable { border-collapse: collapse; border: 1px solid blue; mar=
+gin-top: 10px; margin-left: 10px; background: white; }
+
+table.AddLinkTable td { border-collapse: collapse; border: 1px solid blue; =
+font-size: 10pt; vertical-align: top; background: white; }
+
+table.AddLinkTable td.Header { border-collapse: collapse; border: 1px solid=
+ blue; color: white; font-weight: bold; text-align: center; font-size: 12pt=
+; background: blue; }
+
+.StartPage { font-weight: bold; font-size: 14pt; color: red; }
+
+table.ErrorTable { border-collapse: collapse; border: 1px solid blue; width=
+: 80%; }
+
+table.ErrorTable td { border-collapse: collapse; border: 1px solid brown; t=
+ext-align: center; }
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/advertising/8052book.gif
+
+R0lGODlh1AE8APcAAAAAAAAAYwgICBgYGCEhITExMTk5MTk5lEJCQlJSUlpaWmNjY2trWmtra3Nz
+c3t7e4SEhIyMjJSUe5SUlJycnKWlpa2tc62tlLW1tb29vcbGpcbGxsbG3s7OnM7OztbWtdbW1t7e
+vd7e3u+9c+/nte/vzvetUvfGhPfWnPfvxvfv3vf35/97CP+UKf//////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////yH5BAEAAAsALAAAAADUATwA
+AAj+AAEIHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXMmypcuX
+MGPKnEmzps2bOHPq3MmzJ0gBBAoIHUqUgICjBAUAUMoU6VGlKQUMQOqzqtWrWLMCKLAgwoQJXiN4
+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
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/8052logo2.gif
+
+R0lGODlhZAAhAPcAAAAAAAgAABAIAAAACAAICAgICAgYCBAICBAQCBgQCAAIEAAQEAgQEAgYEAgh
+EBAQEBAhEBgYEAAIGAAQGAgpGBAYGBApGBgYGBgpGCEYGCEhGCkhGAAQIQAYIRAYIRAxIRghIRgx
+ISEhISkpIQAYKSEpKSExKSE5KSkpKSkxKQAYMQAhMSkxMSk5MSlCMQAhOQApOQApQgApSgAxSgAx
+UgA5UgA5WgBCWgA5YwBCYwBCawBKawBKcwBScwBKewBSewBShABahABajABjjABalABjlABjnABr
+nABrpQBzpQBrrQBzrQBztQB7tQB7vQCEvQB7xgCExgCEzgCMxgCMzgCM1gCUzgCU1gCc1gCU3gCc
+3gCl3gCc5wCc7wCn6QSl9wCt7wCt9wit9wCt/wit/wC17wC19wC1/wi1/xi1/yG1/wC99wC9/wi9
+/xC9/xi9/yG9/wDG/wjG/xDG/xjG/yHG/wDO/wjO/xDO/xjO/yHO/wDW/xDW/xjW/yHW/yHe/zEp
+KTEpMTExITExKTkxMTk5MUI5MTk5OUI5OUI5QkpCOTFCQkJCQkpCQkJCSkpCSjFKOTlKQkpKQlJK
+QkJKSkpKSlJKSjlSOTlSQlJSQjlSSlJSSlJSUjlaQjFaSkJaSkpaSkJaUlJaUlpaUmNaWkpjWlpj
+WmNjWkdtWlprWlprY2NjY1JzY1p3Z1p7a1qMY2NrY2Nra2NzY2OMa2tjY2trY2tzc2uEe2uUa2uU
+e3Nra3NzY3Nza3OUe3tzc4Rzc4x7e2OUhHuchISEhHOcjHuljISMjIyMjHuclHu1nIzGpSnG/zG9
+/zHG/yvQ/zHW/zzI/0LO/zXa/z/b/0rS/0re/1LO/1TY/17e/2fe/3Db/2vn/3je/4Ta/3/n/4Tv
+/5SUlJStnJylnJTGra21rYze/4zn/4zv/5Te/5Tn/5Tv/5zn/5zv/6Xn/6Xv/6/p/7Xv/73v/733
+/8bv/8b3/87v/873/9b3/973/97//+fn7+f3/+f//+////f//////yH5BAEAAAAALAAAAABkACEA
+AAj+AAEIHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePBgkoWDCh5IQFCxSoRGnyZMqR
+JFuWRMmyZUoCBwnE7ECiQ4eTCggIHVnSp0+XNGMCFSqy5k2CCiZ0eBFjxowYMHpKJQGj6tUXPXl2
+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
+JtV+Nki2ze1ue/vb4A63uMcN7oAAADs=
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/background4-1.gif
+
+R0lGODlheAAWAPcAAAD//wBAgP//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////0CAgACAgICAgCH5BAEAAAAALAAAAAB4ABYA
+AAhpAAEIHDgwgMGDCBMqXMiwocOHECNKVEhQ4MSLGDNq3NiwIsePIEOKLCiypMmTDkmiXMlyJICW
+MGNqfCmzps2UN3PqNEhzp8+fQIMKHUq0qNGjSJMqXcq0qdOnUKNKnUq1qtWrWLNqhRgQADs=
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.8052.com/images/downarrow.gif
+
+R0lGODlhBwAEAPcAAAAAAP//////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////yH5BAEAAAAALAAAAAAHAAQA
+AAgTAAMIHBgAAMGCAAwKTMgQIYCAAAA7
+------=_NextPart_000_3B2B_8DC5F454.FA890DC8--

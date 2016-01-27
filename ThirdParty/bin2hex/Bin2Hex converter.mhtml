@@ -1,0 +1,361 @@
+From: <Saved by Blink>
+Subject: Bin2Hex converter
+Date: Thu, 27 Jan 2016 07:06:21 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_B20F_661DB633.0DC37EEA"
+
+------=_NextPart_000_B20F_661DB633.0DC37EEA
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.ht-lab.com/freeutils/bin2hex/bin2hex.html
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>=
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DGBK">
+        <!-- Comments -->
+        <title>Bin2Hex converter</title>
+        <meta name=3D"generator" content=3D"Namo WebEditor">
+		<link rel=3D"stylesheet" href=3D"http://www.ht-lab.com/scripts/cssmenu.cs=
+s" type=3D"text/css">
+
+
+</head>
+    <body onload=3D"na_preload_img(false, '../../images/homeon.gif');">
+=09
+	<div id=3D"container">
+    <div id=3D"content">
+=09
+<h1>BIN2HEX</h1>
+<h2 align=3D"center">Utility to convert a Binary file to an Intel Hex file<=
+br>
+&nbsp;</h2>
+<p><font color=3D"navy"><b>BIN2HEX</b></font> is a simple utility which con=
+verts=20
+a binary file to an Intel HEX file. There are lots of these converter on we=
+b,=20
+however, I couldn't find one that also generated an <b>execute record</b>. =
+This is=20
+useful if you want to use the format for bootstrap loaders. BIN2HEX is limi=
+ted to 64Kbyte binary files.</p>
+<h2>Usage</h2>
+<p><font color=3D"navy"><b>BIN2HEX</b></font>=20
+&lt;input_binary_filename&gt; &lt;output_hex_filename&gt; &nbsp;{<b>-o</b> =
+<i>offset</i>}=20
+{<b>-s</b> <i>segment</i>} {<b>-e</b> <i>execute</i>}<br></p>
+<p>Where Optional:</p>
+<p><i>offset </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output file address of=
+fset=20
+in hex. <br><i>segment</i> &nbsp;&nbsp;Extended address record offset in he=
+x=20
+(e.g. Segment address on a 8086).<br><i>execute</i> &nbsp;&nbsp;&nbsp;Execu=
+te=20
+address offset in hex (e.g. IP address on a 8086).</p>
+<p>The Intel Hex format is quite simple and consist of 6 fields:</p>
+<table id=3D"table1">
+    <tbody><tr>
+        <td><p align=3D"center"><font size=3D"1">Start Char : </font></p></=
+td>
+        <td><p align=3D"center"><font size=3D"1">Length(1)    </font></p></=
+td>
+        <td><p align=3D"center"><font size=3D"1">Address(2)   </font></p></=
+td>
+        <td><p align=3D"center"><font size=3D"1">Rec Type(1)  </font></p></=
+td>
+        <td><p align=3D"center"><font size=3D"1">Data(n)      </font></p></=
+td>
+        <td><p align=3D"center"><font size=3D"1">Checksum(1)  </font></p></=
+td>
+    </tr>
+</tbody></table>
+<p>A record always start with the '<font color=3D"navy"><b>:</b></font>' ch=
+aracter=20
+followed by a 1 byte data&nbsp;length. Most converters default to a length =
+of=20
+32 bytes. The length just indicates the number of Data bytes&nbsp;and does =
+not=20
+include the other fields. After the length byte you get a 2 byte address fi=
+eld=20
+for the data. </p>
+<p>Intel specified 6 record types as shown below. Bin2Hex support all but t=
+he=20
+last 2 types which are used for (Intel) processors that can address more th=
+an=20
+1Mbyte, e.g. a 386. In most cases a hex file consist of data records (00) f=
+ollowed=20
+by an EOF record (01).</p>
+<p><font face=3D"Courier"><b>00</b> Data Record<br><b>0l</b> End of File Re=
+cord<br><b>02</b>=20
+Extended Segment Address Record<br><b>03</b> Start Segment Address Record<b=
+r><b>04</b>=20
+Extended Linear Address Record<br><b>05</b> Start Linear Address Record</fo=
+nt></p>
+<p>After the data you get a fairly simple checksum which consist of a two's=
+&nbsp;compliment=20
+modulo 256 addition of all the bytes excluding the start character and the =
+checksum=20
+itself.</p>
+<h2>Examples</h2>
+<p>Input binary file <i>d.bin</i>&nbsp;(displayed using cygwin's <i>dump</i=
+>=20
+program)</p>
+<p><font face=3D"Courier">Address &nbsp;&nbsp;0 1 &nbsp;2 3 &nbsp;4 5 &nbsp=
+;6=20
+7 &nbsp;8 9 &nbsp;A B &nbsp;C D &nbsp;E F <br>-------- &nbsp;---- ---- ----=
+=20
+---- ---- ---- ---- ---- <br>00000000 &nbsp;4350 5538 3820 426f 6f74 6c6f 6=
+164=20
+6572 <br>00000010 &nbsp;2052 6561 6479 3e0a 0d00 8cc8 8ed8 33c0 <br>0000002=
+0=20
+&nbsp;8ec0 06bf 0001 57cb 5250 baf9 02ec 2402 <br>00000030 &nbsp;74fb baf8 =
+0258=20
+ee5a c352 baf9 02ec 2401 <br></font></p>
+<p><b><font color=3D"navy">BIN2HEX</font></b> d.bin d.hex</p>
+<p><font face=3D"Courier">:20</font><font face=3D"Courier" color=3D"navy">0=
+000</font><font face=3D"Courier">00435055383820426F6F746C6F6164657220526561=
+64793E0A0D008CC88ED833C046<br>:200020008EC006BF000157CB5250BAF902EC240274FB=
+BAF80258EE5AC352BAF902EC240183<br>:00000001FF</font></p>
+<p>Binary file is converted to hex starting at address 0x0000.</p>
+<p><b><font color=3D"navy">BIN2HEX</font></b> d.bin d.hex -o 0100</p>
+<p><font face=3D"Courier">:20</font><font face=3D"Courier" color=3D"navy">0=
+100</font><font face=3D"Courier">00435055383820426F6F746C6F6164657220526561=
+64793E0A0D008CC88ED833C045<br>:200120008EC006BF000157CB5250BAF902EC240274FB=
+BAF80258EE5AC352BAF902EC240182<br>:00000001FF</font></p>
+<p>The starting load address has changed to 0x0100.</p>
+<p><font color=3D"navy"><b>BIN2HEX</b></font> d.bin d.hex -o 0100 -s 0200</=
+p>
+<p><font face=3D"Courier" color=3D"navy">:020000020200FA</font><font face=
+=3D"Courier"><br>:20010000435055383820426F6F746C6F616465722052656164793E0A0=
+D008CC88ED833C045<br>:200120008EC006BF000157CB5250BAF902EC240274FBBAF80258E=
+E5AC352BAF902EC240182<br>:00000001FF</font></p>
+<p>The -s command will result in an extra "02" record being generated=20
+(first line). The 02 record is an <i>extended address record</i> and is nor=
+mally=20
+used to change the 8086/8088 segment register (CS). If the above file was l=
+oaded=20
+on an 8086 system then the starting address would be 0200:0100 (0x02100).</=
+p>
+<p><font color=3D"navy"><b>BIN2HEX</b></font> d.bin d.hex -o 0100 -s 0200 -=
+e 013A</p>
+<p><font face=3D"Courier">:020000020200FA<br>:20010000435055383820426F6F746=
+C6F616465722052656164793E0A0D008CC88ED833C045<br>:200120008EC006BF000157CB5=
+250BAF902EC240274FBBAF80258EE5AC352BAF902EC240182<br></font><font face=3D"C=
+ourier" color=3D"navy">:040000030200013ABC</font></p>
+<p>To execute a program issue the -e command which replaces the EOF record =
+(:00000001FF)=20
+with a so called<i> Start Segment Address Record</i> (03). In the above exa=
+mple=20
+the start address is 0200:013A. The EOF record is not required since the bo=
+ostrap=20
+loader will jump to the execute address after verifying the checksum.</p>
+<h2>Download Utility</h2>
+<ul>
+    <li><a href=3D"http://www.ht-lab.com/freeutils/bin2hex/bin2hex.zip">DOS=
+ executable version=20
+    1.1</a> <font color=3D"black">[zipped, 25KByte, tested on Win XP]<br>
+&nbsp;</font></li>
+</ul>
+<h2>Some Links</h2>
+<ul>
+    <li><a href=3D"http://www.interlog.com/~speff/usefulinfo/Hexfrmt.pdf">O=
+riginal=20
+    Intel Spec</a> (pdf) <a href=3D"http://home.att.net/~jackklein/x86/x86_=
+main.html">same=20
+    here</a></li>
+    <li><a href=3D"http://www.keil.com/support/docs/1584.htm">Keil Technica=
+l Support</a></li>
+    <li><a href=3D"http://www.8052.com/tutintel.phtml">8051 Example</a></li=
+>
+    <li><a href=3D"http://www.keil.com/download/docs/bin2hex.zip.asp">Keil'=
+s version</a></li>
+    <li>and lots and lots more...</li>
+</ul>
+<p align=3D"center"><a href=3D"http://www.ht-lab.com/index.html" target=3D"=
+_parent" onmouseout=3D"na_restore_img_src('image1', 'document')" onmouseove=
+r=3D"na_change_img_src('image1', 'document', '../../images/homeon.gif', tru=
+e);"><img src=3D"http://www.ht-lab.com/images/homeoff.gif" width=3D"56" hei=
+ght=3D"57" border=3D"0" name=3D"image1"></a></p>
+</div>
+</div>
+
+
+
+
+<div><object id=3D"ClCache" click=3D"sendMsg" host=3D"" width=3D"0" height=
+=3D"0"></object></div></body></html>
+------=_NextPart_000_B20F_661DB633.0DC37EEA
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.ht-lab.com/scripts/cssmenu.css
+
+* { margin: 0px; padding: 0px; }
+
+body { font-style: normal; font-variant: normal; font-weight: normal; font-=
+stretch: normal; font-size: 76%; font-family: Verdana, Tahoma, Arial, sans-=
+serif; line-height: 1.4em; text-align: center; color: rgb(48, 48, 48); back=
+ground: rgb(232, 234, 236); }
+
+a { color: rgb(70, 122, 167); font-weight: bold; text-decoration: none; bac=
+kground-color: inherit; }
+
+a:hover { color: rgb(42, 90, 138); text-decoration: none; background-color:=
+ inherit; }
+
+a img { border: none; }
+
+p { padding: 0px 1.6em 1.6em 0px; }
+
+p form { margin-top: 0px; margin-bottom: 20px; }
+
+#container { width: 1020px; margin: 10px auto; padding: 1px; text-align: le=
+ft; color: rgb(48, 48, 48); border: 2px solid rgb(160, 160, 160); backgroun=
+d: rgb(255, 255, 255); }
+
+#header { height: 125px; width: 1018px; margin: 0px 1px 1px; color: rgb(255=
+, 255, 255); background: url("../images/htlab.gif") 100% 50% no-repeat rgb(=
+70, 122, 167); }
+
+#header h1 { padding: 20px 0px 5px 20px; font-size: 2.4em; color: rgb(255, =
+255, 255); letter-spacing: -2px; font-weight: normal; width: 10em; backgrou=
+nd-color: inherit; }
+
+#header h2 { margin: 10px 0px 25px 40px; font-size: 1.4em; color: rgb(255, =
+255, 255); letter-spacing: -1px; font-weight: normal; width: 20em; backgrou=
+nd-color: inherit; }
+
+#menulist { position: static; font-size: 0.9em; z-index: 100; }
+
+#mainmenu { position: absolute; top: 110px; }
+
+#menulist ul { z-index: 100; }
+
+#menulist li { z-index: 100; display: inline; list-style: none; }
+
+a.starter { z-index: 100; color: rgb(255, 255, 255); float: left; width: 11=
+em; cursor: pointer; text-align: center; font-weight: bold; border: 1px sol=
+id gray; margin: 4px; background: rgb(87, 139, 184); }
+
+a.starter:hover, a.starter:active, a.starter:focus { color: rgb(0, 0, 0); b=
+ackground: rgb(128, 176, 218); }
+
+.menu { text-align: left; position: absolute; visibility: hidden; z-index: =
+100; }
+
+.menu li { width: 100%; }
+
+.menu li a { z-index: 100; color: rgb(255, 255, 255); display: block; font-=
+size: 1em; width: 11em; cursor: pointer; text-align: center; font-weight: b=
+old; border: 1px solid gray; background: rgb(87, 139, 184); }
+
+.menu li a:hover, .menu li a:active, .menu li a:focus { color: rgb(0, 0, 0)=
+; background: rgb(128, 176, 218); }
+
+#content { width: 1000px; font-size: 1em; padding: 0px 0px 0px 20px; }
+
+#content h1 { display: block; margin: 16px 0px; padding: 10px 0px; font-siz=
+e: 3.3em; font-weight: bold; text-align: center; color: rgb(70, 122, 167); =
+background-color: inherit; }
+
+#content h2 { font-weight: bold; margin: 0px 0px 5px; font-size: 1.3em; col=
+or: rgb(70, 122, 167); padding: 1em 0px 0.5em; }
+
+#content h2 a { font-weight: bold; margin: 0px 0px 5px; font-size: 1.3em; c=
+olor: rgb(70, 122, 167); padding: 1em 0px 0.5em; }
+
+#content h3 { margin: 0px 0px 5px; font-size: 1.2em; color: rgb(70, 122, 16=
+7); padding: 1em 0px 0.5em; }
+
+#content h4 { margin: 0px 0px 5px; font-size: 1.1em; color: rgb(70, 122, 16=
+7); padding: 1em 0px 0.5em; }
+
+#content ul, ol { padding: 1em 0px 1em 2em; }
+
+#content a:hover, #subcontent a:hover { text-decoration: underline; }
+
+.submit input { color: rgb(70, 122, 167); padding-left: 1em; padding-right:=
+ 1em; margin-left: 1.5em; }
+
+.question { margin-left: 2em; }
+
+.answer input { color: rgb(0, 204, 0); border: none; margin-left: 1.5em; }
+
+table#codetable2 { border: 1px solid rgb(204, 204, 204); border-collapse: c=
+ollapse; width: 985px; margin: 5px 0px; }
+
+table#codetable2 td { font-style: normal; font-variant: normal; font-weight=
+: normal; font-stretch: normal; font-size: 76%; font-family: 'courier new';=
+ border: 1px solid rgb(204, 204, 204); padding: 1em 1em 0px; line-height: n=
+ormal; background: rgb(255, 255, 204); }
+
+#codeid { font-style: normal; font-variant: normal; font-weight: normal; fo=
+nt-stretch: normal; font-size: 1em; line-height: normal; font-family: 'cour=
+ier new'; border: 1px solid rgb(204, 204, 204); padding: 1em; margin: 0px 1=
+5px 15px 0px; background: rgb(255, 255, 204); }
+
+table#table1 { font-style: normal; font-variant: normal; font-weight: norma=
+l; font-stretch: normal; font-size: 0.5em; line-height: 1em; font-family: V=
+erdana, Arial, Helvetica, sans-serif; border: 1px solid rgb(204, 204, 204);=
+ border-collapse: collapse; width: 900px; }
+
+table#table1 td { border: 1px solid rgb(204, 204, 204); padding: 0.5em 0px =
+0px; }
+
+table#table2 { font-style: normal; font-variant: normal; font-weight: norma=
+l; font-stretch: normal; font-size: 1em; font-family: Verdana, Arial, Helve=
+tica, sans-serif; line-height: 1em; padding: 0.5em 0px 0px; border: 1px sol=
+id rgb(204, 204, 204); border-collapse: collapse; width: 900px; }
+
+table#table2 td { border: 1px solid rgb(204, 204, 204); padding: 0.5em 0px =
+0px; }
+
+table#table3 { font-size: 1em; line-height: 1.4em; padding: 0.5em 0px 0px; =
+border-collapse: collapse; width: 900px; }
+
+table#table3 td { padding: 0.5em 0px 0px; }
+
+.boxleft { width: 700px; float: left; margin: 0px 0px 20px; }
+
+.boxright { width: 250px; float: right; padding-left: 0.5em; padding-top: 2=
+0px; margin: 5px; border: 1px solid rgb(160, 160, 160); }
+
+#footer { clear: both; width: 1018px; padding: 5px 0px; margin: 0px 1px; fo=
+nt-size: 0.9em; color: rgb(240, 240, 240); background: rgb(70, 122, 167); }
+
+#footer p { padding: 0px; margin: 0px; text-align: center; }
+
+#footer a { color: rgb(240, 240, 240); font-weight: bold; background-color:=
+ inherit; }
+
+#footer a:hover { color: rgb(255, 255, 255); text-decoration: underline; ba=
+ckground-color: inherit; }
+------=_NextPart_000_B20F_661DB633.0DC37EEA
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.ht-lab.com/images/homeoff.gif
+
+R0lGODlhOAA5APcAAAAAABANCRgSDBkXFScPAywVBCMcEjcYBSslGjkhESoqKTgvIj00JDY2NkMi
+B1k1BF48Ekc7J2UrCWQ5CnUuCXA4DUxBL1dKNV1QOmtHD3BLE3hTFmRUO31dJntiPkNDQ1xcW2tc
+QXBeQ3lmRmxsbHV1dYY4C5w+DYdED4BbHp9BDpJJEZZeNIlkJoVuPZRtKphhNZlyLZt3N6JFD6hM
+EaxRErRbFaZaMq1hLLlrOIhnTYh1VZZ4SqF+QLR/ZNl6OqaBPZqDXZyGYKiGRqiKXLCPT7KQTLiY
+VqmOZquSZq2XdbKVaL+fcLuhdcKeZsCiXsemacqpdNGtd9aze+SERoqKiJ+enLKfgbmlhr69u8Ol
+lsi3mdy5g8m8p+G9iNbFqNfMttvRvefEjezKkvDOlPfVme7Tqe7bvPXZpvPduPnjt8nJxdHLyNnZ
+2eDVwfDewurh0Pjmxfbs2fvw2+np6Pr05/799f///////////////////////////////////wAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHcALAAAAAA4ADkA
+AAj/AO8IHEiwoMGDCBMqXLiQwQCGECNGxACihIIAEjNqFHhBQYmPHx5uHKmwY5USJ0t8uEiyJUEM
+Hj9+PLmSpcuRHWXqBNmgAYKbGnPKTDlTpYIGNoEuFLpT544qH3omVYowJommTaMqUACAatWrWMNG
+RYrR68sPV8GG1QligNSyZgUaQFuChN26H9V+BBHgQICtXLvGvVNgx128Ou/ypXDChN+tAASbLWBD
+h927acHyNWGDxozGfgdEjpuAig0YdS9nJiGAs43Xnk9QIDDabOkfNm6kvlx3gOvXwGt8pk2aChXc
+LFTbDSChBvDnsAkMLm0cN4zLbSU8r+F5xvMC042L/7eRnARz2DNu+NDCxjtw8MXFHyc/QPvrGWva
+6G/j/jV8swbkIN9xNZjg3H376defDf95FZmA8uH23AwJ8vfdYHcAEACE1UE3wwcB0CHigg2apSGH
+EgKnQgkgiEgHiRgKdGKHz53g4og2rFCBA3BhOGOKr6lAhx12rFFFAQFEJlmMGQKQA5A2mABVkrUx
+aZCGONiAwgR+KWklQ0p6+eWYZJZp5kZhpqnmmmy2KaZCVZoZZ0FLninjQXXaeSdBeeq5559+8jnQ
+knMW+qaMhgrGpqAZ8llnlYsi+mhtke5J6KSDXpoppGLOSSeghiJ6paJvhilqQoo6uuapjooqWVeU
+rl86KKiRehprk7jGqiajmraKK52k5gprsKjSCiyrmZ7aKbEIpZqsr7+yqquyfc7a6LPYVjrtr5Ve
+2yu2kmL6p65pMnptoOaeiy6g6gbaZ7VlwuvpmPMC6+a9+Mq6rkQBAQA7
+------=_NextPart_000_B20F_661DB633.0DC37EEA--
