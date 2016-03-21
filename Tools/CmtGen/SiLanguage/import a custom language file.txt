@@ -1,0 +1,24 @@
+To import a custom language file into Source Insight:
+
+1. Select Options > Preferences. Click the Languages tab.
+
+2. Click the Import button. Select and load the custom language file (.CLF)
+
+3. You should now see the new language in the list of languages.
+
+4. Click the Document Types button to open the Document Options dialog box.
+
+5. If you don't have a document type already created for the type of language 
+file, you will need to create one now. If you already have a document type 
+created, select it in the list and go to step 7.
+
+6. Click the Add Type button to create a new document type.  Give it a name 
+that describes the type of file. For example, "Ant File". Click OK and then 
+fill in the file filter text box with a wildcard.  For example, "*.ant".
+
+7. In the Parsing section of the Document Options dialog box, select the 
+newly imported language in the language drop-down list. This is what 
+associates your document type with the custom language.
+
+8. Click the Close button to close Document Options. Then click OK to close 
+the Preferences dialog box.
