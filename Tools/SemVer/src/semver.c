@@ -6,6 +6,8 @@
 #include "semver.h"
 
 #define FMT_STR_SIMPLE      "%d.%d.%d"
+#define FMT_STR_SIMPLE2     "%02d.%02d.%02d"
+#define FMT_STR_SIMPLE3     "%03d.%03d.%03d"
 #define INITIAL_VERSION_STR "0.1.0"
 #define BUF_SIZE            128
 
@@ -69,9 +71,20 @@ int SemVer_ConvertFromStr( tSemverVersion* me, char* str )
   }
 }
 
-int SemVer_ConvertToStr( tSemverVersion* me, char* str )
+int SemVer_ConvertToStr( tSemverVersion* me, char* str, int length )
 {
-  sprintf( str, (char*)FMT_STR_SIMPLE, me->major, me->minor, (int)me->patch );
+  if( length == 2 )
+  {
+    sprintf( str, (char*)FMT_STR_SIMPLE2, me->major, me->minor, (int)me->patch );
+  }
+  else if( length == 3 )
+  {
+    sprintf( str, (char*)FMT_STR_SIMPLE3, me->major, me->minor, (int)me->patch );
+  }
+  else
+  {  
+    sprintf( str, (char*)FMT_STR_SIMPLE, me->major, me->minor, (int)me->patch );
+  }
   return( 0 );
 }
 

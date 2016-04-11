@@ -17,10 +17,12 @@
   int SemVer_ConvertFromStr( tSemverVersion* me,
                              char*           str );
   int SemVer_ConvertToStr( tSemverVersion* me,
-                           char*           str );
+                           char*           str, 
+                           int             length );
   int SemVer_IncreaseMajor( tSemverVersion* me );
   int SemVer_IncreaseMinor( tSemverVersion* me );
   int SemVer_IncreasePatch( tSemverVersion* me );
+
 
 #ifdef __cplusplus
     }

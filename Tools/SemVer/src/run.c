@@ -30,6 +30,7 @@ void PrintUsage( void )
   printf( "-x,  Change major version number.\n" );
   printf( "-y,  Change minor version number.\n" );
   printf( "-z,  Change patch version number.\n" );
+  printf( "-l,  Specify version number digits.\n" );
   printf( "-v,  Print program version.\n" );  
   printf( "-h,  Print this help screen.\n" );
   printf( "-s,  Process simple version string.\n" );
@@ -93,7 +94,7 @@ void OutputVersion( tSetting* as, tSemverVersion* vd )
 {
   char verstr[ BUF_SIZE ] = { 0 };
 
-  SemVer_ConvertToStr( vd, verstr );
+  SemVer_ConvertToStr( vd, verstr, as->length );
 
   if ( as->simple == 1 )
   {
@@ -111,7 +112,7 @@ void AppendToFile( tSetting* as, tSemverVersion* vd )
   char verstr[ BUF_SIZE ]   = { 0 };
   char filename[ BUF_SIZE ] = { 0 };
 
-  SemVer_ConvertToStr( vd, verstr );
+  SemVer_ConvertToStr( vd, verstr, as->length );
 
   ChangFileName( as->appendarg, (char*)verstr, filename );
 

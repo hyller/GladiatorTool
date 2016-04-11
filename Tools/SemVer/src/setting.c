@@ -25,7 +25,7 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
   }
 
   opterr = 0;
-  while ( ( c = getopt( argc, argv, "xyzvghsa:i:" ) ) != -1 )
+  while ( ( c = getopt( argc, argv, "xyzvghsa:i:l:" ) ) != -1 )
   {
     switch ( c )
     {
@@ -43,6 +43,17 @@ int Setting_Parse( tSetting* as, int argc, char** argv )
 
       case 's':
         as->simple = 1;
+        break;
+
+      case 'l':
+        if( optarg )
+        {
+          as->length = atoi(optarg);
+        }
+        else
+        {
+          as->length = 0;
+        }
         break;
 
       case 'a':

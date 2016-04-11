@@ -28,6 +28,48 @@ TEST( TestSemVer, ConvertFromStr )
   CHECK_EQUAL( 3, ver.patch );
 }
 
+TEST( TestSemVer, ConvertToStr )
+{
+  tSemverVersion ver;
+  char           str[ 10 ] = "0";
+
+  ver.major = 1;
+  ver.minor = 2;
+  ver.patch = 3;
+
+  SemVer_ConvertToStr( &ver, str, 0 );
+
+  STRCMP_CONTAINS("1.2.3", str );
+}
+
+TEST( TestSemVer, ConvertToStr2 )
+{
+  tSemverVersion ver;
+  char           str[ 10 ] = "0";
+
+  ver.major = 1;
+  ver.minor = 2;
+  ver.patch = 3;
+
+  SemVer_ConvertToStr( &ver, str, 2 );
+
+  STRCMP_CONTAINS("01.02.03", str );
+}
+
+TEST( TestSemVer, ConvertToStr3 )
+{
+  tSemverVersion ver;
+  char           str[ 10 ] = "0";
+
+  ver.major = 1;
+  ver.minor = 2;
+  ver.patch = 3;
+
+  SemVer_ConvertToStr( &ver, str, 3 );
+
+  STRCMP_CONTAINS("001.002.003", str );
+}
+
 TEST( TestSemVer, Increase255 )
 {
   tSemverVersion ver;

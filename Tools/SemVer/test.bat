@@ -14,6 +14,7 @@ call %CUR_DIR%src\semver.exe version.test
 call %CUR_DIR%src\semver.exe -x version.test
 call %CUR_DIR%src\semver.exe -y version.test
 call %CUR_DIR%src\semver.exe -z version.test
-call %CUR_DIR%src\semver.exe -aversion.test  version.test 
+call %CUR_DIR%src\semver.exe -z -l2 version.test
+call %CUR_DIR%src\semver.exe -aversion.test -l2 version.test 
 call %CUR_DIR%src\semver.exe -s simple.test
 call %CUR_DIR%src\semver.exe -g version.test

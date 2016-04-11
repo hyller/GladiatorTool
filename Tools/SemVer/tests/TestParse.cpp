@@ -26,6 +26,7 @@ TEST( TestParse, ParseAll )
     (char*)"-v",
     (char*)"-h",
     (char*)"-s",
+    (char*)"-l2",
     (char*)"-ahello",
     (char*)"-i2.3.4",
     (char*)"version.h"
@@ -41,6 +42,7 @@ TEST( TestParse, ParseAll )
   CHECK_EQUAL( 1, as.simple );
   CHECK_EQUAL( 1, as.append );
   CHECK_EQUAL( 1, as.init );
+  CHECK_EQUAL( 2, as.length );
   STRCMP_EQUAL( "hello", as.appendarg );
   STRCMP_EQUAL( "version.h", as.filename );
   STRCMP_EQUAL( "2.3.4", as.initarg );
