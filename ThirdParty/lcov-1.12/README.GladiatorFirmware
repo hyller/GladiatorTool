@@ -1,0 +1,16 @@
+### Install Lcov
+sh
+make install
+
+### Build and Link
+gcc -ftest-coverage -fprofile-arcs
+g++ -LC:\Aegis\MinGW\lib\gcc\mingw32\4.5.2   -lgcov
+
+### Use lcov to capture directory
+sh
+lcov --directory dir --zerocounters
+lcov --directory dir --capture --output-file app.info
+genhtml app.info
+
+### Notes
+lcov work under bash
