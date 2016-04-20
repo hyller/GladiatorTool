@@ -29,6 +29,9 @@ INCLUDE_DIRS = src  $(CPPUTEST_HOME)/include  $(PROJECT_HOME)COTS
 CPPUTEST_LDFLAGS += -L$(PROJECT_HOME)COTS/cii/cii-20/lib
 LD_LIBRARIES += -lcii
 
+CPPUTEST_USE_GCOV = Y
+CPPUTEST_USE_VPATH = Y
+
 #include 
 include $(CPPUTEST_HOME)/build/MakefileWorker.mk
 
