@@ -13,4 +13,4 @@ lcov --directory dir --capture --output-file app.info
 genhtml app.info
 
 ### Notes
-lcov work under bash
+lcov work under bash and need administor priority
