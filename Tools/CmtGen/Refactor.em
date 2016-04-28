@@ -78,3 +78,30 @@ macro RefactorExtractMethod()
   // Call extracted function
 	InsBufLine( hbuf, iLine, "extractedfunction( );" )
 }
+
+macro RefactorMisraConstU()
+{
+	hbuf = GetCurrentBuf()
+
+  // Constant like 0xff, 0x10, white space at the end
+  oldPattern = "\\(\\w0[xX][0-9a-fA-F]+\\)\\([\\w;,]\\)"
+  newPattern = "\\1\\u\\2\\"
+  _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
+  
+  // Constant like 0xff, 0x10, and at the end of the line
+  oldPattern = "\\(\\w0[xX][0-9a-fA-F]+$\\)"
+  // Add u at the end
+	newPattern = "\\1\\u"
+  _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
+
+  // Constant like 10, 356, white space at the end
+  oldPattern = "\\(\\w[0-9]+\\)\\([\\w;,]\\)"
+  newPattern = "\\1\\u\\2\\"
+  _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
+   
+  // Constant like 10, 356, and at the end of the line
+  oldPattern = "\\(\\w[0-9]+$\\)"
+  // Add u at the end
+	newPattern = "\\1\\u"
+  _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
+}
