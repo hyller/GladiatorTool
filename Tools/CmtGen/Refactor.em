@@ -115,3 +115,16 @@ macro RefactorMisraConstU()
 	newPattern = "\\1\\u"
   _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
 }
+
+// Add Bracket for define, for example
+// Before:  #define XXX YYY ZZZ   
+// After :  #define XXX ( YYY ZZZ )
+macro RefactorDefineAddBracket()
+{
+	hbuf = GetCurrentBuf()
+
+  oldPattern = "\\(\\#define\\w+.+\\w+\\)\\(.+[^)]$\\)"
+  newPattern = "\\1\\( \\2\\ )"
+  _ReplaceInBufRegex(hbuf, oldPattern, newPattern)
+}
+

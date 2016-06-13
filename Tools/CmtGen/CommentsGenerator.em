@@ -81,7 +81,7 @@ macro _CmtGenIfDefCpp( line )
     return
   }
 
-	headname = "_"
+	headname = ""
   len = strlen( fname )
 	i = 0
 	while (i < len )
@@ -94,20 +94,19 @@ macro _CmtGenIfDefCpp( line )
 		headname = Cat( headname, "_" )
 		i = i + 1
 	}
-	headname = Cat( headname, "_H_" )
+	headname = Cat( headname, "_H" )
 	
 	InsBufLine( hbuf, line++, "#ifndef @headname@" )
 	InsBufLine( hbuf, line++, "#define @headname@" )
 	InsBufLine( hbuf, line++, "" )
 	InsBufLine( hbuf, line++, "#ifdef __cplusplus" )
-	InsBufLine( hbuf, line++, "extern \"C\"" )
-	InsBufLine( hbuf, line++, "{" )
+	InsBufLine( hbuf, line++, "  extern \"C\" {" )
 	InsBufLine( hbuf, line++, "#endif" )
 	InsBufLine( hbuf, line++, "" )
 	InsBufLine( hbuf, line++, "" )
 
 	AppendBufLine( hbuf, "#ifdef __cplusplus" )
-	AppendBufLine( hbuf, "}" )
+	AppendBufLine( hbuf, "  }" )
 	AppendBufLine( hbuf, "#endif" )
 	AppendBufLine( hbuf, "" )
 	AppendBufLine( hbuf, "#endif" )
@@ -192,9 +191,9 @@ macro _CmtGenPreamble( type )
 // \enum      to document an enumeration type.
 // \fn        to document a function.
 // \var       to document a variable or typedef or enum value.
-// \def       to document a #deﬁne.
-// \typedef   to document a type deﬁnition.
-// \file      to document a ﬁle.
+// \def       to document a #define.
+// \typedef   to document a type definiition.
+// \file      to document a file.
 // \namespace to document a namespace.
 // \package   to document a Java package.
 // \interface to document an IDL interface.
