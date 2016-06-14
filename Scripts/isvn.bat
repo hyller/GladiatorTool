@@ -14,6 +14,7 @@ if "%1" == "repos_root" goto REPOS_ROOT
 if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
 if "%1" == "ci" goto COMMIT
+if "%1" == "ci2" goto COMMITARTF
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 
 echo "error input"
@@ -30,7 +31,7 @@ call %GLADIATOR_HOME%/Scripts/svn/svn_bak_modified.bat
 goto END
 
 :BRANCH
-call %GLADIATOR_HOME%/Scripts/svn/svn_branch.bat %2
+call %GLADIATOR_HOME%/Scripts/svn/svn_branch.bat %2 %3
 @echo off
 goto END
 
@@ -81,6 +82,11 @@ goto END
 
 :COMMIT
 call %GLADIATOR_HOME%/Scripts/svn/svn_ci.bat %2 %3 %4 %5 %6 %7 %8 %9
+@echo off
+goto END
+
+:COMMITARTF
+call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat %2 %3 %4 %5 %6 %7 %8 %9
 @echo off
 goto END
 
