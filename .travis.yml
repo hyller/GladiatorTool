@@ -1,6 +1,10 @@
 language: cpp
 script:
   - cd ./Tools/Decibel/Src
-  - ls
-  - make init
+  - make clean
   - make
+  - cd ../../../
+  - cd ./Tools/DigitSum/Src
+  - make clean
+  - make
+  - cd ../../../
