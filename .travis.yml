@@ -1,0 +1,5 @@
+language: cpp
+script:
+  - cd Tools/Decibel/Src/ 
+  - make init
+  - make
