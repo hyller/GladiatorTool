@@ -1,5 +1,5 @@
 @echo off
 
-call semver.bat %* -s version
+call semver.bat %* version
 
 @echo on
