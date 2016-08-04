@@ -17,8 +17,8 @@ call %GLADIATOR_HOME%\Tools\Batch\_get_version_str.bat %*
 
 if %VERSION_STR% == "" goto Error
 
-echo git tag %VERSION_STR%
-echo git push origin --tags
+git tag %VERSION_STR%
+git push origin --tags
 @echo off
 goto EXIT
 
