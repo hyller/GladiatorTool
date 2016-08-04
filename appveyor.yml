@@ -1,0 +1,28 @@
+version: 1.0.{build}
+build_script:
+- cmd: >-
+    set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin;%PATH%
+    
+    cd ./Tools/Ascii/Src
+    
+    make clean
+    
+    make
+    
+    cd ../../../
+    
+    cd ./Tools/Decibel/Src
+    
+    make clean
+    
+    make
+    
+    cd ../../../
+    
+    cd ./Tools/DigitSum/Src
+    
+    make clean
+    
+    make
+    
+    cd ../../../
