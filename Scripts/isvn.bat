@@ -15,6 +15,7 @@ if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
 if "%1" == "ci" goto COMMIT
 if "%1" == "ci2" goto COMMITARTF
+if "%1" == "ci2s" goto COMMITARTFS
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 
 echo "error input"
@@ -87,6 +88,11 @@ goto END
 
 :COMMITARTF
 call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat %2 %3 %4 %5 %6 %7 %8 %9
+@echo off
+goto END
+
+:COMMITARTFS
+call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat "sync merge"
 @echo off
 goto END
 
