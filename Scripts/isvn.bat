@@ -10,11 +10,13 @@ if "%1" == "merge_branch" goto MERGE_BRANCH
 if "%1" == "merge_trunk" goto MERGE_TRUNK
 if "%1" == "sw_branch" goto SW_BRANCH
 if "%1" == "sw_trunk" goto SW_TRUNK
+if "%1" == "sw_tag" goto SW_TAG
 if "%1" == "repos_root" goto REPOS_ROOT
 if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
 if "%1" == "ci" goto COMMIT
 if "%1" == "ci2" goto COMMITARTF
+if "%1" == "ci2s" goto COMMITARTFS
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 if "%1" == "archive_tagnodoc" goto ARCHIVE_TAG_NODOC
 
@@ -66,6 +68,11 @@ call %GLADIATOR_HOME%/Scripts/svn/svn_sw_trunk.bat
 @echo off
 goto END
 
+:SW_TAG
+call %GLADIATOR_HOME%/Scripts/svn/svn_sw_tag.bat %2
+@echo off
+goto END
+
 :REPOS_ROOT
 call %GLADIATOR_HOME%/Scripts/svn/svn_repos_root.bat
 @echo off
@@ -88,6 +95,11 @@ goto END
 
 :COMMITARTF
 call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat %2 %3 %4 %5 %6 %7 %8 %9
+@echo off
+goto END
+
+:COMMITARTFS
+call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat "sync merge"
 @echo off
 goto END
 

@@ -175,6 +175,16 @@ macro CmtGenFunction( )
 	InsBufLine( hbuf, i++, "//----------------------------------------------------------------------------//" )
 }
 
+macro CmtGenFunctionBrief( )
+{
+	hbuf = GetCurrentBuf( )
+	i = GetBufLnCur( hbuf );
+	text = _GetCurLineTextWithoutSemicolon( );
+
+	InsBufLine( hbuf, i++, "//----------------------------------------------------------------------------//" )
+	InsBufLine( hbuf, i++, "/// \\fn     @text@")
+}
+
 macro _CmtGenPreamble( type )
 {
 	hbuf = GetCurrentBuf( )
