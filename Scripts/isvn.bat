@@ -19,6 +19,7 @@ if "%1" == "ci2" goto COMMITARTF
 if "%1" == "ci2s" goto COMMITARTFS
 if "%1" == "smci" goto SYNCMERGECI
 if "%1" == "archive_tag" goto ARCHIVE_TAG
+if "%1" == "archive_tagnodoc" goto ARCHIVE_TAG_NODOC
 
 echo "error input"
 goto END
@@ -111,6 +112,11 @@ goto END
 
 :ARCHIVE_TAG
 call %GLADIATOR_HOME%/Scripts/svn/svn_archive_tag.bat %2
+@echo off
+goto END
+
+:ARCHIVE_TAG_NODOC
+call %GLADIATOR_HOME%/Scripts/svn/svn_archive_tag_nodoc.bat %2
 @echo off
 goto END
 
