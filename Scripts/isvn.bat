@@ -14,9 +14,9 @@ if "%1" == "sw_tag" goto SW_TAG
 if "%1" == "repos_root" goto REPOS_ROOT
 if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
-if "%1" == "ci" goto COMMIT
-if "%1" == "ci2" goto COMMITARTF
-if "%1" == "ci2s" goto COMMITARTFS
+if "%1" == "ci2" goto COMMIT
+if "%1" == "ci" goto COMMITARTF
+if "%1" == "cis" goto COMMITARTFS
 if "%1" == "smci" goto SYNCMERGECI
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 if "%1" == "archive_tagnodoc" goto ARCHIVE_TAG_NODOC
