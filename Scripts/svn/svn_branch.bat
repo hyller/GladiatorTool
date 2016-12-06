@@ -22,7 +22,7 @@ svn sw %REPOS_ROOT%/branches/%BRANCH_NAME%
 goto END
 
 :SHOW
-svn ls %repos_root%/branches/
+svn ls %repos_root%/branches/ -v
 
 :END
 endlocal

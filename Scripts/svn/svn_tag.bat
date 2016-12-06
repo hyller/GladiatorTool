@@ -12,7 +12,7 @@ svn cp %repos_root%/trunk %repos_root%/tags/%1 -m"Create tag %1"
 goto END
 
 :SHOW
-svn ls %repos_root%/tags/
+svn ls %repos_root%/tags/ -v
 
 :END
 endlocal
