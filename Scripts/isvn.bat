@@ -17,6 +17,7 @@ if "%1" == "admin_dump" goto ADMIN_DUMP
 if "%1" == "ci2" goto COMMIT
 if "%1" == "ci" goto COMMITARTF
 if "%1" == "cis" goto COMMITARTFS
+if "%1" == "cib" goto COMMITARTFBACKUP
 if "%1" == "smci" goto SYNCMERGECI
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 if "%1" == "archive_tagnodoc" goto ARCHIVE_TAG_NODOC
@@ -101,6 +102,11 @@ goto END
 
 :COMMITARTFS
 call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat "sync merge"
+@echo off
+goto END
+
+:COMMITARTFBACKUP
+call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat "backup"
 @echo off
 goto END
 
