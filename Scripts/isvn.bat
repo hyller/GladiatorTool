@@ -67,7 +67,7 @@ call %GLADIATOR_HOME%/Scripts/svn/svn_sw_branch.bat %2
 goto END
 
 :DEL_BRANCH
-call %GLADIATOR_HOME%/Scripts/svn/svn_del_branch.bat %2
+call %GLADIATOR_HOME%/Scripts/svn/svn_del_branch.bat %2 "%~3"
 @echo off
 goto END
 
@@ -97,12 +97,12 @@ call %GLADIATOR_HOME%/Scripts/svn/svn_admin_dump.bat %2
 goto END
 
 :COMMIT
-call %GLADIATOR_HOME%/Scripts/svn/svn_ci.bat %2 %3 %4 %5 %6 %7 %8 %9
+call %GLADIATOR_HOME%/Scripts/svn/svn_ci.bat "%~2"
 @echo off
 goto END
 
 :COMMITARTF
-call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat %2 %3 %4 %5 %6 %7 %8 %9
+call %GLADIATOR_HOME%/Scripts/svn/svn_ciartf.bat "%~2"
 @echo off
 goto END
 
