@@ -2,9 +2,9 @@
 setlocal
 
 rem brief: Compress directory
-rem usage: gzipd dir_name
+rem usage: gzipd zip_name dir_name
 
-tar -aczf %1.zip %1
+7z.exe a %1 %2
 
 endlocal
 @echo on
