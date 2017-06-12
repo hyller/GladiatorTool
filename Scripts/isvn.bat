@@ -22,6 +22,7 @@ if "%1" == "cib" goto COMMITARTFBACKUP
 if "%1" == "smci" goto SYNCMERGECI
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 if "%1" == "archive_tagnodoc" goto ARCHIVE_TAG_NODOC
+if "%1" == "filter_branch" goto FILTER_BRANCH
 
 echo "error input"
 goto END
@@ -132,6 +133,10 @@ call %GLADIATOR_HOME%/Scripts/svn/svn_archive_tag_nodoc.bat %2
 @echo off
 goto END
 
+:FILTER_BRANCH
+call %GLADIATOR_HOME%/Scripts/svn/svn_filter_branch.bat "%~2"
+@echo off
+goto END
 
 :END
 endlocal
