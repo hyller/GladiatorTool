@@ -6,12 +6,12 @@ if "%1" == "backup" goto BACKUP
 if "%1" == "branch" goto BRANCH
 if "%1" == "clean" goto CLEAN
 if "%1" == "green" goto GREEN
-if "%1" == "merge_branch" goto MERGE_BRANCH
-if "%1" == "merge_trunk" goto MERGE_TRUNK
-if "%1" == "sw_branch" goto SW_BRANCH
-if "%1" == "del_branch" goto DEL_BRANCH
-if "%1" == "sw_trunk" goto SW_TRUNK
-if "%1" == "sw_tag" goto SW_TAG
+if "%1" == "mgbr" goto MERGE_BRANCH
+if "%1" == "mgtr" goto MERGE_TRUNK
+if "%1" == "swbr" goto SW_BRANCH
+if "%1" == "delbr" goto DEL_BRANCH
+if "%1" == "swtr" goto SW_TRUNK
+if "%1" == "swtag" goto SW_TAG
 if "%1" == "repos_root" goto REPOS_ROOT
 if "%1" == "tag" goto TAG
 if "%1" == "admin_dump" goto ADMIN_DUMP
@@ -22,7 +22,7 @@ if "%1" == "cib" goto COMMITARTFBACKUP
 if "%1" == "smci" goto SYNCMERGECI
 if "%1" == "archive_tag" goto ARCHIVE_TAG
 if "%1" == "archive_tagnodoc" goto ARCHIVE_TAG_NODOC
-if "%1" == "filter_branch" goto FILTER_BRANCH
+if "%1" == "sebr" goto FILTER_BRANCH
 
 echo "error input"
 goto END
