@@ -3,11 +3,11 @@ setlocal
 
 if "%1" == "auto" goto AUTO
 if "%1" == "backup" goto BACKUP
-if "%1" == "branch" goto BRANCH
+if "%1" == "br" goto BRANCH
 if "%1" == "clean" goto CLEAN
 if "%1" == "green" goto GREEN
-if "%1" == "mgbr" goto MERGE_BRANCH
-if "%1" == "mgtr" goto MERGE_TRUNK
+if "%1" == "mebr" goto MERGE_BRANCH
+if "%1" == "metr" goto MERGE_TRUNK
 if "%1" == "swbr" goto SW_BRANCH
 if "%1" == "delbr" goto DEL_BRANCH
 if "%1" == "swtr" goto SW_TRUNK
