@@ -27,6 +27,34 @@ macro CommentBlock()
 	SetWndSel(hwnd, sel);
 }
 
+//
+// Comment the selected block of text using single line comments and indent it
+//
+macro CommentBlock3()
+{
+	hbuf = GetCurrentBuf();
+	hwnd = GetCurrentWnd();
+
+	sel = GetWndSel(hwnd);
+
+	iLine = sel.lnFirst;
+	
+	while (iLine <= sel.lnLast)
+	{
+		szLine = GetBufLine(hbuf, iLine);
+		szLine = cat("///  ", szLine);
+		PutBufLine(hbuf, iLine, szLine);
+		iLine = iLine + 1;
+	}
+
+	if (sel.lnFirst == sel.lnLast)
+	{
+		tabSize = _tsGetTabSize() - 1;
+		sel.ichFirst = sel.ichFirst + tabSize;
+		sel.ichLim = sel.ichLim + tabSize;
+	}
+	SetWndSel(hwnd, sel);
+}
 
 //
 // Undo the CommentBlock for the selected text.
@@ -81,7 +109,56 @@ macro UnCommentBlock()
 	SetWndSel(hwnd, sel);
 }
 
+//
+// Undo the CommentBlock for the selected text.
+//
+macro UnCommentBlock3()
+{
+	hbuf = GetCurrentBuf();
+	hwnd = GetCurrentWnd();
 
+	sel = GetWndSel(hwnd);
+
+	iLine = sel.lnFirst;
+
+
+	tabSize = 0;
+	while (iLine <= sel.lnLast)
+	{
+		szLine = GetBufLine(hbuf, iLine);
+		len = strlen(szLine);
+		szNewLine = "";
+		if (len > 2)
+		{
+			if (szLine[0] == "/" && szLine[1] == "/" && szLine[2] == "/")
+			{
+				if (len > 3)
+				{
+					if (AsciiFromChar(szLine[3]) == 9)
+					{
+						szNewLine = strmid(szLine, 3, strlen(szLine));
+					}
+				}
+
+				if (szNewLine == "")
+				{
+					szNewLine = strmid(szLine, 5, strlen(szLine));
+				}
+				
+				PutBufLine(hbuf, iLine, szNewLine);
+			}
+		}
+		iLine = iLine + 1;
+	}
+
+	if (sel.lnFirst == sel.lnLast)
+	{
+		sel.ichFirst = sel.ichFirst - tabSize;
+		sel.ichLim = sel.ichLim - tabSize;
+	}
+
+	SetWndSel(hwnd, sel);
+}
 
 macro _tsGetTabSize()
 {

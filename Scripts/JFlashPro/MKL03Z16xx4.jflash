@@ -2,7 +2,7 @@
   FileVersion = 2
 [GENERAL]
   ConnectMode = 0
-  CurrentFile = ""
+  CurrentFile = "C:\Users\SESA280753\SeWorkspace\HLJ_Monsoon_offer2_Upgrade_Dev_FroIndia\Monsoon_pvob\P4\Monsoon4PIndia_0.2.0.hex"
   DataFileSAddr = 0x00000000
   GUIMode = 0
   HostName = ""
@@ -13,8 +13,8 @@
   IRLen = 0
   MultipleTargets = 0
   NumDevices = 0
-  Speed0 = 10
-  Speed1 = 10
+  Speed0 = 1000
+  Speed1 = 1000
   TAP_Number = 0
   UseAdaptive0 = 0
   UseAdaptive1 = 0
