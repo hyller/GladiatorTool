@@ -43,9 +43,9 @@ macro RefactorSetData( )
   }
 
   oldPattern = "\\(\\w*@sel@\\w*=\\)\\(.*\\)\\(;\\)";
-  newPattern = "\\Set@sel@(\\2\\);"
+  newPattern = "\\Set@sel@(\\2\\)";
 
-               _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
+  _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 
   AppendBufLine( hbuf, "void Set@sel@( var )" );
   AppendBufLine( hbuf, "{" );
@@ -73,7 +73,7 @@ macro RefactorExtractMethod( )
 
   iLine = sel.lnFirst; // Save line number
 
-  cut;      // Delete origin code block
+  cut; // Delete origin code block
 
   // Call extracted function
   InsBufLine( hbuf, iLine, "extractedfunction( );" );
