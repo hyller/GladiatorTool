@@ -85,34 +85,34 @@ macro RefactorMisraConstU( )
 
   // Constant like 0xff, 0x10, white space at the end
   oldPattern = "\\(\\w0[xX][0-9a-fA-F]+\\)\\([\\w;,]\\)";
-  newPattern = "\\1\\u\\2\\";
+  newPattern = "\\1\\U\\2\\";
   _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 
   // Constant like 0xff, 0x10, white space at the end
   oldPattern = "\\(\\w0[xX][0-9a-fA-F]+\\)\\w";
-  newPattern = "\\1\\u\\s";
+  newPattern = "\\1\\U\\s";
   _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 
   // Constant like 0xff, 0x10, and at the end of the line
   oldPattern = "\\(\\w0[xX][0-9a-fA-F]+$\\)";
   // Add u at the end
-  newPattern = "\\1\\u";
+  newPattern = "\\1\\U";
   _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 
   // Constant like 10, 356, ; or , at the end
   oldPattern = "\\(\\w[0-9]+\\)\\([;,]\\)";
-  newPattern = "\\1\\u\\2\\";
+  newPattern = "\\1\\U\\2\\";
   _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 
   // Constant white space at the end
   oldPattern = "\\(\\w[0-9]+\\)\\w";
-  newPattern = "\\1\\u\\s";
+  newPattern = "\\1\\U\\s";
   _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 
   // Constant at the end of the line
   oldPattern = "\\(\\w[0-9]+$\\)";
   // Add u at the end
-  newPattern = "\\1\\u";
+  newPattern = "\\1\\U";
   _ReplaceInBufRegex( hbuf, oldPattern, newPattern );
 }
 
