@@ -4,6 +4,7 @@
 #include <winsock2.h> // for Windows sockets
 #include <time.h> // for clock()
 #include <math.h>
+#include "version.h"
 
 //............................................................................
 static SOCKET socketOpen( unsigned short localPortNum )
@@ -14,15 +15,15 @@ static SOCKET socketOpen( unsigned short localPortNum )
 
   if ( wsaErr == SOCKET_ERROR )
   {
-    fprintf( stderr, "Windows Sockets cannot be initialized.\n"
-                     "The library reported error %d.", wsaErr );
+    fprintf( stderr, "不能初始化Windows套接字.\n"
+                     "库错误 %d.", wsaErr );
     return( INVALID_SOCKET );
   }
 
   SOCKET sock = socket( AF_INET, SOCK_DGRAM, 0 ); // UDP socket
   if ( sock == INVALID_SOCKET )
   {
-    fprintf( stderr, "creating UDP socket failed" );
+    fprintf( stderr, "创建UDP套接字失败" );
     WSACleanup( );
     return( INVALID_SOCKET );
   }
@@ -31,8 +32,8 @@ static SOCKET socketOpen( unsigned short localPortNum )
   ULONG ioctl_opt = 1;
   if ( ioctlsocket( sock, FIONBIO, &ioctl_opt ) == SOCKET_ERROR )
   {
-    fprintf( stderr, "Socket configuration failed.\n"
-                     "Windows socket error %d.",
+    fprintf( stderr, "套接字配置失败.\n"
+                     "Windows套接字错误 %d.",
              WSAGetLastError( ) );
     WSACleanup( );
     return( INVALID_SOCKET );
@@ -50,7 +51,7 @@ static SOCKET socketOpen( unsigned short localPortNum )
   if ( bind( sock, ( struct sockaddr* )&local, sizeof( local ) )
        == SOCKET_ERROR )
   {
-    fprintf( stderr, "Error by binding server socket.\n" );
+    fprintf( stderr, "绑定服务器套接字错误.\n" );
     WSACleanup( );
     return( INVALID_SOCKET );
   }
@@ -63,21 +64,21 @@ static char l_pkt[256]; // packet received frorm the UDP socket
 //............................................................................
 int main( int argc, char *argv[] )
 {
-  printf( "udps utility 1.0.0 (c) 零一物联网工作室, zeroone.taobao.com\n" );
+  printf( "udp server utility %s (c) 零一物联网工作室, zeroone.taobao.com\n", VERSION );
   if ( argc != 2 )
   {
-    fprintf( stderr, "usage: qudps <port>\n" );
+    fprintf( stderr, "usage: udps <port>\n" );
     return( -1 );
   }
 
   unsigned short port;
   if ( sscanf( argv[1], "%hd", &port ) != 1 )
   {
-    fprintf( stderr, "incorrect port number: %s\n", argv[2] );
+    fprintf( stderr, "错误的端口号: %s\n", argv[2] );
     return( -2 );
   }
 
-  printf( "opening and binding the socket..." );
+  printf( "正在打开以及绑定套接字...\n" );
   static SOCKET sock = socketOpen( port );
   if ( sock == INVALID_SOCKET )
   {
@@ -110,8 +111,8 @@ int main( int argc, char *argv[] )
                                            &from, &fromSize );
       if ( nrec == SOCKET_ERROR )
       {
-        fprintf( stderr, "recvfrom() failed.\n"
-                         "Windows socket error %d.",
+        fprintf( stderr, "recvfrom()失败.\n"
+                         "Windows套接字错误 %d.",
                  WSAGetLastError( ) );
       }
       else if ( nrec > 0 )

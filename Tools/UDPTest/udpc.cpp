@@ -4,6 +4,7 @@
 #include <winsock2.h> // for Windows sockets
 #include <time.h> // for clock()
 #include <math.h>
+#include "version.h"
 
 //............................................................................
 static SOCKET socketOpen( unsigned short localPortNum )
@@ -90,7 +91,7 @@ int main( int argc, char *argv[] )
   static char l_rx_buf[20]; // packet received from the UDP socket
   static char l_tx_buf[10]; // packet to be transmitted tothe UDP socket
 
-  printf( "udpc utility 1.0.0 (c) 零一物联网工作室, zeroone.taobao.com\n" );
+  printf( "udp client utility %s (c) 零一物联网工作室, zeroone.taobao.com\n", VERSION );
   if ( argc < 2 )
   {
     fprintf( stderr, "usage:  udpc <ip-addr> [<port> [<local port>]]\n" );
