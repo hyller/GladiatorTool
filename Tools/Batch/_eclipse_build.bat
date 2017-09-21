@@ -4,6 +4,13 @@ REM Param 1: Project Path
 REM Param 2: Pojectname
 REM Param 3: Config
 
+REM eclipsec 
+REM --launcher.suppressErrors 
+REM -nosplash 
+REM -application org.eclipse.cdt.managedbuilder.core.headlessbuild 
+REM -data /path/to/workspace 
+REM -cleanBuild "project/configuration"
+
 REM define ARM build tool path if not defined
 IF NOT DEFINED ECLIPSE_EXE (SET ECLIPSE_EXE="C:\Aegis\Core\eclipsec.exe")
 
