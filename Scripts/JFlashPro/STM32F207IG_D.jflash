@@ -40,11 +40,12 @@
   EndianMode = 0
   ChipName = "ST STM32F207IG"
 [FLASH]
-  aRangeSel[1] = 0-11
   BankName = "Internal flash"
-  BankSelMode = 1
+  BankSelMode = 0
   BaseAddr = 0x08000000
+  EndSector = 6
   NumBanks = 1
+  StartSector = 0
 [PRODUCTION]
   AutoBlankCheck = 1
   AutoDisconnect = 0
