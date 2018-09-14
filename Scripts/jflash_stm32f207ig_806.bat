@@ -1,0 +1,1 @@
+call jflash.bat "%GLADIATOR_HOME%\Scripts\JFlashPro\STM32F207IG_806000.jflash" "%~1,0x8060000"
