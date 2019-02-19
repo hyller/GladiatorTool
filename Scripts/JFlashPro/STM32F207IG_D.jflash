@@ -1,4 +1,4 @@
-  AppVersion = 61001
+  AppVersion = 63207
   FileVersion = 2
 [GENERAL]
   ConnectMode = 0
@@ -43,28 +43,26 @@
   BankName = "Internal flash"
   BankSelMode = 0
   BaseAddr = 0x08000000
-  EndSector = 6
+  EndSector = 11
   NumBanks = 1
   StartSector = 0
 [PRODUCTION]
-  AutoBlankCheck = 1
-  AutoDisconnect = 0
-  AutoMode = 0
   AutoPerformsErase = 1
   AutoPerformsProgram = 1
   AutoPerformsSecure = 0
   AutoPerformsStartApp = 1
   AutoPerformsUnsecure = 0
   AutoPerformsVerify = 1
+  EnableFixedVTref = 0
   EnableTargetPower = 0
-  EraseType = 2
+  EraseType = 1
+  FixedVTref = 0x00000CE4
   MonitorVTref = 0
   MonitorVTrefMax = 0x0000157C
   MonitorVTrefMin = 0x000003E8
   OverrideTimeouts = 0
   ProgramSN = 0
   SerialFile = ""
-  SkipBlankOnRead = 0
   SNAddr = 0x00000000
   SNInc = 0x00000001
   SNLen = 0x00000004
@@ -76,3 +74,6 @@
   TimeoutProgram = 0x00002710
   TimeoutVerify = 0x00002710
   VerifyType = 1
+[PERFORMANCE]
+  PerfromBlankCheckPriorEraseChip = 0x00000001
+  PerfromBlankCheckPriorEraseSelectedSectors = 0x00000001
