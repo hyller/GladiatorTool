@@ -257,3 +257,11 @@ macro CmtGenPreamble( )
     _CmtGenPreamble( "      " );
   }
 }
+
+macro CmtGenSplitLine( )
+{
+  hbuf = GetCurrentBuf( );
+  i    = GetBufLnCur( hbuf );
+
+  InsBufLine( hbuf, i++, "//----------------------------------------------------------------------------//" );
+}
