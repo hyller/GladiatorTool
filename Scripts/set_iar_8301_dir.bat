@@ -1,0 +1,1 @@
+set IAR_ARM_8_30_DIR=C:\Program Files\IAR Systems\Embedded Workbench ARM 8.30.1
