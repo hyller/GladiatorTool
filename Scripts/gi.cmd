@@ -1,3 +1,4 @@
+@echo off
 rem To see support commands
 rem 	gi list
 rem Appending Programming Language settings to your projects .gitignore.
@@ -17,3 +18,4 @@ if not exist "%HOME%" @set HOME=%HOMEDRIVE%%HOMEPATH%
 if not exist "%HOME%" @set HOME=%USERPROFILE%
 
 curl.exe -L -s https://www.gitignore.io/api/%*
+@echo on
