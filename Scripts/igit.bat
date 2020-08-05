@@ -9,6 +9,7 @@ if "%1" == "clean" goto CLEAN
 if "%1" == "alias" goto ALIAS
 if "%1" == "ci" goto COMMIT
 if "%1" == "updateall" goto UPDATEALL
+if "%1" == "sync" goto SYNC
 
 echo "error input"
 goto END
@@ -19,7 +20,7 @@ git config --global credential.helper store
 goto END
 
 :CLEAN
-for /f "usebackq tokens=2*" %%i in (`git status -s ^| findstr /r "^\??"`) do rm -rf "%%i %%j"
+git clean -fd
 goto END
 
 :COMMIT
@@ -47,6 +48,17 @@ goto END
 git pull 
 git submodule init
 git submodule update
+@echo off
+goto END
+
+:SYNC
+@echo on
+git pull 
+git submodule init
+git submodule update
+git add .
+git commit -m"backup"
+git push
 @echo off
 goto END
 
