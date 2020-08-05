@@ -24,12 +24,7 @@ git clean -fd
 goto END
 
 :COMMIT
-call %GLADIATOR_HOME%\Tools\Batch\_get_cd_name.bat
-echo git commit -a -m"[%CURRENT_DIR_NAME%] %~2"
-git commit -a -m"[%CURRENT_DIR_NAME%] %~2"
-echo git pull
-git pull
-echo git push
+git commit -a -m"%~2"
 git push
 goto END
 
@@ -57,7 +52,7 @@ git pull
 git submodule init
 git submodule update
 git add .
-git commit -m"backup"
+git commit -m"%~2"
 git push
 @echo off
 goto END
