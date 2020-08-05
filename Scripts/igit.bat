@@ -1,4 +1,4 @@
-@echo off
+REM @echo off
 setlocal
 
 rem A wrapper on git, msysgit need installed 
@@ -59,4 +59,4 @@ goto END
 
 :END
 endlocal
-@echo on
+REM @echo on
