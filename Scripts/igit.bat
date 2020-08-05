@@ -1,4 +1,4 @@
-REM @echo off
+@echo off
 setlocal
 
 rem A wrapper on git, msysgit need installed 
@@ -16,16 +16,22 @@ goto END
 
 REM store user authority
 :STORE_USER
+@echo on
 git config --global credential.helper store
+@echo off
 goto END
 
 :CLEAN
+@echo on
 git clean -fd
+@echo off
 goto END
 
 :COMMIT
+@echo on
 git commit -a -m"%~2"
 git push
+@echo off
 goto END
 
 REM create alias for git command
@@ -59,4 +65,4 @@ goto END
 
 :END
 endlocal
-REM @echo on
+@echo on
