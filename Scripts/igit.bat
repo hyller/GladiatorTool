@@ -10,6 +10,9 @@ if "%1" == "alias" goto ALIAS
 if "%1" == "ci" goto COMMIT
 if "%1" == "updateall" goto UPDATEALL
 if "%1" == "sync" goto SYNC
+if "%1" == "del" goto DEL
+if "%1" == "delall" goto DELALL
+if "%1" == "br" goto BRANCH
 
 echo "error input"
 goto END
@@ -30,6 +33,7 @@ goto END
 :COMMIT
 @echo on
 git commit -a -m"%~2"
+git pull
 git push
 @echo off
 goto END
@@ -62,6 +66,28 @@ git commit -m"%~2"
 git push
 @echo off
 goto END
+
+:DEL
+@echo on
+git br -d "%~2"
+@echo off
+goto END
+
+:DELALL
+@echo on
+git br > igit.temp
+for /f %%i in (igit.temp) do git br -d %%i
+rm igit.temp
+@echo off
+goto END
+
+:BRANCH
+@echo on
+git co -b "%~2"
+git push --set-upstream origin  "%~2"
+@echo off
+goto END
+
 
 :END
 endlocal
