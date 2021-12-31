@@ -10,8 +10,8 @@ if "%1" == "alias" goto ALIAS
 if "%1" == "ci" goto COMMIT
 if "%1" == "updateall" goto UPDATEALL
 if "%1" == "sync" goto SYNC
-if "%1" == "del" goto DEL
-if "%1" == "delall" goto DELALL
+if "%1" == "delbr" goto DEL
+if "%1" == "delbrs" goto DELBRS
 if "%1" == "br" goto BRANCH
 
 echo "error input"
@@ -73,7 +73,7 @@ git br -d "%~2"
 @echo off
 goto END
 
-:DELALL
+:DELBRS
 @echo on
 git br > igit.temp
 for /f %%i in (igit.temp) do git br -d %%i
