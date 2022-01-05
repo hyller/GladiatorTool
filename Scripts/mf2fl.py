@@ -49,10 +49,10 @@ for line in my_text:
 
 # Print header file, add .h file under include_dir
 for item in include_dir:
-    files = glob.glob(os.getcwd() + item + "/*.h")
+    files = glob.glob(os.getcwd() + "/" + item + "/*.h")
     for file in files:
-        print(file)  
+        print(os.path.abspath(file))  
  
 # Print source file 
 for item in source_files:
-    print (os.getcwd() + "/" + eval(item))     
+    print (os.path.abspath((os.getcwd() + "/" + eval(item))))
