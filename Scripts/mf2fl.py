@@ -31,6 +31,9 @@ for line in my_text:
 
         if item[0:2] == "-c":   # Keep arg with -c option
             inargs.append(item)
+            
+        if item == "iccarm":   # Keep arg with -c option
+            save_next = True
 
         if item == "-c":  # Keep next arg if full match -c
             save_next = True
