@@ -31,24 +31,24 @@ def read_output_log(inputfile, outputfile):
                     reason = int(row['Parameter 2'], 16)
                     wf.write('\n\n')
                     wf.write('PWR:'+'resetReason-'+row['Parameter 2'])
-                    if reason & 0x0001 == 1:
-                        wf.write('-POWERON')
-                    if reason & 0x0004 == 0x0004:
-                        wf.write('-AVDDBOD')
-                    if reason & 0x0008 == 0x0008:
-                        wf.write('-DVDDBOD')
-                    if reason & 0x0010 == 0x0010:
-                        wf.write('-DECBOD')
-                    if reason & 0x0100 == 0x0100:
-                        wf.write('-EXTRST')
-                    if reason & 0x0200 == 0x0200:
-                        wf.write('-LOCKUPRST')
-                    if reason & 0x0400 == 0x0400:
-                        wf.write('-SYSREQRST')
-                    if reason & 0x0800 == 0x0800:
-                        wf.write('-WDOGRST')
-                    if reason & 0x10000 == 0x10000:
-                        wf.write('-EM4RST')
+                    if reason == 0x501:
+                        wf.write('-WATCHDOG_EXPIRED')
+                    if reason == 0x502:
+                        wf.write('-WATCHDOG_CAUGHT')
+                    if reason == 0x701:
+                        wf.write('-CRASH_ASSERT')
+                    if reason == 0xA01:
+                        wf.write('-HARD_FAULT')
+                    if reason == 0xA02:
+                        wf.write('-MEM_FAULT')
+                    if reason == 0xA03:
+                        wf.write('-BUS_FAULT')
+                    if reason == 0xA04:
+                        wf.write('-USAGE_FAULT')
+                    if reason == 0xA05:
+                        wf.write('-DBGMON_FAULT')
+                    if reason == 0x401:
+                        wf.write('-POWER_RESTART')
                     wf.write('|' + 'resetCnt-' + row['Parameter 3'] + '\n')
                 elif(row['Event ID'] == '0x71'):
                     addr = int(row['Parameter 3'], 16)*65536 + int(row['Parameter 2'], 16)
@@ -86,7 +86,7 @@ def read_output_log(inputfile, outputfile):
 def extract_code_from_map_file(inputfile):
     ret_funct_line_whole = ""
     code_list_index = 0
-    with open(inputfile, 'r') as rf:
+    with open(inputfile, 'r', encoding='utf-8') as rf:
         lines = rf.readlines()
 
         entry_list_flag = False
