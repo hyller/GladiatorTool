@@ -22,7 +22,7 @@ def read_output_log(inputfile, outputfile):
                 timeStamp_sec = (timeStampRaw//(1000)) % 60  # second
                 timeStamp_ms = timeStampRaw % (1000)  # milli second
 
-                wf.write("line:%4d | %02d:%02d:%02d.%03d" % (int(row['Index']), timeStamp_hour, timeStamp_min, timeStamp_sec, timeStamp_ms) + '|')
+                wf.write("page:%4d | line:%4d | %02d:%02d:%02d.%03d" % (int(row['Write Page Sequence']), int(row['Index']), timeStamp_hour, timeStamp_min, timeStamp_sec, timeStamp_ms) + '|')
                 if(row['Event ID'] == '0x50'):
                     rawParameter = int(row['Parameter 3'].split('x')[1], 16)
                     networkState = rawParameter/256
@@ -90,6 +90,8 @@ def read_output_log(inputfile, outputfile):
                         wf.write('-DBGMON_FAULT')
                     if reason == 0x401:
                         wf.write('-POWER_RESTART')
+                    if reason == 0x601:
+                        wf.write('-SOFT_REBOOT')                        
                     wf.write('|' + 'resetCnt-' + row['Parameter 3'] + '\n')
                 elif(row['Event ID'] == '0x71'):
                     addr = int(row['Parameter 3'], 16)*65536 + int(row['Parameter 2'], 16)
@@ -118,7 +120,7 @@ def read_output_log(inputfile, outputfile):
                 elif(row['Event ID'] == '0x77'):
                     addr = int(row['Parameter 3'], 16)*65536 + int(row['Parameter 2'], 16)
                     funct_name = find_function(addr)
-                    wf.write('PWR:'+'RETURN[5]-'+row['Parameter 3'] + "'" + row['Parameter 2'] + "--->" + funct_name + '\n')
+                    wf.write('PWR:'+'RETURN[5]-'+row['Parameter 3'] + "'" + row['Parameter 2'] + "--->" + funct_name + '\n')                
                 elif(row['Event ID'] == '0x0'):  # internal counter log
                     wf.write('E_LOG_APS_SEND'+'|' + 'status-'+row['Parameter 1'] + '|' + 'apsFrame->sequence-' + row['Parameter 2'] + '|' + 'diff_tm-' + row['Parameter 3'] + '\n')
                 elif(row['Event ID'] == '0x1'):
@@ -169,22 +171,46 @@ def read_output_log(inputfile, outputfile):
                     wf.write('ZigBee Task     '+'|'+'Task State:' + row['Parameter 1']+'|' + 'CPUUsageMax: '+row['Parameter 2']+'|'+'StkUsedPercentage'+row['Parameter 3']+'\n')
                 elif(row['Event ID'] == '0x37'):
                     wf.write('APP Task        '+'|'+'Task State:' + row['Parameter 1']+'|' + 'CPUUsageMax: '+row['Parameter 2']+'|'+'StkUsedPercentage'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x80'):
+                elif((row['Event ID'] == '0x80') or (row['Event ID'] == '0xA')):
                     wf.write('POWERDOWN       '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x81'):
+                elif((row['Event ID'] == '0x81') or (row['Event ID'] == '0xB')):
                     wf.write('HB_LED          '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x82'):
+                elif((row['Event ID'] == '0x82') or (row['Event ID'] == '0xC')):
                     wf.write('HB_ZIGBEE       '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x83'):
+                elif((row['Event ID'] == '0x83') or (row['Event ID'] == '0xD')):
                     wf.write('HB_DI           '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x84'):
+                elif((row['Event ID'] == '0x84') or (row['Event ID'] == '0xE')):
                     wf.write('HB_DO           '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x85'):
+                elif((row['Event ID'] == '0x85') or (row['Event ID'] == '0xF')):
                     wf.write('HB_DIAG         '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x86'):
+                elif((row['Event ID'] == '0x86') or (row['Event ID'] == '0x10')):
                     wf.write('HB_COMMU        '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
-                elif(row['Event ID'] == '0x87'):
+                elif((row['Event ID'] == '0x87') or (row['Event ID'] == '0x11')):
                     wf.write('HB_BTN          '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3']+'\n')
+                elif(row['Event ID'] == '0x8'):
+                    stk_usage_per_mgr = int(row['Parameter 1'], 16)
+                    stk_usage_per_do = int(row['Parameter 2'], 16) >> 8
+                    stk_usage_per_diag = int(row['Parameter 2'], 16) & 0xff
+                    stk_usage_per_commu = int(row['Parameter 3'], 16) >> 8
+                    stk_usage_per_di = int(row['Parameter 3'], 16) & 0xff
+                    wf.write('STK_USAGE_PER   '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3'] + '|')
+                    wf.write(' MGR:' + str(stk_usage_per_mgr))
+                    wf.write(' DO :' + str(stk_usage_per_do))
+                    wf.write(' DIA:' + str(stk_usage_per_diag))
+                    wf.write(' CMU:' + str(stk_usage_per_commu))
+                    wf.write(' DI :' + str(stk_usage_per_di))
+                    wf.write('\n')
+                elif(row['Event ID'] == '0x9'):
+                    stk_usage_per_zigbee = int(row['Parameter 1'], 16)
+                    stk_usage_per_led = int(row['Parameter 2'], 16) & 0xff
+                    stk_usage_per_btn = int(row['Parameter 3'], 16) >> 8
+                    stk_usage_per_app = int(row['Parameter 3'], 16) & 0xff
+                    wf.write('STK_USAGE_PER2  '+'|'+row['Parameter 1']+'|' + row['Parameter 2']+'|'+row['Parameter 3'] + '|')
+                    wf.write(' ZIG:' + str(stk_usage_per_zigbee))
+                    wf.write(' LED:' + str(stk_usage_per_led))
+                    wf.write(' BTN:' + str(stk_usage_per_btn))
+                    wf.write(' APP:' + str(stk_usage_per_app))
+                    wf.write('\n')
                 else:
                     wf.write('\n')
         rf.close()
