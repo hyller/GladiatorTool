@@ -83,6 +83,7 @@ goto END
 
 :BRANCH
 @echo on
+git pull
 git co -b "%~2"
 git push --set-upstream origin  "%~2"
 @echo off
