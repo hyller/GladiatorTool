@@ -14,8 +14,20 @@ This util start a sniffer, then calculate the received packets
 '''
 
 
+def Stop(ser, dev):
+    for i in range(100):
+        ser.write(b'collect 10000 0 1 1\n')
+        time.sleep(0.001)
+    for i in range(1000):
+        try:
+            dev.read(0x81, 512, 1)
+        except:
+            ser.write(b'stop')
+        ser.write(b'stop')
+
+
 def Capture(port, seconds=5):
-    ser = serial.Serial(port, 921600, timeout=0.1)  # Timeout 1s
+    ser = serial.Serial(port, 921600, timeout=0.1)  # Timeout 0.1s
     dev = usb.core.find(idVendor=0x1cbe, idProduct=0x00ab)
     dev.set_configuration()
 
@@ -39,13 +51,7 @@ def Capture(port, seconds=5):
             print(f'delta time {delta}')
             break
 
-    # Stop
-    ser.write(b'stop\n')
-    time.sleep(0.1)
-    ser.write(b'stop\n')
-    time.sleep(0.1)
-    ser.write(b'stop\n')
-    time.sleep(0.1)
+    Stop(ser, dev)
 
     cnt = divmod(len(recvs), 4)
     print(f"receive total cnt {cnt}")
