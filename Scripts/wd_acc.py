@@ -9,10 +9,6 @@ import matplotlib.pyplot as plt
 import usb.core
 import csv
 
-'''
-This util start a sniffer, then calculate the received packets
-'''
-
 
 def Stop(ser, dev):
     for i in range(100):
@@ -43,7 +39,7 @@ def Capture(port, seconds=5):
     start = time.time()
     print(f'start time {start}')
     while True:
-        recvs += dev.read(0x81, 512*128, 100)
+        recvs += dev.read(0x81, 512)
         stop = time.time()
         delta = stop - start
         if(delta > seconds):
@@ -71,6 +67,7 @@ def Parse(recvs):
             index += 1
             address = recvs[index]
             data = recvs[index+1]*256+recvs[index+2]
+            index += 3
 
             # Convert to mT
             if(data >= 0x7FFF):
@@ -84,13 +81,10 @@ def Parse(recvs):
             # Fill to xyz
             if address == 9:
                 x_value.append(data)
-                index += 3
             elif address == 10:
                 y_value.append(data)
-                index += 3
             elif address == 11:
                 z_value.append(data)
-                index += 3
 
     print(f"receive x cnt {len(x_value)}")
     print(f"receive y cnt {len(y_value)}")
@@ -99,11 +93,14 @@ def Parse(recvs):
     return x_value, y_value, z_value
 
 
-def Draw(values):
-    plt.plot(values)
-    plt.axis([0, len(values), min(0, min(values)), max(0, max(values))])
+def Draw(x_values, y_values, z_values):
+    plt.plot(x_values, color='red', label='x')
+    plt.plot(y_values, color='green', label='y')
+    plt.plot(z_values, color='blue', label='z')
+    plt.axis([0, len(x_values), min(0, min(x_values), min(y_values), min(z_values)), max(0, max(x_values), max(y_values), max(z_values))])
     plt.xlabel("Count")
     plt.ylabel("mT")
+    # plt.legend()
     plt.show()
 
 
@@ -137,11 +134,14 @@ if __name__ == '__main__':
         recvs = Capture(sys.argv[1], int(sys.argv[2]))
         x_values, y_values, z_values = Parse(recvs)
         StoreValues(x_values, y_values, z_values, sys.argv[3])
+        if input("\n\nshow figure? y/n: ") == 'y':
+            Draw(x_values, y_values, z_values)
     elif len(sys.argv) == 5:
         x_values = LoadValueFromFile(sys.argv[1])
         y_values = LoadValueFromFile(sys.argv[2])
         z_values = LoadValueFromFile(sys.argv[3])
         StoreValues(x_values, y_values, z_values, sys.argv[4])
-        # Draw(x_values)
+        if input("\n\nshow figure? y/n: ") == 'y':
+            Draw(x_values, y_values, z_values)
     else:
         print('Usage: wd_acc port_name time file_name')
