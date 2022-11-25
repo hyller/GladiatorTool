@@ -32,7 +32,7 @@ goto END
 
 :COMMIT
 @echo on
-git commit -a -m"%~2"
+git commit -a -m"[auto]%~2"
 git pull
 git push
 @echo off
@@ -62,7 +62,7 @@ git pull
 git submodule init
 git submodule update
 git add .
-git commit -m"%~2"
+git commit -m"[auto]%~2"
 git push
 @echo off
 goto END
