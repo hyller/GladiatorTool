@@ -22,7 +22,6 @@ import xml.dom.minidom
 import glob
 import os
 
-sdk_path = "C:/Users/sesa280753/SimplicityStudio/SDKs/gecko_sdk-4.2.x/"
 
 # 使用minidom解析器打开 XML 文档
 DOMTree = xml.dom.minidom.parse(".project")
